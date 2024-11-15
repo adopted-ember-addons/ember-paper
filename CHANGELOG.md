@@ -1,5 +1,24 @@
 # Ember Paper Changelog
 
+## Release (2024-11-15)
+
+ember-paper 1.0.0-beta.38 (major)
+
+#### :boom: Breaking Change
+* `ember-paper`
+  * [#1301](https://github.com/adopted-ember-addons/ember-paper/pull/1301) allow full-screen snapshots ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* `ember-paper`
+  * [#1294](https://github.com/adopted-ember-addons/ember-paper/pull/1294) chore: remove events mixin. ([@matthewhartstonge](https://github.com/matthewhartstonge))
+  * [#1308](https://github.com/adopted-ember-addons/ember-paper/pull/1308) chore(tests/dummy/app/controllers/catalog): stabilises catalog contacts. ([@matthewhartstonge](https://github.com/matthewhartstonge))
+  * [#1307](https://github.com/adopted-ember-addons/ember-paper/pull/1307) fix lint-to-the-future dashboard build ([@mansona](https://github.com/mansona))
+  * [#1296](https://github.com/adopted-ember-addons/ember-paper/pull/1296) Add percy ([@mansona](https://github.com/mansona))
+
+#### Committers: 2
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Matthew Hartstonge ([@matthewhartstonge](https://github.com/matthewhartstonge))
+
 ## Release (2024-11-13)
 
 ember-paper 1.0.0-beta.37 (major)
