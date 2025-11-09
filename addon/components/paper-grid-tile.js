@@ -1,11 +1,10 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-get, ember/require-computed-property-dependencies */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-get, ember/require-computed-property-dependencies, ember/require-tagless-components */
 import { tagName } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 
 import Component from '@ember/component';
 import { debounce } from '@ember/runloop';
-import { ChildMixin } from 'ember-composability-tools';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 
 const positionCSS = (positions) => {
@@ -31,16 +30,26 @@ const applyStyles = (el, styles) => {
  * @extends Ember.Component
  */
 @tagName('md-grid-tile')
-export default class PaperGridTile extends Component.extend(ChildMixin) {
+export default class PaperGridTile extends Component {
   @alias('parentComponent')
   gridList;
 
   didUpdateAttrs() {
     super.didUpdateAttrs(...arguments);
-    let gridList = this.gridList;
+    let gridList = this.parentComponent;
 
     // Debounces until the next run loop
     debounce(gridList, gridList.updateGrid, 0);
+  }
+
+  didInsertElement() {
+    super.didInsertElement(...arguments);
+    this.parentComponent.register(this);
+  }
+
+  didDestroyElement() {
+    super.didDestroyElement(...arguments);
+    this.parentComponent.deRegister(this);
   }
 
   updateTile() {

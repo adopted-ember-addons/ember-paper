@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-get, ember/no-mixins, ember/require-tagless-components */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-get, ember/no-mixins, ember/require-tagless-components */
 /**
  * @module ember-paper
  */
@@ -34,6 +34,20 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
     'ariaChecked:aria-checked',
     'labelId:aria-labelledby',
   ],
+
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  },
+
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
 
   /* FocusableMixin Overrides */
   focusOnlyOnKey: true,

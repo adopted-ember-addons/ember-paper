@@ -50,9 +50,6 @@ importers:
       ember-cli-sass:
         specifier: ^10.0.1
         version: 10.0.1
-      ember-composability-tools:
-        specifier: ^0.0.12
-        version: 0.0.12
       ember-css-transitions:
         specifier: ^4.4.1
         version: 4.4.1(@babel/core@7.25.8)
@@ -3282,10 +3279,6 @@ packages:
     resolution: {integrity: sha512-BtkjulweiXo9c3yVWrtexw2dTmBrvavD/xixNC6TKOBdrixUwU+6nuOO9dufDWsMxoid7MvtmDpzc9+mE8PdaA==}
     engines: {node: 10.* || >= 12.*}
 
-  ember-composability-tools@0.0.12:
-    resolution: {integrity: sha512-twb7I60OSSzHyJnCcl9OFw8OwfHvscHSQrgTFa4u6YNftKgNqXqc/Ejez1HqbG6I/CwGAcCrXquvTNDVSZdxvA==}
-    engines: {node: 8.* || >= 10.*}
-
   ember-concurrency-decorators@2.0.3:
     resolution: {integrity: sha512-r6O34YKI/slyYapVsuOPnmaKC4AsmBSwvgcadbdy+jHNj+mnryXPkm+3hhhRnFdlsKUKdEuXvl43lhjhYRLhhA==}
     engines: {node: 10.* || >= 12}
@@ -3330,10 +3323,6 @@ packages:
   ember-href-to@5.0.6:
     resolution: {integrity: sha512-oq3iCbOZzLpasjQ3aWRleaFGQxyFx5zWMCfL+D/7kEmlN7S6Ixfnul+aUu1AZZ1bMztOMsy8qA74wVj4+Vu26g==}
     engines: {node: 12.* || 14.* || >= 16}
-
-  ember-in-element-polyfill@0.2.2:
-    resolution: {integrity: sha512-aWFWTpDU+6mHqQd3Gr0UyrwMXGiGuLBJXYczExNGJsc2zUv/9rDot9HIpMr0sgXtWddzM0Z9Ly1H0sbYZ1ExCA==}
-    engines: {node: 8.* || >= 10.*}
 
   ember-inflector@4.0.3:
     resolution: {integrity: sha512-E+NnmzybMRWn1JyEfDxY7arjOTJLIcGjcXnUxizgjD4TlvO1s3O65blZt+Xq2C2AFSPeqHLC6PXd6XHYM8BxdQ==}
@@ -11758,14 +11747,6 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-composability-tools@0.0.12:
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 3.1.0
-      ember-in-element-polyfill: 0.2.2
-    transitivePeerDependencies:
-      - supports-color
-
   ember-concurrency-decorators@2.0.3(@babel/core@7.25.8):
     dependencies:
       '@ember-decorators/utils': 6.1.1
@@ -11864,15 +11845,6 @@ snapshots:
   ember-href-to@5.0.6:
     dependencies:
       ember-cli-babel: 7.26.11
-    transitivePeerDependencies:
-      - supports-color
-
-  ember-in-element-polyfill@0.2.2:
-    dependencies:
-      debug: 3.2.7
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 4.5.0
-      ember-cli-version-checker: 2.2.0
     transitivePeerDependencies:
       - supports-color
 

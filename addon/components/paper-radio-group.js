@@ -1,16 +1,16 @@
-/* eslint-disable ember/no-actions-hash, ember/no-classic-components, ember/no-get, ember/no-mixins, ember/require-tagless-components */
+/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods, ember/no-actions-hash, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-get, ember/no-mixins */
 /**
  * @module ember-paper
  */
 import { inject as service } from '@ember/service';
 
-import { filterBy, mapBy, notEmpty } from '@ember/object/computed';
+import { notEmpty } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import FocusableMixin from 'ember-paper/mixins/focusable-mixin';
-import { ParentMixin } from 'ember-composability-tools';
 import { isPresent } from '@ember/utils';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
+import { tracked } from '@glimmer/tracking';
 
 /**
  * @class PaperRadioGroup
@@ -18,32 +18,53 @@ import { invokeAction } from 'ember-paper/utils/invoke-action';
  * @uses FocusableMixin
  * @uses ParentMixin
  */
-export default Component.extend(FocusableMixin, ParentMixin, {
-  tagName: 'md-radio-group',
-  tabindex: 0,
+export default class PaperRadioGroup extends Component.extend(FocusableMixin) {
+  tagName = 'md-radio-group';
+  tabindex = 0;
 
   /* FocusableMixin Overrides */
-  focusOnlyOnKey: true,
+  focusOnlyOnKey = true;
 
-  radioComponent: 'paper-radio',
-  labelComponent: 'paper-radio-group-label',
-  role: 'radiogroup',
-  constants: service(),
+  radioComponent = 'paper-radio';
+  labelComponent = 'paper-radio-group-label';
+  role = 'radiogroup';
+
+  @service
+  constants;
 
   // Lifecycle hooks
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
+
     assert(
       '{{paper-radio-group}} requires an `onChange` action or null for no action',
       this.onChange !== undefined
     );
-  },
+  }
 
-  attributeBindings: ['role', 'ariaLabelledby:aria-labelledby'],
+  @tracked
+  childComponents = [];
 
-  enabledChildRadios: filterBy('childComponents', 'disabled', false),
-  childValues: mapBy('enabledChildRadios', 'value'),
-  hasLabel: notEmpty('labelNode'),
+  register(newChild) {
+    this.childComponents = [...this.childComponents, newChild];
+  }
+
+  deRegister(child) {
+    this.childComponents = this.childComponents.filter(
+      (item) => item !== child
+    );
+  }
+
+  attributeBindings = ['role', 'ariaLabelledby:aria-labelledby'];
+
+  get enabledChildRadios() {
+    return this.childComponents.filter((item) => !item.disabled);
+  }
+  get childValues() {
+    return this.enabledChildRadios.map((item) => item.value);
+  }
+
+  hasLabel = notEmpty('labelNode');
 
   keyDown(ev) {
     switch (ev.which) {
@@ -58,7 +79,7 @@ export default Component.extend(FocusableMixin, ParentMixin, {
         this.select(1);
         break;
     }
-  },
+  }
 
   select(increment) {
     let groupValue = this.groupValue;
@@ -71,14 +92,14 @@ export default Component.extend(FocusableMixin, ParentMixin, {
       index = ((index % length) + length) % length;
     }
 
-    let childRadio = this.enabledChildRadios.objectAt(index);
+    let childRadio = this.enabledChildRadios[index];
     childRadio.set('focused', true);
     invokeAction(this, 'onChange', childRadio.get('value'));
-  },
+  }
 
-  actions: {
+  actions = {
     onChange(value) {
       invokeAction(this, 'onChange', value);
     },
-  },
-});
+  };
+}

@@ -9,7 +9,6 @@ import {
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import { htmlSafe } from '@ember/template';
-import { ChildMixin } from 'ember-composability-tools';
 import FocusableMixin from 'ember-paper/mixins/focusable-mixin';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 
@@ -17,10 +16,21 @@ import { invokeAction } from 'ember-paper/utils/invoke-action';
 @classNames('md-tab')
 @classNameBindings('isSelected:md-active')
 @attributeBindings('isSelected:aria-selected', 'style', 'maybeHref:href')
-export default class PaperTab extends Component.extend(
-  ChildMixin,
-  FocusableMixin
-) {
+export default class PaperTab extends Component.extend(FocusableMixin) {
+  didInsertElement() {
+    super.didInsertElement(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  }
+
+  didDestroyElement() {
+    super.didDestroyElement(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  }
+
   // <a> tags have browser styles or are usually styled by the user
   // this makes sure that tab item still looks good with an anchor tag
   @computed('href')

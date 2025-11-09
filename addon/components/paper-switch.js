@@ -37,6 +37,13 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
   disabled: false,
   dragging: false,
 
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
+
   thumbContainerStyle: computed('dragging', 'dragAmount', function () {
     if (!this.dragging) {
       return htmlSafe('');
@@ -51,6 +58,10 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
 
   didInsertElement() {
     this._super(...arguments);
+
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
 
     // Only setup if the switch is not disabled
     if (!this.disabled) {

@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-mixins, ember/require-tagless-components */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-mixins, ember/require-tagless-components */
 /**
  * @module ember-paper
  */
@@ -28,6 +28,20 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
   type: 'button',
   href: null,
   target: null,
+
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  },
+
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
 
   attributeBindings: ['type', 'href', 'target', 'title', 'download', 'rel'],
 

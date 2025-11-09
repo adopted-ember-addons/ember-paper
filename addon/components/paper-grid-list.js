@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-get */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-get, ember/require-tagless-components */
 /**
  * @module ember-paper
  */
@@ -8,9 +8,9 @@ import { tagName } from '@ember-decorators/component';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { bind, debounce } from '@ember/runloop';
-import { ParentMixin } from 'ember-composability-tools';
 import gridLayout from '../utils/grid-layout';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
+import { tracked } from '@glimmer/tracking';
 
 const mediaRegex = /(^|\s)((?:print-)|(?:[a-z]{2}-){1,2})?(\d+)(?!\S)/g;
 const rowHeightRegex =
@@ -39,8 +39,21 @@ const applyStyles = (el, styles) => {
 };
 
 @tagName('md-grid-list')
-export default class PaperGridList extends Component.extend(ParentMixin) {
+export default class PaperGridList extends Component {
   @service constants;
+
+  @tracked
+  childComponents = [];
+
+  register(newChild) {
+    this.childComponents = [...this.childComponents, newChild];
+  }
+
+  deRegister(child) {
+    this.childComponents = this.childComponents.filter(
+      (item) => item !== child
+    );
+  }
 
   get tiles() {
     return this.childComponents;
