@@ -1,75 +1,62 @@
-/* eslint-disable prettier/prettier */
-import Modifier from 'ember-modifier';
-import { bind } from '@ember/runloop';
+import { modifier } from 'ember-modifier';
 
 /* global Hammer */
 
-export default class ToastHammer extends Modifier {
-  enabled = false;
-  onClose = null;
+export default modifier(function toasterHammer(element, positional, named) {
+  let hammer;
 
-  setupHammer() {
-    if (this.enabled) {
-      // Enable dragging the slider
-      let containerManager = new Hammer.Manager(this.element, {
-        dragLockToAxis: true,
-        dragBlockHorizontal: true
-      });
-      let swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_ALL, threshold: 10 });
-      let pan = new Hammer.Pan({ direction: Hammer.DIRECTION_ALL, threshold: 10 });
-      containerManager.add(swipe);
-      containerManager.add(pan);
-      containerManager
-        .on('panstart', bind(this, this.dragStart))
-        .on('panmove', bind(this, this.drag))
-        .on('panend', bind(this, this.dragEnd))
-        .on('swiperight swipeleft', bind(this, this.dragEnd));
-      this.hammer = containerManager;
+  function setXPosition(event) {
+    element.style.transform = `translate(${event}px, 0)`;
+  }
+
+  function dragStart(event) {
+    element.classList.add('md-dragging');
+    element.focus();
+    setXPosition(event.center.x);
+  }
+
+  function drag(event) {
+    if (!element.classList.contains('md-dragging')) {
+      return;
     }
-  }
-
-  setXPosition(event) {
-    this.element.style.transform = `translate(${event}px, 0)`;
-  }
-
-  dragStart(event) {
-    this.element.classList.add('md-dragging');
-    this.element.focus();
-    this.setXPosition(event.center.x);
-  }
-
-  drag(event) {
-    if (!this.element.classList.contains('md-dragging')) { return }
 
     this.setXPosition(event.deltaX);
   }
 
-  dragEnd() {
-    this.element.classList.remove('md-dragging');
-    if (this.onClose) { this.onClose() }
-  }
-
-  teardownHammer() {
-    this.hammer.destroy();
-    delete this.hammer;
-  }
-
-  didReceiveArguments() {
-    this.enabled = this.args.named.enabled;
-    this.onClose = this.args.named.onClose;
-
-    if (this.enabled && !this.hammer) {
-      // if it is enabled and we didn't init hammer yet
-      this.setupHammer();
-    } else if (!this.enabled && this.hammer) {
-      // if it is disabled and we did init hammer already
-      this.teardownHammer();
+  function dragEnd() {
+    element.classList.remove('md-dragging');
+    if (named.onClose) {
+      named.onClose();
     }
   }
 
-  willDestroy() {
-    if (this.hammer) {
-      this.teardownHammer();
-    }
+  if (named.enabled) {
+    // Enable dragging the slider
+    let containerManager = new Hammer.Manager(element, {
+      dragLockToAxis: true,
+      dragBlockHorizontal: true,
+    });
+    let swipe = new Hammer.Swipe({
+      direction: Hammer.DIRECTION_ALL,
+      threshold: 10,
+    });
+    let pan = new Hammer.Pan({
+      direction: Hammer.DIRECTION_ALL,
+      threshold: 10,
+    });
+    containerManager.add(swipe);
+    containerManager.add(pan);
+    containerManager
+      .on('panstart', dragStart)
+      .on('panmove', drag)
+      .on('panend', dragEnd)
+      .on('swiperight swipeleft', dragEnd);
+    hammer = containerManager;
   }
-}
+
+  return () => {
+    if (hammer) {
+      hammer.destroy();
+    }
+  };
+});
