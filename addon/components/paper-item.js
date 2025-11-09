@@ -6,9 +6,9 @@ import {
 } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import { or, bool, filter } from '@ember/object/computed';
+import { tracked } from '@glimmer/tracking';
 
 import Component from '@ember/component';
-import { ParentMixin } from 'ember-composability-tools';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 /**
  * @class PaperItem
@@ -23,9 +23,22 @@ import { invokeAction } from 'ember-paper/utils/invoke-action';
   'hasPrimaryAction:_md-button-wrap'
 )
 @attributeBindings('role', 'tabindex', 'title')
-export default class PaperItem extends Component.extend(ParentMixin) {
+export default class PaperItem extends Component {
   _mouseEnterHandler = undefined;
   _mouseLeaveHandler = undefined;
+
+  @tracked
+  childComponents = [];
+
+  register(newChild) {
+    this.childComponents = [...this.childComponents, newChild];
+  }
+
+  deRegister(child) {
+    this.childComponents = this.childComponents.filter(
+      (item) => item !== child
+    );
+  }
 
   // Ripple Overrides
   // disable ripple when we have a primary action or when we don't have a proxied component
@@ -54,12 +67,6 @@ export default class PaperItem extends Component.extend(ParentMixin) {
   @computed('hasPrimaryAction', 'hasProxiedComponent')
   get noProxy() {
     return !this.hasPrimaryAction && !this.hasProxiedComponent;
-  }
-
-  @computed('proxiedComponents.[]')
-  get secondaryItem() {
-    let proxiedComponents = this.proxiedComponents;
-    return proxiedComponents.objectAt(0);
   }
 
   didInsertElement() {

@@ -5,14 +5,13 @@
 import Mixin from '@ember/object/mixin';
 
 import { next, later } from '@ember/runloop';
-import { ChildMixin } from 'ember-composability-tools';
 
 /**
  * @class ProxiableMixin
  * @uses ChildMixin
  * @extends Ember.Mixin
  */
-export default Mixin.create(ChildMixin, {
+export default Mixin.create({
 
   classNameBindings: ['secondary:md-secondary'],
 

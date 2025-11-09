@@ -35,6 +35,20 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
     'labelId:aria-labelledby',
   ],
 
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  },
+
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
+
   /* FocusableMixin Overrides */
   focusOnlyOnKey: true,
 

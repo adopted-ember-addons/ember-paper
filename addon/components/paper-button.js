@@ -29,6 +29,20 @@ export default Component.extend(FocusableMixin, ProxiableMixin, {
   href: null,
   target: null,
 
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  },
+
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
+
   attributeBindings: ['type', 'href', 'target', 'title', 'download', 'rel'],
 
   classNameBindings: [

@@ -11,6 +11,21 @@ import ProxiableMixin from 'ember-paper/mixins/proxiable-mixin';
  * @uses ProxiableMixin
  */
 export default PaperRadioBaseComponent.extend(ProxiableMixin, {
+
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.register(this);
+    }
+  },
+
+  didDestroyElement() {
+    this._super(...arguments);
+    if (this.parentComponent) {
+      this.parentComponent.deRegister(this);
+    }
+  },
+
   processProxy() {
     this.click();
   }

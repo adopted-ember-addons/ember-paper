@@ -11,14 +11,14 @@ import { gt } from '@ember/object/computed';
 import Component from '@ember/component';
 import { htmlSafe } from '@ember/template';
 import { scheduleOnce, join } from '@ember/runloop';
-import { ParentMixin } from 'ember-composability-tools';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
+import { tracked } from '@glimmer/tracking';
 
 @tagName('md-tabs')
 @classNames('md-no-tab-content', 'md-default-theme')
 @classNameBindings('warn:md-warn', 'accent:md-accent', 'primary:md-primary')
 @attributeBindings('borderBottom:md-border-bottom')
-export default class PaperTabs extends Component.extend(ParentMixin) {
+export default class PaperTabs extends Component {
   @service
   constants;
 
@@ -28,6 +28,23 @@ export default class PaperTabs extends Component.extend(ParentMixin) {
   ariaLabel = null;
   stretch = 'sm';
   movingRight = true;
+
+  @tracked
+  childComponents = [];
+
+  register(newChild) {
+    this.childComponents = [...this.childComponents, newChild];
+    if (newChild.get('value') === undefined) {
+      let length = this.childComponents.length;
+      newChild.set('value', length - 1);
+    }
+  }
+
+  deRegister(child) {
+    this.childComponents = this.childComponents.filter(
+      (item) => item !== child
+    );
+  }
 
   @computed('noInkBar', '_selectedTab.{width,left}', 'wrapperWidth')
   get inkBar() {
@@ -98,7 +115,7 @@ export default class PaperTabs extends Component.extend(ParentMixin) {
    * invalidate their 'isSelected' property.
    */
   updateSelectedTab() {
-    let selectedTab = this.childComponents.findBy('isSelected');
+    let selectedTab = this.childComponents.find((item) => item.isSelected);
     let previousSelectedTab = this._selectedTab;
 
     if (selectedTab === previousSelectedTab) {
@@ -120,15 +137,6 @@ export default class PaperTabs extends Component.extend(ParentMixin) {
     super.willDestroyElement(...arguments);
     window.removeEventListener('resize', this.updateCanvasWidth);
     window.removeEventListener('orientationchange', this.updateCanvasWidth);
-  }
-
-  registerChild(childComponent) {
-    super.registerChild(...arguments);
-    // automatically set value if not manually set
-    if (childComponent.get('value') === undefined) {
-      let length = this.childComponents.get('length');
-      childComponent.set('value', length - 1);
-    }
   }
 
   fixOffsetIfNeeded() {
@@ -168,7 +176,7 @@ export default class PaperTabs extends Component.extend(ParentMixin) {
     let wrapperWidth = this.element.querySelector(
       'md-pagination-wrapper'
     ).offsetWidth;
-    this.childComponents.invoke('updateDimensions');
+    this.childComponents.forEach((item) => item.updateDimensions());
     this.set('canvasWidth', canvasWidth);
     this.set('wrapperWidth', wrapperWidth);
     this.set('shouldPaginate', wrapperWidth > canvasWidth);
