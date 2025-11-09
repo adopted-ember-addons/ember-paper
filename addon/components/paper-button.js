@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-mixins, ember/require-tagless-components */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-mixins, ember/require-tagless-components */
 /**
  * @module ember-paper
  */
