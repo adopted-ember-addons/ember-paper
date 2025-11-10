@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-get-with-default, ember/require-tagless-components */
+/* eslint-disable ember/no-classic-components, ember/require-tagless-components */
 /**
  * @module ember-paper
  */
@@ -33,8 +33,7 @@ let PaperIconComponent = Component.extend({
   reverseSpin: false,
 
   iconClass: computed('icon', 'positionalIcon', function () {
-    let icon = this.getWithDefault('positionalIcon', this.icon);
-    return icon;
+    return this.positionalIcon ?? this.icon;
   }),
 
   'aria-hidden': false,
