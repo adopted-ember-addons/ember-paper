@@ -63,8 +63,8 @@ importers:
         specifier: ^2.0.3
         version: 2.1.0
       ember-modifier:
-        specifier: ^3.0.0
-        version: 3.2.7(@babel/core@7.25.8)
+        specifier: ^4.2.2
+        version: 4.2.2(@babel/core@7.25.8)
       ember-power-select:
         specifier: ^5.0.4
         version: 5.0.4(@babel/core@7.25.8)(ember-source@3.28.12(@babel/core@7.25.8))
@@ -3344,6 +3344,9 @@ packages:
   ember-modifier@3.2.7:
     resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
     engines: {node: 12.* || >= 14}
+
+  ember-modifier@4.2.2:
+    resolution: {integrity: sha512-pPYBAGyczX0hedGWQFQOEiL9s45KS9efKxJxUQkMLjQyh+1Uef1mcmAGsdw2KmvNupITkE/nXxmVO1kZ9tt3ag==}
 
   ember-page-title@6.2.2:
     resolution: {integrity: sha512-YTXA+cylZrh9zO0zwjlaAGReT2MVOxAMnVO1OOygFrs1JBs4D6CKV3tImoilg3AvIXFBeJfFNNUbJOdRd9IGGg==}
@@ -11752,7 +11755,7 @@ snapshots:
       '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.8.9
       decorator-transforms: 2.2.2(@babel/core@7.25.8)
-      ember-modifier: 3.2.7(@babel/core@7.25.8)
+      ember-modifier: 4.2.2(@babel/core@7.25.8)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -11872,6 +11875,16 @@ snapshots:
       ember-cli-string-utils: 1.1.0
       ember-cli-typescript: 5.3.0
       ember-compatibility-helpers: 1.2.7(@babel/core@7.25.8)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
+  ember-modifier@4.2.2(@babel/core@7.25.8):
+    dependencies:
+      '@embroider/addon-shim': 1.8.9
+      decorator-transforms: 2.2.2(@babel/core@7.25.8)
+      ember-cli-normalize-entity-name: 1.0.0
+      ember-cli-string-utils: 1.1.0
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
