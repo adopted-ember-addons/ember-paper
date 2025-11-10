@@ -1,7 +1,6 @@
 /* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/require-tagless-components */
 import Component from '@ember/component';
 import { action } from '@ember/object';
-import { next } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 
