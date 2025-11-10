@@ -6,5 +6,19 @@ module.exports = {
   rules: {
     'attribute-indentation': false,
     'no-inline-styles': false
-  }
+  },
+  overrides: [
+    {
+      files: ['tests/**/*.js'],
+      rules: {
+        // TODO remove these later
+        'no-curly-component-invocation': false,
+        'no-action': false,
+        'no-autofocus-attribute': false,
+        'no-unused-block-params': false,
+        'require-button-type': false,
+        'require-input-label': false,
+      },
+    },
+  ],
 };
