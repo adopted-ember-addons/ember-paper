@@ -1,0 +1,4 @@
+{{#let (get-code-snippet @name) as |snippet|}}
+  {{!- CodeBlock is provided by ember-prism -}}
+  <CodeBlock @language={{snippet.language}} @code={{snippet.source}} />
+{{/let}}
