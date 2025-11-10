@@ -1,66 +1,59 @@
-/* eslint-disable prettier/prettier */
 import Controller from '@ember/controller';
 import { later } from '@ember/runloop';
-import { A } from '@ember/array';
-import EObject, { computed } from '@ember/object';
 import { buildGridModel, randomColor, randomSpan } from '../../utils/grid-list';
 import { isTesting } from '@embroider/macros';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-
-  init() {
-    this._super(...arguments);
+export default class extends Controller {
+  constructor() {
+    super(...arguments);
 
     // start timer, which recalculates the color tiles every 10 seconds
     this.setupTimer();
-    this.set('colorTiles', this.calculateColorTiles());
-  },
+    this.recalculateColorTiles();
+  }
 
-  basicRows: 6,
+  @tracked
+  basicRows = 6;
+
+  @tracked
+  colorTiles = [];
 
   setupTimer() {
     // this will cause test waiters to never complete in tests
-    if(!isTesting()) {
-      later(this, () => {
-        this.recalculateColorTiles();
+    if (!isTesting()) {
+      later(
+        this,
+        () => {
+          this.recalculateColorTiles();
 
-        later(this, this.setupTimer);
-      }, 10 * 1000);
+          later(this, this.setupTimer);
+        },
+        10 * 1000
+      );
     }
-  },
+  }
 
-  tiles: computed(function() {
+  get tiles() {
     let tiles = buildGridModel({
       title: 'Svg-',
-      background: ''
+      background: '',
     });
 
-    return A(tiles);
-  }),
+    return tiles;
+  }
 
   recalculateColorTiles() {
-    let tiles = this.colorTiles;
-    for (let i = 0; i < 46; i++) {
-      tiles[i].set('colspan', randomSpan());
-      tiles[i].set('rowspan', randomSpan());
-      tiles[i].set('style', randomColor());
-    }
-  },
-
-  calculateColorTiles() {
     let tiles = [];
+
     for (let i = 0; i < 46; i++) {
-      tiles.push(EObject.create({
+      tiles.push({
         style: randomColor(),
         colspan: randomSpan(),
-        rowspan: randomSpan()
-      }));
+        rowspan: randomSpan(),
+      });
     }
 
-    return A(tiles);
-  },
-
-  colorTiles: computed(function() {
-    return A([]);
-  })
-});
+    this.colorTiles = tiles;
+  }
+}
