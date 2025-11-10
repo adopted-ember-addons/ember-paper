@@ -163,7 +163,7 @@ module('Integration | Component | paper-input', function(hooks) {
   test('renders input with attribute form', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-input passThru=(hash form="myform") onChange=this.dummyOnChange onChange=this.dummyOnChange}}`);
+    await render(hbs`{{paper-input passThru=(hash form="myform") onChange=this.dummyOnChange}}`);
 
     assert.dom('md-input-container input').hasAttribute('form', 'myform');
   });
