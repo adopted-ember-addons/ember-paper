@@ -7,7 +7,7 @@ This project aims to bring Google's new [Material Design](https://www.google.com
 ## Compatibility
 
 * Ember.js v3.24 or above
-* Ember CLI v4.4 or above
+* Ember CLI v3.24 or above
 * Node.js v18 or above
 
 

@@ -49,7 +49,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --no-lockfile
       - name: Run Tests
-        run: pnpm run test:ember
+        run: pnpm test:ember
 
   try-scenarios:
     name: ${{ matrix.try-scenario }}
@@ -64,6 +64,9 @@ jobs:
           - ember-lts-3.28
           - ember-lts-4.4
           - ember-lts-4.8
+          - ember-lts-4.12
+          - ember-lts-5.4
+          - ember-lts-5.8
 
     steps:
       - uses: actions/checkout@v4
