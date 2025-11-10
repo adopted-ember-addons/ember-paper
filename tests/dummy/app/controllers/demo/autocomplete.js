@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
+/* eslint-disable ember/no-actions-hash, ember/no-runloop, prettier/prettier */
 import { cancel, later } from '@ember/runloop';
 import RSVP from 'rsvp';
 import Controller from '@ember/controller';

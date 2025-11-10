@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-get, ember/require-computed-property-dependencies, ember/require-tagless-components */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-get, ember/no-runloop, ember/require-computed-property-dependencies, ember/require-tagless-components, prettier/prettier */
 import { tagName } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';

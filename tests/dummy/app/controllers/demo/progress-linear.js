@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable ember/no-runloop, prettier/prettier */
 import Controller from '@ember/controller';
 import { later, cancel } from '@ember/runloop';
 

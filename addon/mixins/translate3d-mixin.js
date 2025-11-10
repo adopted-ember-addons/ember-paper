@@ -1,4 +1,4 @@
-/* eslint-disable ember/require-computed-property-dependencies, prettier/prettier */
+/* eslint-disable ember/no-runloop, ember/require-computed-property-dependencies, prettier/prettier */
 /**
  * @module ember-paper
  */

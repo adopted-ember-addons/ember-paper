@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-runloop */
 /**
  * @module ember-paper
  */

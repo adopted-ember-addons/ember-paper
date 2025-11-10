@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-mixins */
+/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-mixins */
 import {
   classNames,
   attributeBindings,

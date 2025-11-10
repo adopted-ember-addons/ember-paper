@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/require-computed-property-dependencies */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-runloop, ember/require-computed-property-dependencies, prettier/prettier */
 import { or } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';

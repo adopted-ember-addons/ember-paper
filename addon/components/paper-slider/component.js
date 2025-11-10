@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, prettier/prettier */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-runloop, prettier/prettier */
 /**
  * @module ember-paper
  */

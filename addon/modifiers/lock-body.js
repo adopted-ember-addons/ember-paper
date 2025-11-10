@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { modifier } from 'ember-modifier';
 
 const LOCK_BODY_CLASS = 'ember-paper-lockbody';
