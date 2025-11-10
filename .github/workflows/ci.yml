@@ -65,7 +65,6 @@ jobs:
           - ember-lts-3.28
           - ember-lts-4.4
           - ember-lts-4.8
-          - no-deprecations
 
     steps:
       - uses: actions/checkout@v4
@@ -98,6 +97,7 @@ jobs:
           - ember-canary
           - embroider-safe
           - embroider-optimized
+          - no-deprecations
           - ember-release-no-deprecations
 
     steps:
