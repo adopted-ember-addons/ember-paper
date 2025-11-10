@@ -16,7 +16,7 @@ module('Integration | Component | paper-radio-group-label', function(hooks) {
 
     this.set('setAriaLabelledby', setAriaLabelledby);
 
-    await render(hbs`{{paper-radio-group-label setAriaLabelledby=setAriaLabelledby}}`);
+    await render(hbs`{{paper-radio-group-label setAriaLabelledby=this.setAriaLabelledby}}`);
   });
 
   test('it sets label content based on text property', async function(assert) {

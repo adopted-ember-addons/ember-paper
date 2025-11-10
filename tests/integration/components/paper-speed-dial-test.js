@@ -10,7 +10,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
   ['fling', 'scale'].forEach((animation) => {
     test(`adds the correct class for ${animation} animation`, async function(assert) {
       this.animation = animation;
-      await render(hbs`{{paper-speed-dial animation=animation}}`);
+      await render(hbs`{{paper-speed-dial animation=this.animation}}`);
 
       assert.dom('md-fab-speed-dial').hasClass(`md-${animation}`);
     });
@@ -19,7 +19,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
   ['up', 'down', 'left', 'right'].forEach((direction) => {
     test(`adds the correct class for ${direction} direction`, async function(assert) {
       this.direction = direction;
-      await render(hbs`{{paper-speed-dial direction=direction}}`);
+      await render(hbs`{{paper-speed-dial direction=this.direction}}`);
 
       assert.dom('md-fab-speed-dial').hasClass(`md-${direction}`);
     });
@@ -63,7 +63,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
     this.open = false;
 
     await render(hbs`
-      {{#paper-speed-dial open=open as |dial|}}
+      {{#paper-speed-dial open=this.open as |dial|}}
         {{dial.trigger}}
       {{/paper-speed-dial}}
     `);
@@ -87,7 +87,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-speed-dial onToggle=(action onToggle) as |dial|}}
+      {{#paper-speed-dial onToggle=(action this.onToggle) as |dial|}}
         {{dial.trigger}}
       {{/paper-speed-dial}}
     `);

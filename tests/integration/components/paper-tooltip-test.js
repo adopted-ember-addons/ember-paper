@@ -93,7 +93,7 @@ module('Integration | Component | paper-tooltip', function(hooks) {
       await render(hbs`
         {{#paper-button}}
           button
-          {{#paper-tooltip position=position}}
+          {{#paper-tooltip position=this.position}}
             tooltip
           {{/paper-tooltip}}
         {{/paper-button}}

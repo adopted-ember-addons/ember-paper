@@ -30,7 +30,7 @@ module('Integration | Component | paper-toaster', function(hooks) {
       }
     });
 
-    await render(hbs`{{paper-toaster paperToaster=paperToaster}}`);
+    await render(hbs`{{paper-toaster paperToaster=this.paperToaster}}`);
 
     assert.dom('md-toast .md-button').hasText('label');
 
@@ -49,7 +49,7 @@ module('Integration | Component | paper-toaster', function(hooks) {
       }
     });
 
-    await render(hbs`{{paper-toaster paperToaster=paperToaster}}`);
+    await render(hbs`{{paper-toaster paperToaster=this.paperToaster}}`);
 
     assert.dom('md-toast .md-button').hasClass('md-primary');
   });
@@ -66,7 +66,7 @@ module('Integration | Component | paper-toaster', function(hooks) {
       }
     });
 
-    await render(hbs`{{paper-toaster paperToaster=paperToaster}}`);
+    await render(hbs`{{paper-toaster paperToaster=this.paperToaster}}`);
 
     assert.dom('md-toast .md-button').hasClass('md-accent');
   });
@@ -83,7 +83,7 @@ module('Integration | Component | paper-toaster', function(hooks) {
       }
     });
 
-    await render(hbs`{{paper-toaster paperToaster=paperToaster}}`);
+    await render(hbs`{{paper-toaster paperToaster=this.paperToaster}}`);
 
     assert.dom('md-toast .md-button').hasClass('md-warn');
   });

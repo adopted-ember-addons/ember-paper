@@ -12,8 +12,8 @@ module('Integration | Component | paper-chips', function(hooks) {
     this.selectedItems = [];
     await render(hbs`
     {{paper-chips
-      options=items
-      content=selectedItems}}`);
+      options=this.items
+      content=this.selectedItems}}`);
 
     await fillIn('md-chips input', 'T');
     await waitFor('.md-autocomplete-suggestions li', { timeout: 2000 });
@@ -26,8 +26,8 @@ module('Integration | Component | paper-chips', function(hooks) {
 
     await render(hbs`
     {{paper-chips
-      options=items
-      content=selectedItems}}`);
+      options=this.items
+      content=this.selectedItems}}`);
 
     await fillIn('md-chips input', 'T');
 
@@ -43,9 +43,9 @@ module('Integration | Component | paper-chips', function(hooks) {
 
     await render(hbs`
     {{paper-chips
-      defaultHighlighted=defaultHighlighted
-      options=items
-      content=selectedItems}}`);
+      defaultHighlighted=this.defaultHighlighted
+      options=this.items
+      content=this.selectedItems}}`);
 
     await fillIn('md-chips input', 'T');
     await waitFor('.md-autocomplete-suggestions li', { timeout: 2000 });
@@ -63,10 +63,10 @@ module('Integration | Component | paper-chips', function(hooks) {
 
     await render(hbs`
       {{paper-chips
-        addItem=(action addItems)
-        defaultHighlighted=defaultHighlighted
-        options=items
-        content=selectedItems}}
+        addItem=(action this.addItems)
+        defaultHighlighted=this.defaultHighlighted
+        options=this.items
+        content=this.selectedItems}}
     `);
 
     await fillIn('md-chips input', 'T');

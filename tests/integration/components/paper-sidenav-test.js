@@ -67,7 +67,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -80,7 +80,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
 
     this.set('isOpen', false);
 
-    await render(hbs`{{paper-sidenav open=isOpen lockedOpen=false}}`);
+    await render(hbs`{{paper-sidenav open=this.isOpen lockedOpen=false}}`);
 
     assert.dom('md-sidenav').hasClass('md-closed');
 
@@ -96,7 +96,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
 
     this.set('isOpen', true);
 
-    await render(hbs`{{paper-sidenav open=isOpen lockedOpen=false}}`);
+    await render(hbs`{{paper-sidenav open=this.isOpen lockedOpen=false}}`);
 
     assert.dom('md-sidenav').doesNotHaveClass('md-closed');
 
@@ -115,7 +115,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -131,7 +131,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action sidenavToggle) closeOnClick=false lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) closeOnClick=false lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -214,7 +214,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle as |toggleAction|}}
@@ -235,10 +235,10 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
-      {{#paper-sidenav name="balili" open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balili" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle name="balele" as |toggleAction|}}
@@ -259,10 +259,10 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
-      {{#paper-sidenav name="balele" open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle name="balele" as |toggleAction|}}

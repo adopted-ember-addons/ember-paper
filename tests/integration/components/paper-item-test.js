@@ -14,7 +14,7 @@ module('Integration | Component | paper item', function(hooks) {
       {{#paper-list}}
         {{#paper-item as |controls|}}
           <p>Checkbox 1</p>
-          {{controls.checkbox value=checkboxEnabled onChange=(action (mut checkboxEnabled))}}
+          {{controls.checkbox value=this.checkboxEnabled onChange=(action (mut this.checkboxEnabled))}}
         {{/paper-item}}
       {{/paper-list}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Component | paper item', function(hooks) {
       {{#paper-list}}
         {{#paper-item as |controls|}}
           <p>Checkbox 1</p>
-          {{controls.checkbox disabled=true value=checkboxEnabled onChange=(action (mut checkboxEnabled))}}
+          {{controls.checkbox disabled=true value=this.checkboxEnabled onChange=(action (mut this.checkboxEnabled))}}
         {{/paper-item}}
       {{/paper-list}}
     `);
@@ -52,7 +52,7 @@ module('Integration | Component | paper item', function(hooks) {
       {{#paper-list}}
         {{#paper-item as |controls|}}
           <p>Checkbox 1</p>
-          {{controls.checkbox value=checkboxEnabled onChange=(action (mut checkboxEnabled))}}
+          {{controls.checkbox value=this.checkboxEnabled onChange=(action (mut this.checkboxEnabled))}}
         {{/paper-item}}
       {{/paper-list}}
     `);
@@ -70,16 +70,16 @@ module('Integration | Component | paper item', function(hooks) {
         {{#paper-item as |controls|}}
           <p>Checkbox 1</p>
           {{controls.radio
-            groupValue=selectedValue
+            groupValue=this.selectedValue
             value="some value 1"
-            onChange=(action (mut selectedValue))}}
+            onChange=(action (mut this.selectedValue))}}
         {{/paper-item}}
         {{#paper-item as |controls|}}
           <p>Checkbox 2</p>
           {{controls.radio
-            groupValue=selectedValue
+            groupValue=this.selectedValue
             value="some value 2"
-            onChange=(action (mut selectedValue))}}
+            onChange=(action (mut this.selectedValue))}}
         {{/paper-item}}
       {{/paper-list}}
     `);
@@ -110,9 +110,9 @@ module('Integration | Component | paper item', function(hooks) {
     await render(hbs`
       {{#paper-list}}
         {{#paper-item as |controls|}}
-          {{controls.checkbox value=checked onChange=(action (mut checked))}}
+          {{controls.checkbox value=this.checked onChange=(action (mut this.checked))}}
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(action (mut secondaryValue))}}
+          {{#controls.button iconButton=true onClick=(action (mut this.secondaryValue))}}
             {{paper-icon "message"}}
           {{/controls.button}}
         {{/paper-item}}
@@ -134,9 +134,9 @@ module('Integration | Component | paper item', function(hooks) {
     await render(hbs`
       {{#paper-list}}
         {{#paper-item as |controls|}}
-          {{controls.checkbox value=checked onChange=(action (mut checked))}}
+          {{controls.checkbox value=this.checked onChange=(action (mut this.checked))}}
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(action (mut secondaryValue))}}
+          {{#controls.button iconButton=true onClick=(action (mut this.secondaryValue))}}
             {{paper-icon "message"}}
           {{/controls.button}}
         {{/paper-item}}
@@ -161,10 +161,10 @@ module('Integration | Component | paper item', function(hooks) {
 
     await render(hbs`
       {{#paper-list}}
-        {{#paper-item onClick=(action primaryAction) as |controls|}}
-          {{controls.checkbox value=checked onChange=(action (mut checked))}}
+        {{#paper-item onClick=(action this.primaryAction) as |controls|}}
+          {{controls.checkbox value=this.checked onChange=(action (mut this.checked))}}
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button secondary=true iconButton=true onClick=(action (mut secondaryValue))}}
+          {{#controls.button secondary=true iconButton=true onClick=(action (mut this.secondaryValue))}}
             {{paper-icon "message"}}
           {{/controls.button}}
         {{/paper-item}}
@@ -189,10 +189,10 @@ module('Integration | Component | paper item', function(hooks) {
 
     await render(hbs`
       {{#paper-list}}
-        {{#paper-item onClick=(action primaryAction) as |controls|}}
-          {{controls.checkbox value=checked onChange=(action (mut checked))}}
+        {{#paper-item onClick=(action this.primaryAction) as |controls|}}
+          {{controls.checkbox value=this.checked onChange=(action (mut this.checked))}}
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(action (mut secondaryValue))}}
+          {{#controls.button iconButton=true onClick=(action (mut this.secondaryValue))}}
             {{paper-icon "message"}}
           {{/controls.button}}
         {{/paper-item}}

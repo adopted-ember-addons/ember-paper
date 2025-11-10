@@ -60,11 +60,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -85,11 +85,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
       <div id="other-div"></div>
       {{#paper-autocomplete
       placeholder="Item"
-      options=items
-      searchText=searchText
-      onSearchTextChange=(action (mut searchText))
-      selected=selectedItem
-      onSelectionChange=(action (mut selectedItem))
+      options=this.items
+      searchText=this.searchText
+      onSearchTextChange=(action (mut this.searchText))
+      selected=this.selectedItem
+      onSelectionChange=(action (mut this.selectedItem))
       as |item|
     }}
       {{item}}
@@ -112,11 +112,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -142,11 +142,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -182,11 +182,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -208,11 +208,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -240,11 +240,11 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         placeholder="Item"
-        options=items
-        searchText=searchText
-        onSearchTextChange=(action (mut searchText))
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        searchText=this.searchText
+        onSearchTextChange=(action (mut this.searchText))
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item autocomplete|
       }}
         {{paper-autocomplete-highlight
@@ -272,9 +272,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
       {{#paper-autocomplete
         dropdownClass="custom-dropdown-class"
         placeholder="Item"
-        options=items
-        selected=selectedItem
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        selected=this.selectedItem
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -301,10 +301,10 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     await render(hbs`
       {{#paper-autocomplete
         label="Fooo"
-        options=items
-        selected=selectedItem
-        errors=v.errors
-        onSelectionChange=(action (mut selectedItem))
+        options=this.items
+        selected=this.selectedItem
+        errors=this.v.errors
+        onSelectionChange=(action (mut this.selectedItem))
         as |item|}}
         {{item}}
       {{/paper-autocomplete}}
@@ -331,12 +331,12 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action submitForm) as |form|}}
+      {{#paper-form onSubmit=(action this.submitForm) as |form|}}
         {{form.autocomplete
           allowClear=true
-          options=items
-          selected=selectedItem
-          onSelectionChange=(action (mut selectedItem))
+          options=this.items
+          selected=this.selectedItem
+          onSelectionChange=(action (mut this.selectedItem))
         }}
       {{/paper-form}}
     `);
