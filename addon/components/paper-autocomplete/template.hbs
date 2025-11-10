@@ -26,7 +26,7 @@
   @triggerComponent={{component "paper-autocomplete/eps-trigger" isTouched=this.isTouched hideAllMessages=@hideAllMessages validationErrorMessages=@validationErrorMessages errors=@errors}}
 
   @ebdContentComponent={{component "paper-autocomplete/ebd-content" select=this.publicAPI}}
-  @optionsComponent="paper-autocomplete/options"
+  @optionsComponent={{component "paper-autocomplete/options"}}
   @noMatchesMessageComponent={{component "paper-autocomplete/no-matches-message" onCreate=this._onCreate}}
   @onClose={{this.close}}
   @onOpen={{this.open}}
