@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-settled-after-test-helper, prettier/prettier, qunit/no-assert-equal-boolean, qunit/no-commented-tests */
+/* eslint-disable ember/no-classic-components, ember/no-settled-after-test-helper, prettier/prettier, qunit/no-assert-equal, qunit/no-assert-equal-boolean, qunit/no-commented-tests */
 import Component from '@ember/component';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -163,7 +163,7 @@ module('Integration | Component | paper-input', function(hooks) {
   test('renders input with attribute form', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-input passThru=(hash form="myform") onChange=this.dummyOnChange onChange=this.dummyOnChange}}`);
+    await render(hbs`{{paper-input passThru=(hash form="myform") onChange=this.dummyOnChange}}`);
 
     assert.dom('md-input-container input').hasAttribute('form', 'myform');
   });

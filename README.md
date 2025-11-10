@@ -4,6 +4,13 @@ This project aims to bring Google's new [Material Design](https://www.google.com
 
 [Explore Ember Paper docs »](https://ember-paper.netlify.app)
 
+## Compatibility
+
+* Ember.js v3.24 or above
+* Ember CLI v4.4 or above
+* Node.js v18 or above
+
+
 ## Installation
 
 Install the ember-cli addon in your ember-cli project:
@@ -21,13 +28,14 @@ Navigate through the docs to understand how to use each component.
 
 ## Resources
 
-- Contributors can often be found on the [#e-paper channel on discord](https://discord.gg/zT3asNS).
 
 - The [GitHub milestone issue](https://github.com/adopted-ember-addons/ember-paper/issues/249) tracks our progress to version 1.0.
 
 - Building the `ember-paper` demo application will give you your own up-to-date reference. This can be accomplished by cloning ember-paper as if it were an application and running `ember server`.
 
 ## Contributing
+
+- Contributors can often be found on the [#e-paper channel on discord](https://discord.gg/zT3asNS).
 
 This is an ambitious project. Google's design specs are extensive, and non-trivial to implement. If you can port or fix a component or two, please drop a pull request or issue on GitHub or join us on Discord.
 
