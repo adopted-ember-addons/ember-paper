@@ -8,7 +8,6 @@ import { assert, warn } from '@ember/debug';
 import { isArray, A } from '@ember/array';
 import { get, computed, defineProperty } from '@ember/object';
 import { bool, reads, not } from '@ember/object/computed';
-import { loc } from '@ember/string';
 import { isBlank } from '@ember/utils';
 import requiredValidator from 'ember-paper/validators/required';
 import minValidator from 'ember-paper/validators/min';
@@ -16,6 +15,24 @@ import maxValidator from 'ember-paper/validators/max';
 import minlengthValidator from 'ember-paper/validators/minlength';
 import maxlengthValidator from 'ember-paper/validators/maxlength';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
+
+
+// taken from ember source
+// https://github.com/emberjs/ember.js/blob/v3.28.12/packages/%40ember/string/index.ts#L84-L92
+// TODO remove the need for this
+function _fmt(str, formats) {
+  if (!Array.isArray(formats) || arguments.length > 2) {
+    formats = Array.prototype.slice.call(arguments, 1);
+  }
+
+  // first, replace any ORDERED replacements.
+  let idx = 0; // the current index for non-numerical replacements
+  return str.replace(/%@([0-9]+)?/g, (_s, argIndex) => {
+    let i = argIndex ? parseInt(argIndex, 10) - 1 : idx++;
+    let r = i < formats.length ? formats[i] : undefined;
+    return typeof r === 'string' ? r : r === null ? '(null)' : r === undefined ? '' : String(r);
+  });
+}
 
 /**
  * In order to make validation generic it is required that components using the validation mixin
@@ -51,7 +68,7 @@ function buildComputedValidationMessages(property, validations = [], customValid
         if (!validation.validate(currentValue, paramValue)) {
           let message = this.get(`errorMessages.${valParam}`) || get(validation, 'message');
           messages.pushObject({
-            message: loc(message.string || message, paramValue, currentValue)
+            message: _fmt(message.string || message, paramValue, currentValue)
           });
         }
       } catch(error) {
