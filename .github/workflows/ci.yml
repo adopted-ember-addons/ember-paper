@@ -54,15 +54,18 @@ jobs:
   try-scenarios:
     name: ${{ matrix.try-scenario }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     needs: "test"
+    timeout-minutes: 10
 
     strategy:
       fail-fast: false
       matrix:
         try-scenario:
           - ember-lts-3.24
-          - ember-classic
+          - ember-lts-3.28
+          - ember-lts-4.4
+          - ember-lts-4.8
+          - no-deprecations
 
     steps:
       - uses: actions/checkout@v4
@@ -95,7 +98,6 @@ jobs:
           - ember-canary
           - embroider-safe
           - embroider-optimized
-          - no-deprecations
           - ember-release-no-deprecations
 
     steps:
