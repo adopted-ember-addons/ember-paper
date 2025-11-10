@@ -1,7 +1,7 @@
 <BasicDropdown
   @disabled={{@disabled}}
-  @triggerComponent="paper-menu/trigger"
-  @contentComponent="paper-menu/content"
+  @triggerComponent={{component "paper-menu/trigger"}}
+  @contentComponent={{component "paper-menu/content"}}
   @calculatePosition={{this.calculatePosition}}
   @onClose={{this.close}}
   @onOpen={{this.open}}
