@@ -18,6 +18,6 @@ self.deprecationWorkflow.config = {
     { handler: 'throw', matchId: 'this-property-fallback' },
     { handler: 'throw', matchId: 'computed-property.override' },
     { handler: 'silence', matchId: 'ember-string.add-package' },
-    { handler: 'silence', matchId: 'remove-owner-inject' },
+    { handler: 'throw', matchId: 'remove-owner-inject' },
   ],
 };
