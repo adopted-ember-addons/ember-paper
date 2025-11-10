@@ -38,7 +38,7 @@ module('Integration | Component | paper-button', function(hooks) {
       assert.ok(true);
     });
     await render(hbs`
-      {{#paper-button onClick=foo}}
+      {{#paper-button onClick=this.foo}}
         A label
       {{/paper-button}}
     `);

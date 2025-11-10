@@ -12,6 +12,6 @@ self.deprecationWorkflow.config = {
     { handler: "throw", matchId: "ember-string.loc" },
     { handler: "throw", matchId: "ember-utils.try-invoke" },
     { handler: "throw", matchId: "ensure-safe-component.string" },
-    { handler: "silence", matchId: "this-property-fallback" },
+    { handler: "throw", matchId: "this-property-fallback" },
   ]
 };

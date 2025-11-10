@@ -97,7 +97,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   skip('applies transitions when opening and closing', async function(assert) {
     await render(hbs`
-      {{#if dialogOpen}}
+      {{#if this.dialogOpen}}
         {{paper-dialog}}
       {{/if}}
     `);
@@ -129,8 +129,8 @@ module('Integration | Component | paper-dialog', function(hooks) {
     });
 
     await render(hbs`
-      {{#if dialogOpen}}
-        {{paper-dialog clickOutsideToClose=true onClose=closeDialog}}
+      {{#if this.dialogOpen}}
+        {{paper-dialog clickOutsideToClose=true onClose=this.closeDialog}}
       {{/if}}
     `);
 
@@ -182,8 +182,8 @@ module('Integration | Component | paper-dialog', function(hooks) {
     });
 
     await render(hbs`
-      {{#if showDialog}}
-        {{paper-dialog onClose=closeDialog}}
+      {{#if this.showDialog}}
+        {{paper-dialog onClose=this.closeDialog}}
       {{/if}}
     `);
 
@@ -201,14 +201,14 @@ module('Integration | Component | paper-dialog', function(hooks) {
     });
 
     await render(hbs`
-      {{#if showDialog}}
-        {{#paper-dialog onClose=closeDialog origin="#theorigin"}}
+      {{#if this.showDialog}}
+        {{#paper-dialog onClose=this.closeDialog origin="#theorigin"}}
           {{#paper-dialog-actions}}
             <button id="thedialogbutton">çup?</button>
           {{/paper-dialog-actions}}
         {{/paper-dialog}}
       {{/if}}
-      <button id="theorigin" onclick={{action openDialog}}>
+      <button id="theorigin" onclick={{action this.openDialog}}>
         The origin
       </button>
     `);

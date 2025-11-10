@@ -14,11 +14,11 @@ module('Integration | Component | paper-select', function(hooks) {
 
   test('opens on click', async function(assert) {
     await render(hbs`{{#paper-select
-      disabled=disableSelect
+      disabled=this.disableSelect
       placeholder="Size"
-      options=sizes
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      options=this.sizes
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -31,11 +31,11 @@ module('Integration | Component | paper-select', function(hooks) {
 
   test('backdrop removed if select closed', async function(assert) {
     await render(hbs`{{#paper-select
-      disabled=disableSelect
+      disabled=this.disableSelect
       placeholder="Size"
-      options=sizes
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      options=this.sizes
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -56,11 +56,11 @@ module('Integration | Component | paper-select', function(hooks) {
 
   test('it can select an option', async function(assert) {
     await render(hbs`{{#paper-select
-      disabled=disableSelect
+      disabled=this.disableSelect
       placeholder="Size"
-      options=sizes
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      options=this.sizes
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -75,12 +75,12 @@ module('Integration | Component | paper-select', function(hooks) {
 
   test('header is rendered above content', async function(assert) {
     await render(hbs`{{#paper-select
-      disabled=disableSelect
+      disabled=this.disableSelect
       placeholder="Size"
-      options=sizes
+      options=this.sizes
       searchEnabled=true
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -94,12 +94,12 @@ module('Integration | Component | paper-select', function(hooks) {
 
   test('it can search a value', async function(assert) {
     await render(hbs`{{#paper-select
-      disabled=disableSelect
+      disabled=this.disableSelect
       placeholder="Size"
-      options=sizes
+      options=this.sizes
       searchEnabled=true
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -120,10 +120,10 @@ module('Integration | Component | paper-select', function(hooks) {
     this.search = (value) => this.sizes.filter((size) => size.includes(value));
 
     await render(hbs`{{#paper-select
-      search=search
+      search=this.search
       searchEnabled=true
-      selected=selectedSize
-      onChange=(action (mut selectedSize))
+      selected=this.selectedSize
+      onChange=(action (mut this.selectedSize))
       as |size|
     }}
       {{size}}

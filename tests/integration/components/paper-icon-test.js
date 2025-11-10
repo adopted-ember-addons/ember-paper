@@ -19,7 +19,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(5);
 
     this.set('icon', 'foo');
-    await render(hbs`{{paper-icon icon}}`);
+    await render(hbs`{{paper-icon this.icon}}`);
 
     assert.dom('md-icon').hasClass('paper-icon');
     assert.dom('md-icon').hasClass('material-icons');
@@ -35,7 +35,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(2);
 
     this.set('spin', true);
-    await render(hbs`{{paper-icon "check" spin=spin}}`);
+    await render(hbs`{{paper-icon "check" spin=this.spin}}`);
 
     assert.dom('md-icon').hasClass('md-spin');
 
@@ -48,7 +48,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(2);
 
     this.set('reverseSpin', true);
-    await render(hbs`{{paper-icon "check" reverseSpin=reverseSpin}}`);
+    await render(hbs`{{paper-icon "check" reverseSpin=this.reverseSpin}}`);
 
     assert.dom('md-icon').hasClass('md-spin-reverse');
 
@@ -61,7 +61,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(10);
 
     this.set('size', 12);
-    await render(hbs`{{paper-icon "check" size=size}}`);
+    await render(hbs`{{paper-icon "check" size=this.size}}`);
 
     assert.dom('md-icon').hasAttribute('style', /font-size:.*12px/);
     assert.dom('md-icon').hasAttribute('style', /height:.*12px/);
@@ -87,7 +87,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(2);
 
     this.set('icon', 'foo-bar');
-    await render(hbs`{{paper-icon icon}}`);
+    await render(hbs`{{paper-icon this.icon}}`);
 
     assert.dom('md-icon').hasAttribute('aria-label', 'foo-bar');
 
@@ -99,7 +99,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(2);
 
     this.set('ariaLabel', 'foo-bar');
-    await render(hbs`{{paper-icon "check" aria-label=ariaLabel}}`);
+    await render(hbs`{{paper-icon "check" aria-label=this.ariaLabel}}`);
 
     assert.dom('md-icon').hasAttribute('aria-label', 'foo-bar');
 
@@ -112,7 +112,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(2);
 
     this.set('iconName', 'aspect-ratio');
-    await render(hbs`{{paper-icon iconName}}`);
+    await render(hbs`{{paper-icon this.iconName}}`);
 
     assert.dom('md-icon').hasText('aspect_ratio');
 
@@ -125,7 +125,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(1);
 
     this.set('iconName', 'check');
-    await render(hbs`{{paper-icon iconName}}`);
+    await render(hbs`{{paper-icon this.iconName}}`);
 
     assert.dom('md-icon').hasAttribute('md-font-icon', 'check');
   });
@@ -134,7 +134,7 @@ module('Integration | Component | paper-icon', function(hooks) {
     assert.expect(1);
 
     this.set('ariaHidden', true);
-    await render(hbs`{{paper-icon "check" aria-hidden=ariaHidden}}`);
+    await render(hbs`{{paper-icon "check" aria-hidden=this.ariaHidden}}`);
 
     assert.dom('md-icon').hasAttribute('aria-hidden');
   });

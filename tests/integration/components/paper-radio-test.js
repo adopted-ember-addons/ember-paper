@@ -12,10 +12,10 @@ module('Integration | Component | paper radio', function(hooks) {
 
     this.set('groupValue', '1');
     await render(hbs`
-      {{#paper-radio value="1" groupValue=groupValue onChange=(action (mut groupValue))}}
+      {{#paper-radio value="1" groupValue=this.groupValue onChange=(action (mut this.groupValue))}}
         Radio button 1
       {{/paper-radio}}
-      {{#paper-radio value="2" groupValue=groupValue onChange=(action (mut groupValue))}}
+      {{#paper-radio value="2" groupValue=this.groupValue onChange=(action (mut this.groupValue))}}
         Radio button 2
       {{/paper-radio}}
     `);
@@ -33,10 +33,10 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio value="1" groupValue=groupValue onChange=handleChange}}
+      {{#paper-radio value="1" groupValue=this.groupValue onChange=this.handleChange}}
         Radio button 1
       {{/paper-radio}}
-      {{#paper-radio value="2" groupValue=groupValue onChange=handleChange}}
+      {{#paper-radio value="2" groupValue=this.groupValue onChange=this.handleChange}}
         Radio button 2
       {{/paper-radio}}
     `);
@@ -54,7 +54,7 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio toggle=true value="1" groupValue=groupValue onChange=handleChange}}
+      {{#paper-radio toggle=true value="1" groupValue=this.groupValue onChange=this.handleChange}}
         Radio button 1
       {{/paper-radio}}
     `);
@@ -70,7 +70,7 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio disabled=true value="1" groupValue=groupValue onChange=handleChange}}
+      {{#paper-radio disabled=true value="1" groupValue=this.groupValue onChange=this.handleChange}}
         Radio button 1
       {{/paper-radio}}
     `);
@@ -81,7 +81,7 @@ module('Integration | Component | paper radio', function(hooks) {
   test('blockless version should set label inside', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-radio value="1" onChange=(action (mut value)) label="çup?"}}`);
+    await render(hbs`{{paper-radio value="1" onChange=(action (mut this.value)) label="çup?"}}`);
 
     assert.dom('.md-label > span').hasText('çup?');
   });
@@ -90,7 +90,7 @@ module('Integration | Component | paper radio', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio value="1" onChange=(action (mut value))}}
+      {{#paper-radio value="1" onChange=(action (mut this.value))}}
         çup?
       {{/paper-radio}}
     `);
@@ -121,7 +121,7 @@ module('Integration | Component | paper radio', function(hooks) {
 
     this.set('groupValue', null);
 
-    await render(hbs`{{paper-radio value="1" groupValue=groupValue onChange=null}}`);
+    await render(hbs`{{paper-radio value="1" groupValue=this.groupValue onChange=null}}`);
 
     assert.dom('md-radio-button').hasAttribute('aria-checked', 'false');
 

@@ -11,7 +11,7 @@ module('Integration | Component | paper reset button', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{paper-reset-button}}`);
+    await render(hbs`{{this.paper-reset-button}}`);
 
     assert.dom(this.element).hasText('');
 
@@ -38,7 +38,7 @@ module('Integration | Component | paper reset button', function(hooks) {
 
     await render(hbs`
       <form {{action "submitForm" on="submit"}}>
-        <PaperResetButton class="reset-btn" @onReset={{action onReset}} />
+        <PaperResetButton class="reset-btn" @onReset={{action this.onReset}} />
       </form>
     `);
 

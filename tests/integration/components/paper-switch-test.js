@@ -12,7 +12,7 @@ module('Integration | Component | paper switch', function(hooks) {
     this.set('switchValue', true);
 
     await render(hbs`
-      {{#paper-switch value=switchValue onChange=foo}}
+      {{#paper-switch value=this.switchValue onChange=this.foo}}
         Radio button 1
       {{/paper-switch}}
     `);
@@ -26,7 +26,7 @@ module('Integration | Component | paper switch', function(hooks) {
 
   test('should not set focused class', async function(assert) {
     await render(hbs`
-      {{#paper-switch value=switchValue onChange=(action (mut switchValue))}}
+      {{#paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}
         Radio button 1
       {{/paper-switch}}
     `);
@@ -38,7 +38,7 @@ module('Integration | Component | paper switch', function(hooks) {
 
   test('should set focused class', async function(assert) {
     await render(hbs`
-      {{#paper-switch value=switchValue onChange=(action (mut switchValue))}}
+      {{#paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}
         Radio button 1
       {{/paper-switch}}
     `);
@@ -53,7 +53,7 @@ module('Integration | Component | paper switch', function(hooks) {
     this.set('switchValue', true);
 
     await render(hbs`
-      {{#paper-switch value=switchValue onChange=foo}}
+      {{#paper-switch value=this.switchValue onChange=this.foo}}
         A block label
       {{/paper-switch}}
     `);
@@ -66,7 +66,7 @@ module('Integration | Component | paper switch', function(hooks) {
     this.set('switchValue', true);
 
     await render(hbs`
-      {{paper-switch value=switchValue onChange=foo label="An inline label"}}
+      {{paper-switch value=this.switchValue onChange=this.foo label="An inline label"}}
     `);
 
     assert.dom('md-switch .md-label').hasText('An inline label');
@@ -78,7 +78,7 @@ module('Integration | Component | paper switch', function(hooks) {
       assert.expect(2);
 
       this.set('switchValue', false);
-      await render(hbs`{{paper-switch value=switchValue onChange=(action (mut switchValue))}}`);
+      await render(hbs`{{paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}`);
       assert.equal(this.switchValue, false);
 
       await triggerKeyEvent('md-switch', 'keypress', keyCode);
@@ -90,7 +90,7 @@ module('Integration | Component | paper switch', function(hooks) {
       assert.expect(2);
 
       this.set('switchValue', true);
-      await render(hbs`{{paper-switch value=switchValue onChange=(action (mut switchValue))}}`);
+      await render(hbs`{{paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}`);
       assert.equal(this.switchValue, true);
 
       await triggerKeyEvent('md-switch', 'keypress', keyCode);

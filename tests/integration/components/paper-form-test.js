@@ -13,8 +13,8 @@ module('Integration | Component | paper form', function(hooks) {
 
     await render(hbs`
       {{#paper-form as |form|}}
-        {{form.input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{form.input value=bar onChange=(action (mut bar)) label="Bar" errors=errors}}
+        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
 
         {{#if form.isInvalid}}
           <div class="invalid-div">Form is invalid!</div>
@@ -53,9 +53,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action onSubmit) onInvalid=(action onInvalid) as |form|}}
-        {{form.input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{form.input value=bar onChange=(action (mut bar)) label="Bar"}}
+      {{#paper-form onSubmit=(action this.onSubmit) onInvalid=(action this.onInvalid) as |form|}}
+        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
 
         <button type="button" onclick={{action form.onSubmit}}>Submit</button>
 
@@ -77,7 +77,7 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action onSubmit) onInvalid=(action onInvalid) as |form|}}
+      {{#paper-form onSubmit=(action this.onSubmit) onInvalid=(action this.onInvalid) as |form|}}
         {{form.input value="" required=true onChange=null}}
 
         <button type="submit">Submit</button>
@@ -99,9 +99,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onValidityChange=(action onValidityChange) as |form|}}
-        {{form.input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{form.input value=bar onChange=(action (mut bar)) label="Bar" errors=errors}}
+      {{#paper-form onValidityChange=(action this.onValidityChange) as |form|}}
+        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
       {{/paper-form}}
     `);
 
@@ -134,8 +134,8 @@ module('Integration | Component | paper form', function(hooks) {
 
     await render(hbs`
       {{#paper-form as |form|}}
-        {{form.input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{form.input value=bar onChange=(action (mut bar)) label="Bar"}}
+        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
 
         <button onclick={{action form.onSubmit}}>Submit</button>
 
@@ -160,8 +160,8 @@ module('Integration | Component | paper form', function(hooks) {
 
     await render(hbs`
       {{#paper-form as |form|}}
-        {{paper-input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{paper-input value=bar onChange=(action (mut bar)) label="Bar" errors=errors}}
+        {{paper-input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{paper-input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
 
         {{#if form.isInvalid}}
           <div class="invalid-div">Form is invalid!</div>
@@ -208,7 +208,7 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action onSubmit) as |form|}}
+      {{#paper-form onSubmit=(action this.onSubmit) as |form|}}
         {{#form.submit-button}}Submit{{/form.submit-button}}
       {{/paper-form}}
     `);
@@ -253,9 +253,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action onSubmit) as |form|}}
-        {{form.input value=foo onChange=(action (mut foo)) label="Foo"}}
-        {{form.input value=bar onChange=(action (mut bar)) label="Bar"}}
+      {{#paper-form onSubmit=(action this.onSubmit) as |form|}}
+        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
 
         <input type="submit" value="Submit">
 

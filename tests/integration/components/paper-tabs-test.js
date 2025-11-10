@@ -55,7 +55,7 @@ module('Integration | Component | paper tabs', function(hooks) {
     this.selected = 1;
 
     await render(hbs`
-      {{#paper-tabs selected=selected as |tabs|}}
+      {{#paper-tabs selected=this.selected as |tabs|}}
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
@@ -108,7 +108,7 @@ module('Integration | Component | paper tabs', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-tabs onChange=onChange as |tabs|}}
+      {{#paper-tabs onChange=this.onChange as |tabs|}}
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
@@ -126,10 +126,10 @@ module('Integration | Component | paper tabs', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-tabs onChange=onChange as |tabs|}}
+      {{#paper-tabs onChange=this.onChange as |tabs|}}
         {{tabs.tab}}
         {{tabs.tab}}
-        {{tabs.tab onClick=onClick}}
+        {{tabs.tab onClick=this.onClick}}
       {{/paper-tabs}}
     `);
 

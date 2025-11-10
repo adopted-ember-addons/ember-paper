@@ -29,7 +29,7 @@ module('Integration | Component | paper-toast', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-toast duration=100 onClose=closeAction}}
+      {{#paper-toast duration=100 onClose=this.closeAction}}
         Toast was shown successfully!
       {{/paper-toast}}
     `);
@@ -43,7 +43,7 @@ module('Integration | Component | paper-toast', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-toast duration=false onClose=closeAction}}
+      {{#paper-toast duration=false onClose=this.closeAction}}
         Toast was shown successfully!
       {{/paper-toast}}
     `);
@@ -84,7 +84,7 @@ module('Integration | Component | paper-toast', function(hooks) {
 
       await render(hbs`
         <div id="sagittarius-a"></div>
-        {{paper-toast position=position parent="#sagittarius-a"}}
+        {{paper-toast position=this.position parent="#sagittarius-a"}}
       `);
 
       assert.dom('#sagittarius-a > md-toast').hasClass(`md-${x}`);
