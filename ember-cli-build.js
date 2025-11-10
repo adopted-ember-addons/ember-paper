@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use strict';
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
@@ -8,7 +7,18 @@ module.exports = function (defaults) {
     snippetPaths: ['tests/dummy/snippets'],
     snippetSearchPaths: ['tests/dummy/app'],
     // don't fingerprint pngs
-    fingerprint: { extensions: ['js', 'css', 'map'] }
+    fingerprint: { extensions: ['js', 'css', 'map'] },
+
+    'ember-prism': {
+      components: [
+        'scss',
+        'javascript',
+        'bash',
+        'handlebars',
+        'markup',
+        'markup-templating',
+      ],
+    },
   });
 
   /*
