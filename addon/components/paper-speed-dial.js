@@ -1,91 +1,89 @@
 /* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/require-tagless-components */
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { action } from '@ember/object';
 import { next } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 
-export default Component.extend({
-  tagName: 'md-fab-speed-dial',
+export default class extends Component {
+  tagName = 'md-fab-speed-dial';
 
-  classNameBindings: [
+  classNameBindings = [
     'directionClass',
     'open:md-is-open',
     'animationClass',
     'shouldHideActions:md-animations-waiting',
     'hoverFull:md-hover-full',
-  ],
+  ];
 
-  open: false,
-  animation: 'fling',
+  @tracked open = false;
+  @tracked animation = 'fling';
+  @tracked direction = 'down';
 
-  animationClass: computed('animation', function () {
+  get animationClass() {
     return `md-${this.animation}`;
-  }),
+  }
 
-  direction: 'down',
-
-  directionClass: computed('direction', function () {
+  get directionClass() {
     return `md-${this.direction}`;
-  }),
+  }
 
-  shouldHideActions: computed('animation', 'elementDidRender', function () {
-    return this.animation === 'fling' && !this.elementDidRender;
-  }),
+  get shouldHideActions() {
+    return this.animation === 'fling';
+  }
 
-  _mouseEnterHandler: undefined,
-  _mouseLeaveHandler: undefined,
+  _mouseEnterHandler = undefined;
+  _mouseLeaveHandler = undefined;
 
   didInsertElement() {
-    this._super(...arguments);
+    super.didInsertElement(...arguments);
+    super.didInsertElement(...arguments);
 
     this._mouseEnterHandler = this.handleMouseEnter.bind(this);
     this._mouseLeaveHandler = this.handleMouseLeave.bind(this);
 
     this.element.addEventListener('mouseenter', this._mouseEnterHandler);
     this.element.addEventListener('mouseleave', this._mouseLeaveHandler);
-  },
+  }
 
   willDestroyElement() {
-    this._super(...arguments);
+    super.willDestroyElement(...arguments);
+    super.willDestroyElement(...arguments);
 
     this.element.removeEventListener('mouseenter', this._mouseEnterHandler);
     this.element.removeEventListener('mouseleave', this._mouseLeaveHandler);
 
     this._mouseEnterHandler = undefined;
     this._mouseLeaveHandler = undefined;
-  },
+  }
 
-  didRender() {
-    this._super(...arguments);
-    next(() => {
-      if (!this.isDestroyed && !this.isDestroying) {
-        this.set('elementDidRender', true);
-      }
-    });
-  },
-
+  @action
   handleMouseEnter() {
     invokeAction(this, 'onMouseEnter');
-  },
+  }
 
+  @action
   handleMouseLeave() {
     invokeAction(this, 'onMouseLeave');
-  },
+  }
 
+  @action
   toggle() {
     this.changeOpenValue(!this.open);
-  },
+  }
 
+  @action
   close() {
     this.changeOpenValue(false);
-  },
+  }
 
+  @action
   changeOpenValue(value) {
     // support non DDAU scenario
     if (this.onToggle) {
       invokeAction(this, 'onToggle', value);
     } else {
-      this.set('open', value);
+      this.open = value;
     }
-  },
-});
+  }
+}
