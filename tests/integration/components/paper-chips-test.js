@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-settled-after-test-helper, prettier/prettier */
+/* eslint-disable ember/no-settled-after-test-helper, prettier/prettier, qunit/no-assert-equal */
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, triggerKeyEvent, fillIn, settled, waitFor } from '@ember/test-helpers';

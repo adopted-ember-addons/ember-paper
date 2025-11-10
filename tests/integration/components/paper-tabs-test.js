@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier, qunit/no-identical-names, qunit/require-expect */
+/* eslint-disable prettier/prettier, qunit/no-assert-equal, qunit/no-identical-names, qunit/require-expect */
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, click, findAll } from '@ember/test-helpers';
