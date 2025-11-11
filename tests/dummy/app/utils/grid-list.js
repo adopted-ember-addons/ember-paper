@@ -1,5 +1,3 @@
-import { assign } from '@ember/polyfills';
-
 const COLORS = Object.freeze([
   '#ffebee',
   '#ffcdd2',
@@ -240,7 +238,7 @@ export function buildGridModel(tileTmpl) {
   let results = [];
 
   for (let j = 0; j < 11; j++) {
-    let it = assign({}, tileTmpl);
+    let it = Object.assign({}, tileTmpl);
     it.icon = it.icon + (j + 1);
     it.title = it.title + (j + 1);
     it.span = { row: 1, col: 1 };

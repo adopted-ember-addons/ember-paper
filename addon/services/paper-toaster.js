@@ -1,6 +1,5 @@
 /* eslint-disable ember/no-runloop, prettier/prettier */
 import { reads } from '@ember/object/computed';
-import { assign } from '@ember/polyfills';
 import { later } from '@ember/runloop';
 import { A } from '@ember/array';
 import Service from '@ember/service';
@@ -18,13 +17,13 @@ export default Service.extend({
   activeToast: reads('queue.firstObject'),
 
   show(text, options) {
-    let t = EObject.create(assign({ text, show: true }, this.buildOptions(options)));
+    let t = EObject.create(Object.assign({ text, show: true }, this.buildOptions(options)));
     this.queue.pushObject(t);
     return t;
   },
 
   showComponent(componentName, options) {
-    let t = EObject.create(assign({ componentName, show: true }, this.buildOptions(options)));
+    let t = EObject.create(Object.assign({ componentName, show: true }, this.buildOptions(options)));
     this.queue.pushObject(t);
     return t;
   },
@@ -48,6 +47,6 @@ export default Service.extend({
     if (config['ember-paper'] && config['ember-paper']['paper-toaster']) {
       toasterOptions = config['ember-paper']['paper-toaster'];
     }
-    return assign({}, DEFAULT_PROPS, toasterOptions, options);
+    return Object.assign({}, DEFAULT_PROPS, toasterOptions, options);
   }
 });
