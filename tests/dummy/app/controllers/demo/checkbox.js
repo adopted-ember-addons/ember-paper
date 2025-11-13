@@ -1,22 +1,20 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  value1: true,
-  value2: false,
-  value3: false,
-  value4: false,
-  value5: false,
-  value6: false,
+export default class extends Controller {
+  @tracked value1 = true;
+  @tracked value2 = false;
+  @tracked value3 = false;
+  @tracked value4 = false;
+  @tracked value5 = false;
+  @tracked value6 = false;
+  @tracked value7;
 
-  isIndeterminate: computed('value7', function() {
+  get isIndeterminate() {
     return this.value7 === undefined;
-  }),
-
-  actions: {
-    toggleValue6() {
-      this.toggleProperty('value6');
-    }
   }
-});
+
+  toggleValue6 = () => {
+    this.value6 = !this.value6;
+  };
+}
