@@ -12,15 +12,15 @@
       {{this.booleanProp2}}
     </PaperSwitch>
 
-    <PaperSwitch @value={{this.booleanProp3}} @onChange={{action "changeBooleanProp" "3"}} @disabled={{true}}>
+    <PaperSwitch @value={{this.booleanProp3}} @onChange={{fn this.changeBooleanProp "3"}} @disabled={{true}}>
       Disabled switch
     </PaperSwitch>
 
-    <PaperSwitch @value={{this.booleanProp4}} @onChange={{action "changeBooleanProp" "4"}} @noink={{true}}>
+    <PaperSwitch @value={{this.booleanProp4}} @onChange={{fn this.changeBooleanProp "4"}} @noink={{true}}>
       Noink switch
     </PaperSwitch>
 
-    <PaperSwitch @label="Blockless version" @value={{this.booleanProp5}} @onChange={{action "changeBooleanProp" "5"}} />
+    <PaperSwitch @label="Blockless version" @value={{this.booleanProp5}} @onChange={{fn this.changeBooleanProp "5"}} />
     {{! END-SNIPPET }}
   </p>
   <h3>Template</h3>

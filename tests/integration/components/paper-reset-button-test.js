@@ -37,8 +37,8 @@ module('Integration | Component | paper reset button', function(hooks) {
     });
 
     await render(hbs`
-      <form {{action "submitForm" on="submit"}}>
-        <PaperResetButton class="reset-btn" @onReset={{action this.onReset}} />
+      <form {{on "submit" this.submitForm}}>
+        <PaperResetButton class="reset-btn" @onReset={{this.onReset}} />
       </form>
     `);
 

@@ -123,7 +123,7 @@
         <PaperContent>
           <div class="layout-align-center-center layout-row" style="min-height: 300px; overflow: hidden">
             {{! BEGIN-SNIPPET speed-dial-advanced-usage}}
-            <PaperSpeedDial @onMouseEnter={{action (mut this.open2) true}} @onMouseLeave={{action (mut this.open2) false}} @open={{this.open2}} @onToggle={{mut this.open2}} @hoverFull={{this.hoverFull}} as |dial|>
+            <PaperSpeedDial @onMouseEnter={{fn (mut this.open2) true}} @onMouseLeave={{fn (mut this.open2) false}} @open={{this.open2}} @onToggle={{mut this.open2}} @hoverFull={{this.hoverFull}} as |dial|>
               <dial.trigger>
                 <PaperButton @fab={{true}}>
                   {{paper-icon "menu"}}
@@ -176,7 +176,7 @@
 </DocContent>
 
 {{#if this.showDialog}}
-  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{action (mut this.showDialog) false}}>
+  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{fn (mut this.showDialog) false}}>
 
     <PaperDialogContent>
       <h2 class="md-title">An action was clicked!</h2>

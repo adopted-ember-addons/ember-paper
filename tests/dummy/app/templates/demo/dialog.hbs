@@ -71,7 +71,7 @@
 
 {{! BEGIN-SNIPPET dialog }}
 {{#if this.showDialogWithParent}}
-  <PaperDialog @class="flex-50" @onClose={{action "closeDialogWithParent" "cancel"}} @parent="#paper-dialog-demo" @origin={{this.dialogOrigin}} @clickOutsideToClose={{true}}>
+  <PaperDialog @class="flex-50" @onClose={{fn this.closeDialogWithParent "cancel"}} @parent="#paper-dialog-demo" @origin={{this.dialogOrigin}} @clickOutsideToClose={{true}}>
     <form>
       <PaperToolbar>
         <PaperToolbarTools>
@@ -103,7 +103,7 @@
 {{/if}}
 
 {{#if this.showDialog}}
-  <PaperDialog @class="flex-77" @onClose={{action "closeDialog" "cancel"}} @origin={{this.dialogOrigin}} @clickOutsideToClose={{true}}>
+  <PaperDialog @class="flex-77" @onClose={{fn this.closeDialog "cancel"}} @origin={{this.dialogOrigin}} @clickOutsideToClose={{true}}>
     <PaperToolbar>
       <PaperToolbarTools>
         <h2>Mango (Fruit)</h2>
@@ -129,7 +129,7 @@
 {{/if}}
 
 {{#if this.showPromptDialog}}
-  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{action "closePromptDialog" "cancel"}} @origin={{this.dialogOrigin}}>
+  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{fn this.closePromptDialog "cancel"}} @origin={{this.dialogOrigin}}>
 
     <PaperDialogContent>
       <h2 class="md-title">What would you name your dog?</h2>

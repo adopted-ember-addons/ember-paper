@@ -57,7 +57,7 @@ module('Integration | Component | paper form', function(hooks) {
         {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
         {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
 
-        <button type="button" onclick={{action form.onSubmit}}>Submit</button>
+        <button type="button" {{on "click" form.onSubmit}}>Submit</button>
 
       {{/paper-form}}
     `);
@@ -127,7 +127,7 @@ module('Integration | Component | paper form', function(hooks) {
         {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
         {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
 
-        <button onclick={{action form.onSubmit}}>Submit</button>
+        <button {{on "click" form.onSubmit}}>Submit</button>
 
       {{/paper-form}}
     `);
