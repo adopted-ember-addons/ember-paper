@@ -8,7 +8,7 @@
         <PaperToolbarTools>
           <h2>Basic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showBasicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showBasicUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -31,19 +31,19 @@
 
               <dial.actions as |actions|>
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "people"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "accessibility"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "check-circle"}}
                   </PaperButton>
                 </actions.action>
@@ -109,7 +109,7 @@
         <PaperToolbarTools>
           <h2>Advanced Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showAdvancedUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showAdvancedUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -132,19 +132,19 @@
 
               <dial.actions as |actions|>
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "people"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "accessibility"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "check-circle"}}
                   </PaperButton>
                 </actions.action>
@@ -185,7 +185,7 @@
 
     <PaperDialogActions @class="layout-row">
       <span class="flex"></span>
-      <PaperButton @primary={{true}} @onClick={{action (mut this.showDialog) false}}>Okay!</PaperButton>
+      <PaperButton @primary={{true}} @onClick={{fn (mut this.showDialog) false}}>Okay!</PaperButton>
     </PaperDialogActions>
 
   </PaperDialog>

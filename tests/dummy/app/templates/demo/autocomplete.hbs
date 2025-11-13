@@ -35,8 +35,8 @@
       <PaperCheckbox @value={{this.enableDefaultHighlighted}} @onChange={{action (mut this.enableDefaultHighlighted)}}>
         Highlight first match
       </PaperCheckbox>
-      <PaperButton @primary={{true}} @label="Reset search-Text" @onClick={{action (mut this.countrySearchText) ""}} />
-      <PaperButton @primary={{true}} @label="Reset selected" @onClick={{action (mut this.selectedCountry) null}} />
+      <PaperButton @primary={{true}} @label="Reset search-Text" @onClick={{fn (mut this.countrySearchText) ""}} />
+      <PaperButton @primary={{true}} @label="Reset selected" @onClick={{fn (mut this.selectedCountry) null}} />
 
       <h3>Template</h3>
       <CodeSnippet @name="autocomplete.basic-usage.hbs" />

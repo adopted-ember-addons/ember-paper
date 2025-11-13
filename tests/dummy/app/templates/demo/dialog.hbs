@@ -8,7 +8,7 @@
       <PaperToolbarTools>
         <h2>Basic Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggleSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{this.toggleSourceCode}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
         </PaperButton>
       </PaperToolbarTools>
@@ -24,16 +24,16 @@
         <p>Open a dialog over the app's content. Press escape or click outside to close the dialog and send focus back to the triggering button.</p>
 
         <div class="layout-row layout-wrap">
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openDialogWithParent"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openDialogWithParent}}>
             Dialog with parent
           </PaperButton>
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openDialog"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openDialog}}>
             Custom dialog
           </PaperButton>
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openPromptDialog"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openPromptDialog}}>
             Prompt dialog
           </PaperButton>
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openAnimatedDialog"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openAnimatedDialog}}>
             Animated dialog
           </PaperButton>
         </div>
@@ -77,7 +77,7 @@
         <PaperToolbarTools>
           <h2>Mango (Fruit)</h2>
           <span class="flex"></span>
-          <PaperButton @iconButton={{true}} @onClick={{action "closeDialogWithParent" "cancel"}}>
+          <PaperButton @iconButton={{true}} @onClick={{fn this.closeDialogWithParent "cancel"}}>
             <PaperIcon @icon="close" />
           </PaperButton>
         </PaperToolbarTools>
@@ -91,10 +91,10 @@
 
       <PaperDialogActions @class="layout-row">
         <span class="flex"></span>
-        <PaperButton @onClick={{action "closeDialogWithParent" "cancel"}}>
+        <PaperButton @onClick={{fn this.closeDialogWithParent "cancel"}}>
           Cancel
         </PaperButton>
-        <PaperButton @onClick={{action "closeDialogWithParent" "ok"}}>
+        <PaperButton @onClick={{fn this.closeDialogWithParent "ok"}}>
           OK
         </PaperButton>
       </PaperDialogActions>
@@ -108,7 +108,7 @@
       <PaperToolbarTools>
         <h2>Mango (Fruit)</h2>
         <span class="flex"></span>
-        <PaperButton @iconButton={{true}} @onClick={{action "closeDialog" "cancel"}}><PaperIcon @icon="close" /></PaperButton>
+        <PaperButton @iconButton={{true}} @onClick={{fn this.closeDialog "cancel"}}><PaperIcon @icon="close" /></PaperButton>
       </PaperToolbarTools>
     </PaperToolbar>
 
@@ -122,8 +122,8 @@
     <PaperDialogActions @class="layout-row">
       <PaperButton @href="http://en.wikipedia.org/wiki/Mango" @target="_blank">More on Wikipedia</PaperButton>
       <span class="flex"></span>
-      <PaperButton @onClick={{action "closeDialog" "cancel"}}>Cancel</PaperButton>
-      <PaperButton @onClick={{action "closeDialog" "ok"}}>OK</PaperButton>
+      <PaperButton @onClick={{fn this.closeDialog "cancel"}}>Cancel</PaperButton>
+      <PaperButton @onClick={{fn this.closeDialog "ok"}}>OK</PaperButton>
     </PaperDialogActions>
   </PaperDialog>
 {{/if}}
@@ -142,8 +142,8 @@
 
     <PaperDialogActions @class="layout-row">
       <span class="flex"></span>
-      <PaperButton @primary={{true}} @onClick={{action "closePromptDialog" "cancel"}}>I'm a cat person</PaperButton>
-      <PaperButton @primary={{true}} @onClick={{action "closePromptDialog" "ok" this.dogName}}>Okay!</PaperButton>
+      <PaperButton @primary={{true}} @onClick={{fn this.closePromptDialog "cancel"}}>I'm a cat person</PaperButton>
+      <PaperButton @primary={{true}} @onClick={{fn this.closePromptDialog "ok" this.dogName}}>Okay!</PaperButton>
     </PaperDialogActions>
 
   </PaperDialog>
@@ -159,7 +159,7 @@
 
     <PaperDialogActions @class="layout-row">
       <span class="flex"></span>
-      <PaperButton @primary={{true}} @onClick={{action "closeAnimatedDialog"}}>Okay!</PaperButton>
+      <PaperButton @primary={{true}} @onClick={{this.closeAnimatedDialog}}>Okay!</PaperButton>
     </PaperDialogActions>
 
   </PaperDialog>

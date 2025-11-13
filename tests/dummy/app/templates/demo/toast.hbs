@@ -8,7 +8,7 @@
       <PaperToolbarTools>
         <h2>Component Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggleSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{this.toggleSourceCode}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
         </PaperButton>
       </PaperToolbarTools>
@@ -24,11 +24,11 @@
         <p>Open a toast over the app's content. Press escape, swipe or timeout to close the toast.</p>
 
         <div class="layout-row layout-wrap">
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openToast"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openToast}}>
             Open toast with accent button
           </PaperButton>
 
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openToastWithout"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openToastWithout}}>
             Open toast
           </PaperButton>
         </div>
@@ -92,7 +92,7 @@
       <PaperToolbarTools>
         <h2>Paper Toaster Service</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggleSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{this.toggleSourceCode}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
         </PaperButton>
       </PaperToolbarTools>
@@ -123,10 +123,10 @@
         </div>
 
         <div class="layout-row">
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openServiceToast"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openServiceToast}}>
             Open toast
           </PaperButton>
-          <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "openServiceActionToast"}}>
+          <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.openServiceActionToast}}>
             Open toast with action
           </PaperButton>
         </div>
@@ -143,7 +143,7 @@
               {{else}}
                 (Waiting)
               {{/if}}
-              <PaperButton @onClick={{action "cancelToast" toast}}>
+              <PaperButton @onClick={{fn this.cancelToast toast}}>
                 Cancel
               </PaperButton>
             </li>
@@ -194,7 +194,7 @@
 {{#if this.showToast}}
   <PaperToast @duration={{this.duration}} @position={{concat this.positionY " " this.positionX}} @capsule={{this.capsule}} @swipeToClose={{this.swipeToClose}} @onClose={{action "closeToast"}} as |toast|>
     <toast.text>Hello</toast.text>
-    <PaperButton @accent={{true}} @onClick={{action "buttonAction"}}>Undo</PaperButton>
+    <PaperButton @accent={{true}} @onClick={{this.buttonAction}}>Undo</PaperButton>
   </PaperToast>
 {{/if}}
 

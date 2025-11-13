@@ -145,11 +145,11 @@
       </card.content>
 
       <card.actions>
-        <PaperButton @primary={{true}} @raised={{true}} @disabled={{this.isInvalid}} @onClick={{action "installTheme"}}>
+        <PaperButton @primary={{true}} @raised={{true}} @disabled={{this.isInvalid}} @onClick={{this.installTheme}}>
           Install Theme
         </PaperButton>
 
-        <PaperButton @accent={{true}} @raised={{true}} @onClick={{action "uninstallTheme"}}>
+        <PaperButton @accent={{true}} @raised={{true}} @onClick={{this.uninstallTheme}}>
           Uninstall Theme
         </PaperButton>
       </card.actions>

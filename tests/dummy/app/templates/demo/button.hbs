@@ -4,7 +4,7 @@
 <DocContent>
   {{! BEGIN-SNIPPET buttons.example }}
   <div class="layout-row">
-    <PaperButton @onClick={{action "flatButton"}}>Button with action</PaperButton>
+    <PaperButton @onClick={{this.flatButton}}>Button with action</PaperButton>
     <PaperButton @noink={{true}} @primary={{true}}>Primary (noink)</PaperButton>
     <PaperButton @disabled={{true}}>disabled</PaperButton>
     <PaperButton @warn={{true}}>warn</PaperButton>
@@ -12,7 +12,7 @@
     <PaperButton @href="http://emberjs.com/images/tomsters/original.png" @target="_blank">href link</PaperButton>
   </div>
   <p>
-    <PaperButton @raised={{true}} @onClick={{action "raisedButton"}}>Button with action</PaperButton>
+    <PaperButton @raised={{true}} @onClick={{this.raisedButton}}>Button with action</PaperButton>
     <PaperButton @raised={{true}} @primary={{true}}>Primary</PaperButton>
     <PaperButton @raised={{true}} @disabled={{true}}>disabled</PaperButton>
     <PaperButton @raised={{true}} @warn={{true}}>warn</PaperButton>
@@ -20,9 +20,9 @@
   </p>
   <CustomButton>
     <p>
-      <PaperButton @raised={{true}} @onClick={{action "targetButton"}}>Button with target</PaperButton>
-      <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "targetButton"}}>Button with bubble</PaperButton>
-      <PaperButton @raised={{true}} @primary={{true}} @onClick={{action "targetButton"}} @bubbles={{false}}>Button no bubble</PaperButton>
+      <PaperButton @raised={{true}} @onClick={{this.targetButton}}>Button with target</PaperButton>
+      <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.targetButton}}>Button with bubble</PaperButton>
+      <PaperButton @raised={{true}} @primary={{true}} @onClick={{this.targetButton}} @bubbles={{false}}>Button no bubble</PaperButton>
     </p>
   </CustomButton>
 

@@ -9,7 +9,7 @@
         <PaperToolbarTools>
           <h2>Basic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showBasicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showBasicUsageSourceCode"}} @iconButton={{true}}>
             <PaperIcon @icon="code" />
           </PaperButton>
         </PaperToolbarTools>
@@ -105,7 +105,7 @@
         <PaperToolbarTools>
           <h2>Dynamic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showDynamicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showDynamicUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -129,7 +129,7 @@
           {{#liquid-bind (hash tab=this.selectedChapter.index m=this.selectedChapter) class="md-padding dynamic-animation" as |current|}}
             <h1 class="md-display-2">{{current.m.title}}</h1>
             <p>{{current.m.body}}</p>
-            <PaperButton @primary={{true}} @raised={{true}} @disabled={{eq this.chapters.length 1}} @onClick={{action "removeChapter" current.m}}>
+            <PaperButton @primary={{true}} @raised={{true}} @disabled={{eq this.chapters.length 1}} @onClick={{fn this.removeChapter current.m}}>
               Remove chapter
             </PaperButton>
           {{/liquid-bind}}
@@ -144,7 +144,7 @@
           <PaperInput @class="flex-20" @label="Title" @value={{this.newTitle}} @required={{true}} @onChange={{action (mut this.newTitle)}} />
           <PaperInput @class="flex-60" @label="Content" @textarea={{true}} @value={{this.newContent}} @required={{true}} @onChange={{action (mut this.newContent)}} />
           <div class="flex-20 layout-row layout-align-center-start">
-            <PaperButton @primary={{true}} @raised={{true}} @disabled={{not (and this.newTitle this.newContent)}} @onClick={{action "addChapter"}}>
+            <PaperButton @primary={{true}} @raised={{true}} @disabled={{not (and this.newTitle this.newContent)}} @onClick={{this.addChapter}}>
               Add chapter
             </PaperButton>
           </div>
@@ -173,7 +173,7 @@
         <PaperToolbarTools>
           <h2>Routable Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showRoutableUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showRoutableUsageSourceCode"}} @iconButton={{true}}>
             <PaperIcon @icon="code" />
           </PaperButton>
         </PaperToolbarTools>

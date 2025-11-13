@@ -8,7 +8,7 @@
       <toolbar.tools>
         <h2>Basic Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggle" "showSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{fn this.toggle "showSourceCode"}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
         </PaperButton>
       </toolbar.tools>
@@ -45,13 +45,13 @@
             </p>
 
             <PaperSidenavToggle @name="left" as |toggleAction|>
-              <PaperButton @raised={{true}} @classNames="hide-gt-sm" @onClick={{action toggleAction}}>
+              <PaperButton @raised={{true}} @classNames="hide-gt-sm" @onClick={{toggleAction}}>
                 Toggle left sidenav
               </PaperButton>
             </PaperSidenavToggle>
 
             <PaperSidenavToggle @name="right" as |toggleAction|>
-              <PaperButton @raised={{true}} @onClick={{action toggleAction}}>
+              <PaperButton @raised={{true}} @onClick={{toggleAction}}>
                 Toggle right sidenav
               </PaperButton>
             </PaperSidenavToggle>
@@ -79,7 +79,7 @@
       <toolbar.tools>
         <h2>Persistent Sidenav</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggle" "persistentCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{fn this.toggle "persistentCode"}} @iconButton={{true}}>
           {{paper-icon "code"}}
         </PaperButton>
       </toolbar.tools>
@@ -112,7 +112,7 @@
               Left sidenav is <strong>{{if this.leftSideBarLockedOpen "locked" "unlocked"}}</strong>.
             </p>
 
-            <PaperButton @raised={{true}} @onClick={{action "toggle" "leftSideBarLockedOpen"}}>
+            <PaperButton @raised={{true}} @onClick={{fn this.toggle "leftSideBarLockedOpen"}}>
               {{if this.leftSideBarLockedOpen "Unlock" "Lock"}} left sidenav
             </PaperButton>
 
