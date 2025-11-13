@@ -68,8 +68,10 @@ export default class PaperTab extends Component.extend(FocusableMixin) {
     // this is the true current width
     // it is used to calculate the ink bar position & pagination offset
     this.setProperties({
-      left: this.element.offsetLeft,
-      width: this.element.offsetWidth,
+      // we protect against reading the element here in case we have just been removed but didDestroyElement hasn't been
+      // called yet and the element hasn't been removed from its parent. This is a subtle timing change that we just need to be careful about
+      left: this.element?.offsetLeft,
+      width: this.element?.offsetWidth,
     });
   }
 
