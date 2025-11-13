@@ -1,47 +1,48 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  showSourceCodeFull: false,
-  showSourceCodeInset: false,
+export default class extends Controller {
+  @tracked showSourceCodeFull = false;
+  @tracked showSourceCodeInset = false;
 
-  messages: A([{
-    face: 'tomster.png',
-    who: 'tomster 1',
-    what: 'a message for you',
-    notes: 'this is a message for you about ember'
-  }, {
-    face: 'tomster.png',
-    who: 'tomster 2',
-    what: 'a message for you',
-    notes: 'this is a message for you about ember'
-  }, {
-    face: 'tomster.png',
-    who: 'tomster 3',
-    what: 'a message for you',
-    notes: 'this is a message for you about ember'
-  }, {
-    face: 'tomster.png',
-    who: 'tomster 4',
-    what: 'a message for you',
-    notes: 'this is a message for you about ember'
-  }, {
-    face: 'tomster.png',
-    who: 'tomster 5',
-    what: 'a message for you',
-    notes: 'this is a message for you about ember'
-  }]),
-
-  actions: {
-
-    toggleSourceCodeFull() {
-      this.toggleProperty('showSourceCodeFull');
+  messages = [
+    {
+      face: 'tomster.png',
+      who: 'tomster 1',
+      what: 'a message for you',
+      notes: 'this is a message for you about ember',
     },
+    {
+      face: 'tomster.png',
+      who: 'tomster 2',
+      what: 'a message for you',
+      notes: 'this is a message for you about ember',
+    },
+    {
+      face: 'tomster.png',
+      who: 'tomster 3',
+      what: 'a message for you',
+      notes: 'this is a message for you about ember',
+    },
+    {
+      face: 'tomster.png',
+      who: 'tomster 4',
+      what: 'a message for you',
+      notes: 'this is a message for you about ember',
+    },
+    {
+      face: 'tomster.png',
+      who: 'tomster 5',
+      what: 'a message for you',
+      notes: 'this is a message for you about ember',
+    },
+  ];
 
-    toggleSourceCodeInset() {
-      this.toggleProperty('showSourceCodeInset');
-    }
+  toggleSourceCodeFull = () => {
+    this.showSourceCodeFull = !this.showSourceCodeFull;
+  };
 
-  }
-});
+  toggleSourceCodeInset = () => {
+    this.showSourceCodeInset = !this.showSourceCodeInset;
+  };
+}
