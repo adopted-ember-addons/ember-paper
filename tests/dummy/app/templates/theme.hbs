@@ -130,15 +130,15 @@
 
     <PaperCard as |card|>
       <card.content @class="layout-row">
-        <PaperSelect @label="Primary palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.primary}} @onChange={{action (mut this.primary)}} as |p|>
+        <PaperSelect @label="Primary palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.primary}} @onChange={{mut this.primary}} as |p|>
           {{p.name}}
         </PaperSelect>
 
-        <PaperSelect @label="Accent palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.accent}} @onChange={{action (mut this.accent)}} as |p|>
+        <PaperSelect @label="Accent palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.accent}} @onChange={{mut this.accent}} as |p|>
           {{p.name}}
         </PaperSelect>
 
-        <PaperSelect @label="Warn palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.warn}} @onChange={{action (mut this.warn)}} as |p|>
+        <PaperSelect @label="Warn palette" @class="flex" @required={{true}} @options={{this.palettes}} @selected={{this.warn}} @onChange={{mut this.warn}} as |p|>
           {{p.name}}
         </PaperSelect>
 

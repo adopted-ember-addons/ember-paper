@@ -4,11 +4,11 @@
 <DocContent>
   <p>
     {{! BEGIN-SNIPPET switch }}
-    <PaperSwitch @value={{this.booleanProp1}} @onChange={{action (mut this.booleanProp1)}}>
+    <PaperSwitch @value={{this.booleanProp1}} @onChange={{mut this.booleanProp1}}>
       {{this.booleanProp1}}
     </PaperSwitch>
 
-    <PaperSwitch @value={{this.booleanProp2}} @onChange={{action (mut this.booleanProp2)}}>
+    <PaperSwitch @value={{this.booleanProp2}} @onChange={{mut this.booleanProp2}}>
       {{this.booleanProp2}}
     </PaperSwitch>
 

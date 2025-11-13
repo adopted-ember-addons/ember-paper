@@ -37,24 +37,24 @@
         <div class="layout-row layout-wrap layout-xs-column layout-sm-column">
 
           <div class="flex">
-            <PaperRadioGroup @groupValue={{this.positionX}} @onChange={{action (mut this.positionX)}} as |group|>
+            <PaperRadioGroup @groupValue={{this.positionX}} @onChange={{mut this.positionX}} as |group|>
               <group.radio @value="left">Left</group.radio>
               <group.radio @value="right">Right</group.radio>
             </PaperRadioGroup>
           </div>
           <div class="flex">
-            <PaperRadioGroup @groupValue={{this.positionY}} @onChange={{action (mut this.positionY)}} as |group|>
+            <PaperRadioGroup @groupValue={{this.positionY}} @onChange={{mut this.positionY}} as |group|>
               <group.radio @value="top">Top</group.radio>
               <group.radio @value="bottom">Bottom</group.radio>
             </PaperRadioGroup>
           </div>
           <div class="flex">
-            <PaperCheckbox @value={{this.capsule}} @onChange={{action (mut this.capsule)}}>
+            <PaperCheckbox @value={{this.capsule}} @onChange={{mut this.capsule}}>
               capsule
             </PaperCheckbox>
           </div>
           <div class="flex">
-            <PaperCheckbox @value={{this.swipeToClose}} @flex={{true}} @onChange={{action (mut this.swipeToClose)}}>
+            <PaperCheckbox @value={{this.swipeToClose}} @flex={{true}} @onChange={{mut this.swipeToClose}}>
               swipeToClose
             </PaperCheckbox>
           </div>
@@ -63,8 +63,8 @@
         <h3>duration</h3>
         <div class="layout layout-align-center-center slider-container">
           {{paper-icon "watch later"}}
-          <PaperSlider @class="flex" @value={{this.duration}} @max={{6000}} @onChange={{action (mut this.duration)}} />
-          <PaperInput @type="number" @value={{this.duration}} @onChange={{action (mut this.duration)}} />
+          <PaperSlider @class="flex" @value={{this.duration}} @max={{6000}} @onChange={{mut this.duration}} />
+          <PaperInput @type="number" @value={{this.duration}} @onChange={{mut this.duration}} />
         </div>
 
         {{paper-api
@@ -110,11 +110,11 @@
         <h3>Options</h3>
 
         <div class="layout-column">
-          <PaperInput @label="Toast text" @value={{this.toastText}} @onChange={{action (mut this.toastText)}} />
+          <PaperInput @label="Toast text" @value={{this.toastText}} @onChange={{mut this.toastText}} />
 
           <strong>Toast class</strong>
           <div>
-            <PaperRadioGroup @class="layout-row" @groupValue={{this.toastClass}} @onChange={{action (mut this.toastClass)}} as |group|>
+            <PaperRadioGroup @class="layout-row" @groupValue={{this.toastClass}} @onChange={{mut this.toastClass}} as |group|>
               <group.radio @value="">[none]</group.radio>
               <group.radio @value="md-accent">md-accent</group.radio>
               <group.radio @value="md-warn">md-warn</group.radio>

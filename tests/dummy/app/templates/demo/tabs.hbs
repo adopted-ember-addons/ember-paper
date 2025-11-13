@@ -22,7 +22,7 @@
       <div class="doc-content-example">
         <PaperContent>
           {{! BEGIN-SNIPPET basic-usage}}
-          <PaperTabs @center={{this.center}} @stretch={{this.stretch}} @borderBottom={{this.borderBottom}} @selected={{this.selectedBasicTab}} @onChange={{action (mut this.selectedBasicTab)}} as |tabs|>
+          <PaperTabs @center={{this.center}} @stretch={{this.stretch}} @borderBottom={{this.borderBottom}} @selected={{this.selectedBasicTab}} @onChange={{mut this.selectedBasicTab}} as |tabs|>
             <tabs.tab>
               Page One
             </tabs.tab>
@@ -53,15 +53,15 @@
         </PaperContent>
         <PaperCardContent>
 
-          <PaperCheckbox @value={{this.center}} @onChange={{action (mut this.center)}}>
+          <PaperCheckbox @value={{this.center}} @onChange={{mut this.center}}>
             Center tabs
           </PaperCheckbox>
 
-          <PaperCheckbox @value={{this.stretch}} @onChange={{action (mut this.stretch)}}>
+          <PaperCheckbox @value={{this.stretch}} @onChange={{mut this.stretch}}>
             Stretch tabs
           </PaperCheckbox>
 
-          <PaperCheckbox @value={{this.borderBottom}} @onChange={{action (mut this.borderBottom)}}>
+          <PaperCheckbox @value={{this.borderBottom}} @onChange={{mut this.borderBottom}}>
             Border bottom
           </PaperCheckbox>
 
@@ -118,7 +118,7 @@
       <div class="doc-content-example">
         <PaperContent>
           {{! BEGIN-SNIPPET dynamic-usage}}
-          <PaperTabs @primary={{true}} @borderBottom={{true}} @selected={{this.selectedChapter}} @onChange={{action (mut this.selectedChapter)}} as |tabs|>
+          <PaperTabs @primary={{true}} @borderBottom={{true}} @selected={{this.selectedChapter}} @onChange={{mut this.selectedChapter}} as |tabs|>
             {{#each this.chapters as |chapter|}}
               <tabs.tab @value={{chapter}}>
                 {{chapter.title}}
@@ -141,8 +141,8 @@
 
       <PaperCardContent>
         <div class="md-padding layout-row layout-align-space-around-start">
-          <PaperInput @class="flex-20" @label="Title" @value={{this.newTitle}} @required={{true}} @onChange={{action (mut this.newTitle)}} />
-          <PaperInput @class="flex-60" @label="Content" @textarea={{true}} @value={{this.newContent}} @required={{true}} @onChange={{action (mut this.newContent)}} />
+          <PaperInput @class="flex-20" @label="Title" @value={{this.newTitle}} @required={{true}} @onChange={{mut this.newTitle}} />
+          <PaperInput @class="flex-60" @label="Content" @textarea={{true}} @value={{this.newContent}} @required={{true}} @onChange={{mut this.newContent}} />
           <div class="flex-20 layout-row layout-align-center-start">
             <PaperButton @primary={{true}} @raised={{true}} @disabled={{not (and this.newTitle this.newContent)}} @onClick={{this.addChapter}}>
               Add chapter

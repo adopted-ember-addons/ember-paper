@@ -4,29 +4,29 @@
 <DocContent>
   {{! BEGIN-SNIPPET checkbox }}
   <div class="layout-column">
-    <PaperCheckbox @value={{this.value1}} @onChange={{action (mut this.value1)}}>
+    <PaperCheckbox @value={{this.value1}} @onChange={{mut this.value1}}>
       A checkbox: {{this.value1}}
     </PaperCheckbox>
 
-    <PaperCheckbox @value={{this.value2}} @onChange={{action (mut this.value2)}}>
+    <PaperCheckbox @value={{this.value2}} @onChange={{mut this.value2}}>
       A checkbox: {{if this.value2 "yep" "nope"}}
     </PaperCheckbox>
 
-    <PaperCheckbox @value={{this.value3}} @onChange={{action (mut this.value3)}} @disabled={{true}}>
+    <PaperCheckbox @value={{this.value3}} @onChange={{mut this.value3}} @disabled={{true}}>
       Checkbox (disabled)
     </PaperCheckbox>
 
-    <PaperCheckbox @value={{true}} @onChange={{action (mut this.value4)}} @disabled={{true}}>
+    <PaperCheckbox @value={{true}} @onChange={{mut this.value4}} @disabled={{true}}>
       Checkbox (disabled and value)
     </PaperCheckbox>
 
-    <PaperCheckbox @value={{this.value5}} @onChange={{action (mut this.value5)}} @noink={{true}}>
+    <PaperCheckbox @value={{this.value5}} @onChange={{mut this.value5}} @noink={{true}}>
       Checkbox (no ink)
     </PaperCheckbox>
 
     <PaperCheckbox @label="Blockless version" @value={{this.value6}} @onChange={{action "toggleValue6"}} />
 
-    <PaperCheckbox @indeterminate={{this.isIndeterminate}} @value={{this.value7}} @onChange={{action (mut this.value7)}}>
+    <PaperCheckbox @indeterminate={{this.isIndeterminate}} @value={{this.value7}} @onChange={{mut this.value7}}>
       Indeterminate checkbox
     </PaperCheckbox>
 

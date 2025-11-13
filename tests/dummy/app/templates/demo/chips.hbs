@@ -62,7 +62,7 @@
 
       <PaperContactChips @readOnly={{this.readOnly}} @removeItem={{action "removeAltContact"}} @addItem={{action "addAltContact"}} @placeholder="Add a contact" @content={{this.selectedAltContacts}} @options={{this.remainingAltContacts}} @nameField="shortName" @emailField="emailAddress" @imageField="profileImage" @searchField="emailAddress" />
 
-      <PaperCheckbox @value={{this.readOnly}} @onChange={{action (mut this.readOnly)}}>
+      <PaperCheckbox @value={{this.readOnly}} @onChange={{mut this.readOnly}}>
         Read Only
       </PaperCheckbox>
       {{! END-SNIPPET }}

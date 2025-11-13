@@ -68,7 +68,7 @@
           {{! END-SNIPPET tooltip }}
         </div>
 
-        <PaperRadioGroup @groupValue={{this.position}} @onChange={{action (mut this.position)}} as |group|>
+        <PaperRadioGroup @groupValue={{this.position}} @onChange={{mut this.position}} as |group|>
           <group.radio @value="bottom">
             Bottom
           </group.radio>

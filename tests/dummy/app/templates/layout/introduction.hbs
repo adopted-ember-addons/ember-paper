@@ -106,11 +106,11 @@
     <card.content>
 
       <div class="layout-row layout-align-space-between-start">
-        <PaperInput @value={{this.box1Height}} @label="box1Height" @type="number" @passThru={{hash min="0" max="100" step="5"}} @onChange={{action (mut this.box1Height)}} />
+        <PaperInput @value={{this.box1Height}} @label="box1Height" @type="number" @passThru={{hash min="0" max="100" step="5"}} @onChange={{mut this.box1Height}} />
 
         <div class="demo-group">
           <h4>direction</h4>
-          <PaperRadioGroup @groupValue={{this.direction}} @onChange={{action (mut this.direction)}} as |group|>
+          <PaperRadioGroup @groupValue={{this.direction}} @onChange={{mut this.direction}} as |group|>
             <group.radio @value="row">
               row
             </group.radio>
@@ -120,7 +120,7 @@
           </PaperRadioGroup>
         </div>
 
-        <PaperSwitch @value={{this.hideBox}} @onChange={{action (mut this.hideBox)}}>hideBox</PaperSwitch>
+        <PaperSwitch @value={{this.hideBox}} @onChange={{mut this.hideBox}}>hideBox</PaperSwitch>
       </div>
 
       <CodeSnippet @name="layout-introduction.hbs" />

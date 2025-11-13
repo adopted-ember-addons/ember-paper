@@ -90,7 +90,7 @@
           <PaperItem as |controls|>
             <p>{{topping.name}}</p>
             <div class="md-secondary-container">
-              <controls.checkbox @value={{topping.enabled}} @secondary={{true}} @onChange={{action (mut topping.enabled)}} />
+              <controls.checkbox @value={{topping.enabled}} @secondary={{true}} @onChange={{mut topping.enabled}} />
             </div>
           </PaperItem>
         {{/each}}
@@ -122,14 +122,14 @@
           {{paper-icon "network-wifi"}}
           <p>Wi-Fi</p>
           <div class="md-secondary-container">
-            <controls.switch @secondary={{true}} @value={{this.wifiEnabled}} @onChange={{action (mut this.wifiEnabled)}} />
+            <controls.switch @secondary={{true}} @value={{this.wifiEnabled}} @onChange={{mut this.wifiEnabled}} />
           </div>
         </PaperItem>
         <PaperItem @onClick={{this.transitionToBluetoothMenu}} as |controls|>
           {{paper-icon "bluetooth"}}
           <p>Bluetooth</p>
           <div class="md-secondary-container">
-            <controls.switch @secondary={{true}} @value={{this.bluetoothEnabled}} @onChange={{action (mut this.bluetoothEnabled)}} />
+            <controls.switch @secondary={{true}} @value={{this.bluetoothEnabled}} @onChange={{mut this.bluetoothEnabled}} />
           </div>
         </PaperItem>
         <PaperItem @onClick={{this.transitionToDataUsage}}>
@@ -142,7 +142,7 @@
         <PaperSubheader>Checkbox with Secondary Action</PaperSubheader>
         {{#each this.messageData as |item|}}
           <PaperItem as |controls|>
-            <controls.checkbox @value={{item.checked}} @onChange={{action (mut item.checked)}} />
+            <controls.checkbox @value={{item.checked}} @onChange={{mut item.checked}} />
             <p>{{item.message}}</p>
             <div class="md-secondary-container">
               <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryMessageClick item}}>
@@ -160,7 +160,7 @@
             <img src={{item.img}} alt={{item.name}} class="md-avatar">
             <p>{{item.name}}</p>
             <div class="md-secondary-container">
-              <controls.checkbox @value={{item.checked}} @onChange={{action (mut item.checked)}} />
+              <controls.checkbox @value={{item.checked}} @onChange={{mut item.checked}} />
               <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryMessageClick item}}>
                 {{paper-icon "email"}}
               </controls.button>
@@ -207,7 +207,7 @@
           <PaperItem as |controls|>
             <p>{{topping.name}}</p>
             <div class="md-secondary-container">
-              <controls.radio @groupValue={{this.radioSelectedTopping}} @value={{topping}} @secondary={{true}} @onChange={{action (mut this.radioSelectedTopping)}} />
+              <controls.radio @groupValue={{this.radioSelectedTopping}} @value={{topping}} @secondary={{true}} @onChange={{mut this.radioSelectedTopping}} />
             </div>
           </PaperItem>
         {{/each}}

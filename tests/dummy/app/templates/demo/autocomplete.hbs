@@ -9,7 +9,7 @@
       <blockquote>Use <code>\{{paper-autocomplete}}</code> to search for matches from local or remote data sources.</blockquote>
       <form>
         {{! BEGIN-SNIPPET autocomplete.basic-usage }}
-        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{action "addCountry"}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{action (mut this.countrySearchText)}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery (action "searchCountries")}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{action (mut this.selectedCountry)}} />
+        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{action "addCountry"}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{mut this.countrySearchText}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery (action "searchCountries")}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{mut this.selectedCountry}} />
         {{! END-SNIPPET }}
       </form>
       <p>
@@ -26,13 +26,13 @@
           No search text
         {{/if}}
       </p>
-      <PaperCheckbox @value={{this.firstDisabled}} @onChange={{action (mut this.firstDisabled)}}>
+      <PaperCheckbox @value={{this.firstDisabled}} @onChange={{mut this.firstDisabled}}>
         Disable input
       </PaperCheckbox>
-      <PaperCheckbox @value={{this.simulateQuery}} @onChange={{action (mut this.simulateQuery)}}>
+      <PaperCheckbox @value={{this.simulateQuery}} @onChange={{mut this.simulateQuery}}>
         Simulate query
       </PaperCheckbox>
-      <PaperCheckbox @value={{this.enableDefaultHighlighted}} @onChange={{action (mut this.enableDefaultHighlighted)}}>
+      <PaperCheckbox @value={{this.enableDefaultHighlighted}} @onChange={{mut this.enableDefaultHighlighted}}>
         Highlight first match
       </PaperCheckbox>
       <PaperButton @primary={{true}} @label="Reset search-Text" @onClick={{fn (mut this.countrySearchText) ""}} />
@@ -86,8 +86,8 @@
       <blockquote>The following example demonstrates floating labels being used as a normal form element.</blockquote>
       <form class="layout-row">
         {{! BEGIN-SNIPPET autocomplete.floating-label }}
-        <PaperInput @label="Name" @value={{this.name}} @onChange={{action (mut this.name)}} @class="flex" />
-        <PaperAutocomplete @disabled={{readonly this.disabled2}} @required={{readonly this.isRequired}} @triggerClass="flex" @options={{this.items}} @selected={{this.selectedCountry2}} @search={{if this.simulateQuery2 (action "searchCountries")}} @searchField="name" @labelPath="name" @label="Select a Country..." @allowClear={{readonly this.allowClearWithLabel}} @noMatchesMessage="Oops this country doesn't exist." @onSelectionChange={{action (mut this.selectedCountry2)}} as |country select|>
+        <PaperInput @label="Name" @value={{this.name}} @onChange={{mut this.name}} @class="flex" />
+        <PaperAutocomplete @disabled={{readonly this.disabled2}} @required={{readonly this.isRequired}} @triggerClass="flex" @options={{this.items}} @selected={{this.selectedCountry2}} @search={{if this.simulateQuery2 (action "searchCountries")}} @searchField="name" @labelPath="name" @label="Select a Country..." @allowClear={{readonly this.allowClearWithLabel}} @noMatchesMessage="Oops this country doesn't exist." @onSelectionChange={{mut this.selectedCountry2}} as |country select|>
           <PaperAutocompleteHighlight @label={{country.name}} @searchText={{select.searchText}} @flags="i" />
         </PaperAutocomplete>
 
@@ -100,16 +100,16 @@
           Nothing is selected.
         {{/if}}
       </p>
-      <PaperCheckbox @value={{readonly this.disabled2}} @onChange={{action (mut this.disabled2)}}>
+      <PaperCheckbox @value={{readonly this.disabled2}} @onChange={{mut this.disabled2}}>
         Disable input
       </PaperCheckbox>
-      <PaperCheckbox @value={{readonly this.simulateQuery2}} @onChange={{action (mut this.simulateQuery2)}}>
+      <PaperCheckbox @value={{readonly this.simulateQuery2}} @onChange={{mut this.simulateQuery2}}>
         Simulate query
       </PaperCheckbox>
-      <PaperCheckbox @value={{this.isRequired}} @onChange={{action (mut this.isRequired)}}>
+      <PaperCheckbox @value={{this.isRequired}} @onChange={{mut this.isRequired}}>
         Is required
       </PaperCheckbox>
-      <PaperCheckbox @value={{readonly this.allowClearWithLabel}} @onChange={{action (mut this.allowClearWithLabel)}}>
+      <PaperCheckbox @value={{readonly this.allowClearWithLabel}} @onChange={{mut this.allowClearWithLabel}}>
         Allow Clear
       </PaperCheckbox>
 
