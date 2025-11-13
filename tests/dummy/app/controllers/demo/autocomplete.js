@@ -1,68 +1,85 @@
-/* eslint-disable ember/no-actions-hash, ember/no-runloop, prettier/prettier */
+/* eslint-disable ember/no-runloop*/
 import { cancel, later } from '@ember/runloop';
 import RSVP from 'rsvp';
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
 // per MDN https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 const escapeRegExp = (input) => {
-
   // $& means the whole matched string
   return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
 
-export default Controller.extend({
-  myModel: Object.freeze({ name: 'United States', code: 'US' }),
+export default class extends Controller {
+  myModel = { name: 'United States', code: 'US' };
 
-  searchText: '',
+  @tracked searchText = '';
 
   highlightFirstMatch(api) {
     if (api && api.results && api.results.length) {
       return api.results[0];
     }
     return null;
-  },
+  }
 
-  actions: {
-    updateFilter(str) {
-      this.set('searchText', str);
-    },
-    addCountry(name) {
-      this.items.addObject({ name, code: '' });
-    },
+  updateFilter = (str) => {
+    this.searchText = str;
+  };
+  addCountry = (name) => {
+    this.items = [...this.items, { name, code: '' }];
+  };
 
-    searchCountries(term) {
-      let XHR_TIMEOUT = Math.floor(Math.random() * 1000) + 100;
+  searchCountries = (term) => {
+    let XHR_TIMEOUT = Math.floor(Math.random() * 1000) + 100;
 
-      return new RSVP.Promise((resolve) => {
-        cancel(this.searchTimer);
+    return new RSVP.Promise((resolve) => {
+      cancel(this.searchTimer);
 
-        this.searchTimer = later(this, () => {
+      this.searchTimer = later(
+        this,
+        () => {
           let nameRegExp = new RegExp(escapeRegExp(`${term}`), 'i', 'g');
           let countries = this.items;
           let results = countries.filter((c) => nameRegExp.exec(c.name)) || [];
           resolve(results);
-        }, XHR_TIMEOUT);
-      });
-    }
-  },
+        },
+        XHR_TIMEOUT,
+      );
+    });
+  };
 
-  arrayOfItems: A(['Ember1.0', 'Ember2.0', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']),
+  arrayOfItems = [
+    'Ember1.0',
+    'Ember2.0',
+    'Paper',
+    'One',
+    'Two',
+    'Three',
+    'Four',
+    'Five',
+    'Six',
+    'Seven',
+    'Eight',
+    'Nine',
+    'Ten',
+    'Eleven',
+    'Twelve',
+  ];
 
   /*
    * Array of static Objects.
    * When having objects, use lookupKey="name" on the paper-autocomplete component so it knows to use "name" to search in.
    */
-  shorterItems: A([
+  shorterItems = [
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Åland Islands', code: 'AX' },
     { name: 'Albania', code: 'AL' },
     { name: 'Algeria', code: 'DZ' },
     { name: 'American Samoa', code: 'AS' },
-    { name: 'AndorrA', code: 'AD' }
-  ]),
+    { name: 'AndorrA', code: 'AD' },
+  ];
 
-  items: A([
+  @tracked items = [
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Åland Islands', code: 'AX' },
     { name: 'Albania', code: 'AL' },
@@ -116,7 +133,7 @@ export default Controller.extend({
     { name: 'Congo, The Democratic Republic of the', code: 'CD' },
     { name: 'Cook Islands', code: 'CK' },
     { name: 'Costa Rica', code: 'CR' },
-    { name: 'Cote D\'Ivoire', code: 'CI' },
+    { name: "Cote D'Ivoire", code: 'CI' },
     { name: 'Croatia', code: 'HR' },
     { name: 'Cuba', code: 'CU' },
     { name: 'Cyprus', code: 'CY' },
@@ -178,11 +195,11 @@ export default Controller.extend({
     { name: 'Kazakhstan', code: 'KZ' },
     { name: 'Kenya', code: 'KE' },
     { name: 'Kiribati', code: 'KI' },
-    { name: 'Korea, Democratic People\'S Republic of', code: 'KP' },
+    { name: "Korea, Democratic People'S Republic of", code: 'KP' },
     { name: 'Korea, Republic of', code: 'KR' },
     { name: 'Kuwait', code: 'KW' },
     { name: 'Kyrgyzstan', code: 'KG' },
-    { name: 'Lao People\'S Democratic Republic', code: 'LA' },
+    { name: "Lao People'S Democratic Republic", code: 'LA' },
     { name: 'Latvia', code: 'LV' },
     { name: 'Lebanon', code: 'LB' },
     { name: 'Lesotho', code: 'LS' },
@@ -305,7 +322,6 @@ export default Controller.extend({
     { name: 'Western Sahara', code: 'EH' },
     { name: 'Yemen', code: 'YE' },
     { name: 'Zambia', code: 'ZM' },
-    { name: 'Zimbabwe', code: 'ZW' }
-  ])
-
-});
+    { name: 'Zimbabwe', code: 'ZW' },
+  ];
+}

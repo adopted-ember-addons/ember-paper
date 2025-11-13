@@ -9,7 +9,7 @@
       <blockquote>Use <code>\{{paper-autocomplete}}</code> to search for matches from local or remote data sources.</blockquote>
       <form>
         {{! BEGIN-SNIPPET autocomplete.basic-usage }}
-        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{this.addCountry}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{fn (mut this.countrySearchText)}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery (action "searchCountries")}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{fn (mut this.selectedCountry)}} />
+        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{this.addCountry}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{fn (mut this.countrySearchText)}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery this.searchCountries}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{fn (mut this.selectedCountry)}} />
         {{! END-SNIPPET }}
       </form>
       <p>
@@ -87,7 +87,7 @@
       <form class="layout-row">
         {{! BEGIN-SNIPPET autocomplete.floating-label }}
         <PaperInput @label="Name" @value={{this.name}} @onChange={{fn (mut this.name)}} @class="flex" />
-        <PaperAutocomplete @disabled={{readonly this.disabled2}} @required={{readonly this.isRequired}} @triggerClass="flex" @options={{this.items}} @selected={{this.selectedCountry2}} @search={{if this.simulateQuery2 (action "searchCountries")}} @searchField="name" @labelPath="name" @label="Select a Country..." @allowClear={{readonly this.allowClearWithLabel}} @noMatchesMessage="Oops this country doesn't exist." @onSelectionChange={{fn (mut this.selectedCountry2)}} as |country select|>
+        <PaperAutocomplete @disabled={{readonly this.disabled2}} @required={{readonly this.isRequired}} @triggerClass="flex" @options={{this.items}} @selected={{this.selectedCountry2}} @search={{if this.simulateQuery2 this.searchCountries}} @searchField="name" @labelPath="name" @label="Select a Country..." @allowClear={{readonly this.allowClearWithLabel}} @noMatchesMessage="Oops this country doesn't exist." @onSelectionChange={{fn (mut this.selectedCountry2)}} as |country select|>
           <PaperAutocompleteHighlight @label={{country.name}} @searchText={{select.searchText}} @flags="i" />
         </PaperAutocomplete>
 
