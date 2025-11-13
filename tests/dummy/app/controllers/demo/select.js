@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import RSVP from 'rsvp';
 import { A } from '@ember/array';
-import { later } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 
 export default class extends Controller {
@@ -45,7 +44,7 @@ export default class extends Controller {
         { id: 5, name: 'Velma Dinkley' },
       ]);
 
-      later(() => {
+      setTimeout(() => {
         /*
          * Two arguments to the resolve:
          * - data from the server
