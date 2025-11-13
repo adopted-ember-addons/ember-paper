@@ -1,9 +1,7 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import { inject as service } from '@ember/service';
-import { readOnly, reads } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
 const LOREM = `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -12,60 +10,54 @@ const LOREM = `
   Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.\n
 `;
 
-export default Controller.extend({
-  borderBottom: true,
+let tabs = A();
+for (let i = 1; i < 5; i++) {
+  tabs.push({
+    index: i,
+    title: `Chapter ${i}`,
+    body: LOREM.repeat(i),
+  });
+}
 
-  selectedBasicTab: 0,
+export default class extends Controller {
+  @service router;
 
-  router: service(),
+  @tracked borderBottom = true;
+  @tracked selectedBasicTab = 0;
+  @tracked showBasicUsageSourceCode = false;
+  @tracked showDynamicUsageSourceCode = false;
+  @tracked showRoutableUsageSourceCode = false;
+  @tracked selectedChapter = tabs[0];
+  @tracked newTitle = '';
+  @tracked newContent = '';
+  @tracked chapters = tabs;
 
-  currentRouteName: readOnly('router.currentRouteName'),
+  toggle = (propName) => {
+    this[propName] = !this[propName];
+  };
 
-  chapters: computed(function() {
-    let tabs = A();
-    for (let i = 1; i < 5; i++) {
-      tabs.push({
-        index: i,
-        title: `Chapter ${i}`,
-        body: LOREM.repeat(i)
-      });
+  addChapter = () => {
+    let index = Math.max(...this.chapters.mapBy('index')) + 1;
+    let chapter = {
+      index,
+      title: this.newTitle,
+      body: this.newContent,
+    };
+    this.chapters = [...this.chapters, chapter];
+    this.selectedChapter = chapter;
+
+    this.newTitle = '';
+    this.newContent = '';
+  };
+
+  removeChapter = (t) => {
+    if (this.selectedChapter === t) {
+      let index = this.chapters.indexOf(t);
+      let newSelection = this.chapters[index + 1] || this.chapters[index - 1];
+      this.selectedChapter = newSelection;
     }
+    this.chapters = this.chapters.filter((item) => item !== t);
+  };
 
-    return tabs;
-  }),
-
-  selectedChapter: reads('chapters.firstObject'),
-
-  actions: {
-    toggle(propName) {
-      this.toggleProperty(propName);
-    },
-
-    addChapter() {
-      let index = Math.max(...this.chapters.mapBy('index')) + 1;
-      let chapter = {
-        index,
-        title: this.newTitle,
-        body: this.newContent
-      };
-      this.chapters.pushObject(chapter);
-      this.set('selectedChapter', chapter);
-      this.setProperties({
-        newTitle: '',
-        newContent: ''
-      });
-    },
-
-    removeChapter(t) {
-      if (this.selectedChapter === t) {
-        let chapters = this.chapters;
-        let index = chapters.indexOf(t);
-        let newSelection = chapters.objectAt(index + 1) || chapters.objectAt(index - 1);
-        this.set('selectedChapter', newSelection);
-      }
-      this.chapters.removeObject(t);
-    },
-
-    noop() {}
-  }
-});
+  noop() {}
+}
