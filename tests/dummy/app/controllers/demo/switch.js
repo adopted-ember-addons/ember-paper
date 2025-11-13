@@ -1,17 +1,14 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  booleanProp1: true,
-  booleanProp2: false,
-  booleanProp3: false,
-  booleanProp4: false,
-  booleanProp5: false,
+export default class extends Controller {
+  @tracked booleanProp1 = true;
+  @tracked booleanProp2 = false;
+  @tracked booleanProp3 = false;
+  @tracked booleanProp4 = false;
+  @tracked booleanProp5 = false;
 
-  actions: {
-    changeBooleanProp(which, newValue) {
-      this.set(`booleanProp${which}`, newValue);
-    }
-  }
-
-});
+  changeBooleanProp = (which, newValue) => {
+    this[`booleanProp${which}`] = newValue;
+  };
+}
