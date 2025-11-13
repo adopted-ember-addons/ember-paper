@@ -1,9 +1,15 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  items: A([
+export default class extends Controller {
+  @tracked firstName;
+  @tracked lastName;
+  @tracked age;
+  @tracked selectedCountry;
+  @tracked favoriteLetter;
+  @tracked favouriteNumber;
+
+  items = [
     { name: 'Afghanistan', code: 'AF' },
     { name: 'Åland Islands', code: 'AX' },
     { name: 'Albania', code: 'AL' },
@@ -13,21 +19,19 @@ export default Controller.extend({
     { name: 'Angola', code: 'AO' },
     { name: 'Anguilla', code: 'AI' },
     { name: 'Antarctica', code: 'AQ' },
-    { name: 'Antigua and Barbuda', code: 'AG' }
-  ]),
+    { name: 'Antigua and Barbuda', code: 'AG' },
+  ];
 
-  actions: {
-    basicSubmitAction() {
-      this.set('firstName', '');
-      this.set('lastName', '');
-      this.set('age', '');
-      this.set('selectedCountry', null);
-    },
-    disabledSubmitAction() {
-      this.set('favoriteLetter', '');
-    },
-    customSubmitAction() {
-      this.set('favoriteNumber', '');
-    }
+  basicSubmitAction() {
+    this.firstName = '';
+    this.lastName = '';
+    this.age = '';
+    this.selectedCountry = null;
   }
-});
+  disabledSubmitAction() {
+    this.favoriteLetter = '';
+  }
+  customSubmitAction() {
+    this.favoriteNumber = '';
+  }
+}
