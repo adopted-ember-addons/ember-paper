@@ -91,11 +91,12 @@ module('Integration | Component | paper form', function(hooks) {
     // paper-input triggers `onValidityChange` on render
     // so we expect two runs: one on render and another on validity change
     assert.expect(9);
+    let expected = [true, false, false];
 
     this.set('onValidityChange', (isValid, isTouched, isInvalidAndTouched) => {
-      assert.ok(isValid);
-      assert.notOk(isTouched);
-      assert.notOk(isInvalidAndTouched);
+      assert.strictEqual(isValid, expected[0]);
+      assert.strictEqual(isTouched, expected[1]);
+      assert.strictEqual(isInvalidAndTouched, expected[2]);
     });
 
     await render(hbs`
@@ -105,20 +106,10 @@ module('Integration | Component | paper form', function(hooks) {
       {{/paper-form}}
     `);
 
-    this.set('onValidityChange', (isValid, isTouched, isInvalidAndTouched) => {
-      assert.ok(isValid);
-      assert.ok(isTouched);
-      assert.notOk(isInvalidAndTouched);
-    });
-
+    expected = [true, true, false];
     await triggerEvent('input:first-of-type', 'blur');
 
-    this.set('onValidityChange', (isValid, isTouched, isInvalidAndTouched) => {
-      assert.notOk(isValid);
-      assert.ok(isTouched);
-      assert.ok(isInvalidAndTouched);
-    });
-
+    expected = [false, true, true];
     this.set('errors', [{
       message: 'foo should be a number.',
       attribute: 'foo'
@@ -126,7 +117,6 @@ module('Integration | Component | paper form', function(hooks) {
       message: 'foo should be smaller than 12.',
       attribute: 'foo'
     }]);
-
   });
 
   test('form is reset after submit action is invoked', async function(assert) {
