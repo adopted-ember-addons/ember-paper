@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/require-tagless-components */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/require-tagless-components, prettier/prettier */
 import {
   attributeBindings,
   classNameBindings,

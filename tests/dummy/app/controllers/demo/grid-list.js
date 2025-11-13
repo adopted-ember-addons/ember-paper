@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop, prettier/prettier */
 import Controller from '@ember/controller';
 import { later } from '@ember/runloop';
 import { buildGridModel, randomColor, randomSpan } from '../../utils/grid-list';

@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier, qunit/no-assert-equal */
+/* eslint-disable ember/no-runloop, prettier/prettier, qunit/no-assert-equal, qunit/require-expect */
 import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, waitUntil } from '@ember/test-helpers';

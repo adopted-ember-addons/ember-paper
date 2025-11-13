@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import Service from '@ember/service';
 import { assert } from '@ember/debug';
-import { assign } from '@ember/polyfills';
 
 import PALETTES from 'ember-paper/utils/palettes';
 import CONTRASTS from 'ember-paper/utils/contrasts';
@@ -22,7 +21,7 @@ export default Service.extend({
 
     // let's not make the background palette mandatory as it will be the `grey`
     // palette most of the time
-    theme = assign({ background: PALETTES.grey }, theme);
+    theme = Object.assign({ background: PALETTES.grey }, theme);
 
     let vars = this.generateCssVariables(theme);
 

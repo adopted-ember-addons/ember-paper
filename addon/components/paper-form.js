@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-mixins */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-mixins, prettier/prettier */
 import { tagName } from '@ember-decorators/component';
 import { action, computed } from '@ember/object';
 import { and, not } from '@ember/object/computed';

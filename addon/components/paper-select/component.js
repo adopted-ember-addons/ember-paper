@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-mixins, prettier/prettier */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/no-computed-properties-in-native-classes, ember/no-mixins, prettier/prettier */
 import Component from '@ember/component';
 import template from './template';
 

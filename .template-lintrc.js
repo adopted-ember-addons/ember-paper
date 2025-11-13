@@ -18,6 +18,7 @@ module.exports = {
         'no-unused-block-params': false,
         'require-button-type': false,
         'require-input-label': false,
+        'no-implicit-this': false,
       },
     },
   ],

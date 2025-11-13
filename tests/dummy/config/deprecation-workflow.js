@@ -19,5 +19,6 @@ self.deprecationWorkflow.config = {
     { handler: 'throw', matchId: 'computed-property.override' },
     { handler: 'silence', matchId: 'ember-string.add-package' },
     { handler: 'throw', matchId: 'remove-owner-inject' },
+    { handler: 'silence', matchId: 'template-action' },
   ],
 };
