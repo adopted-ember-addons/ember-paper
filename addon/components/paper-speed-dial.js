@@ -11,7 +11,6 @@ export default class extends Component {
     'directionClass',
     'open:md-is-open',
     'animationClass',
-    'shouldHideActions:md-animations-waiting',
     'hoverFull:md-hover-full',
   ];
 
