@@ -1,12 +1,11 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 import { faker } from '@faker-js/faker';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  numOfRows: 3,
+export default class extends Controller {
+  @tracked numOfRows = 3;
 
-  listData: computed('numOfRows', function() {
+  get listData() {
     let contacts = [];
     let numOfRows = this.numOfRows;
 
@@ -14,74 +13,82 @@ export default Controller.extend({
       contacts.push({
         name: faker.person.fullName(),
         email: faker.internet.email(),
-        img: faker.image.dataUri()
+        img: faker.image.dataUri(),
       });
     }
 
     return contacts;
-  }),
+  }
 
-  phoneNumbers: Object.freeze([
+  phoneNumbers = [
     {
       number: '(555) 251-1234',
-      type: 'Home'
+      type: 'Home',
     },
     {
       number: '(555) 786-9841',
-      type: 'Mobile'
+      type: 'Mobile',
     },
     {
       number: '(555) 314-1592',
-      type: 'Office'
-    }
-  ]),
+      type: 'Office',
+    },
+  ];
 
-  toppings: Object.freeze([
+  toppings = [
     {
       name: 'Pepperoni',
-      enabled: false
-    }, {
+      enabled: false,
+    },
+    {
       name: 'Sausage',
-      enabled: false
-    }, {
+      enabled: false,
+    },
+    {
       name: 'Black Olives',
-      enabled: true
-    }, {
+      enabled: true,
+    },
+    {
       name: 'Green Peppers',
-      enabled: false
-    }
-  ]),
+      enabled: false,
+    },
+  ];
 
-  messageData: Object.freeze([{
-    message: 'Message A'
-  }, {
-    message: 'Message B'
-  }, {
-    message: 'Message C'
-  }]),
+  messageData = [
+    {
+      message: 'Message A',
+    },
+    {
+      message: 'Message B',
+    },
+    {
+      message: 'Message C',
+    },
+  ];
 
-  actions: {
-    transitionTo(value) {
-      alert(`Imagine you transition to "${value}" here.`);
-    },
-    transitionToWifiMenu() {
-      alert('Imagine you transition to wifi settings here.');
-    },
-    transitionToBluetoothMenu() {
-      alert('Imagine you transition to Bluetooth settings here.');
-    },
-    secondaryMessageClick() {
-      alert('Secondary actions can be used for one click actions.');
-    },
-    goToPerson(person) {
-      alert(`Imagine you transition to the person full view for '${person.name}' here.`);
-    },
-    secondaryPersonClick(person) {
-      alert(`'${person.name}'. Secondary actions can be used for one click actions.`);
-    },
-    transitionToDataUsage() {
-      alert('Imagine you would be taken to data-usage.');
-    }
+  transitionTo(value) {
+    alert(`Imagine you transition to "${value}" here.`);
   }
-
-});
+  transitionToWifiMenu() {
+    alert('Imagine you transition to wifi settings here.');
+  }
+  transitionToBluetoothMenu() {
+    alert('Imagine you transition to Bluetooth settings here.');
+  }
+  secondaryMessageClick() {
+    alert('Secondary actions can be used for one click actions.');
+  }
+  goToPerson(person) {
+    alert(
+      `Imagine you transition to the person full view for '${person.name}' here.`,
+    );
+  }
+  secondaryPersonClick(person) {
+    alert(
+      `'${person.name}'. Secondary actions can be used for one click actions.`,
+    );
+  }
+  transitionToDataUsage() {
+    alert('Imagine you would be taken to data-usage.');
+  }
+}
