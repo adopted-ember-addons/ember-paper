@@ -8,7 +8,7 @@
       <PaperToolbarTools>
         <h2>Basic Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{fn this.toggle "showSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{this.toggleSource}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
           <PaperTooltip>
             {{if this.showSourceCode "Hide" "Show"}} code

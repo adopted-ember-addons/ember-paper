@@ -1,12 +1,14 @@
-/* eslint-disable ember/no-actions-hash, prettier/prettier */
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  position: 'bottom',
+export default class extends Controller {
+  @tracked
+  position = 'bottom';
 
-  actions: {
-    toggle(propName) {
-      this.toggleProperty(propName);
-    }
-  }
-});
+  @tracked
+  showSourceCode = false;
+
+  toggleSource = () => {
+    this.showSourceCode = !this.showSourceCode;
+  };
+}
