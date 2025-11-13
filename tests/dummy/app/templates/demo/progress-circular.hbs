@@ -41,7 +41,7 @@
       <PaperProgressCircular @value={{this.sliderValue}} @diameter={{this.sliderDiameter}} @strokeRatio={{this.strokeRatio}} @disabled={{this.isDisabled}} />
     </div>
     <div class="flex flex-gt-sm-33">
-      <PaperCheckbox @value={{this.isIndeterminate}} @onChange={{action "setIndeterminate"}}>
+      <PaperCheckbox @value={{this.isIndeterminate}} @onChange={{this.setIndeterminate}}>
         Indeterminate
       </PaperCheckbox>
       <PaperCheckbox @value={{this.isDisabled}} @onChange={{mut this.isDisabled}}>
@@ -49,7 +49,7 @@
       </PaperCheckbox>
       <div class="layout layout-align-center-center slider-container">
         <span class="flex">Value ({{if this.sliderValue this.sliderValue "null"}})</span>
-        <PaperSlider @class="flex" @value={{this.sliderValue}} @min={{0}} @max={{100}} @onChange={{action "setValue"}} />
+        <PaperSlider @class="flex" @value={{this.sliderValue}} @min={{0}} @max={{100}} @onChange={{this.setValue}} />
       </div>
 
       <div class="layout layout-align-center-center slider-container">

@@ -192,14 +192,14 @@
 
 {{! BEGIN-SNIPPET toast }}
 {{#if this.showToast}}
-  <PaperToast @duration={{this.duration}} @position={{concat this.positionY " " this.positionX}} @capsule={{this.capsule}} @swipeToClose={{this.swipeToClose}} @onClose={{action "closeToast"}} as |toast|>
+  <PaperToast @duration={{this.duration}} @position={{concat this.positionY " " this.positionX}} @capsule={{this.capsule}} @swipeToClose={{this.swipeToClose}} @onClose={{this.closeToast}} as |toast|>
     <toast.text>Hello</toast.text>
     <PaperButton @accent={{true}} @onClick={{this.buttonAction}}>Undo</PaperButton>
   </PaperToast>
 {{/if}}
 
 {{#if this.showToastWithout}}
-  <PaperToast @duration={{this.duration}} @position={{concat this.positionY " " this.positionX}} @capsule={{this.capsule}} @swipeToClose={{this.swipeToClose}} @onClose={{action "closeToastWithout"}} as |toast|>
+  <PaperToast @duration={{this.duration}} @position={{concat this.positionY " " this.positionX}} @capsule={{this.capsule}} @swipeToClose={{this.swipeToClose}} @onClose={{this.closeToastWithout}} as |toast|>
     <toast.text>Hello</toast.text>
   </PaperToast>
 {{/if}}

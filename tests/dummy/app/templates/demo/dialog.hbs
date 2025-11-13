@@ -150,7 +150,7 @@
 {{/if}}
 
 {{#if this.showAnimatedDialog}}
-  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{action "closeAnimatedDialog"}} @openFrom="#paper-dialog-demo" @closeTo="#bottom-of-card">
+  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{this.closeAnimatedDialog}} @openFrom="#paper-dialog-demo" @closeTo="#bottom-of-card">
 
     <PaperDialogContent>
       <h2 class="md-title">This dialog is animated!</h2>

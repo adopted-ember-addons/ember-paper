@@ -24,7 +24,7 @@
       </p>
 
       {{! BEGIN-SNIPPET form.basic-usage }}
-      <PaperForm @onSubmit={{action "basicSubmitAction"}} as |form|>
+      <PaperForm @onSubmit={{this.basicSubmitAction}} as |form|>
         <div class="layout-row">
           <div class="layout-column flex-50">
             <form.input @label="First Name" @value={{this.firstName}} @onChange={{mut this.firstName}} @required={{true}} />
@@ -65,7 +65,7 @@
       </p>
 
       {{! BEGIN-SNIPPET form.disabled-submit }}
-      <PaperForm @onSubmit={{action "disabledSubmitAction"}} as |form|>
+      <PaperForm @onSubmit={{this.disabledSubmitAction}} as |form|>
         <div class="layout-row">
           <form.input @label="Favorite Letter" @value={{this.favoriteLetter}} @onChange={{mut this.favoriteLetter}} @required={{true}} @maxlength={{1}} />
         </div>
@@ -111,7 +111,7 @@
       </p>
 
       {{! BEGIN-SNIPPET form.custom-components }}
-      <PaperForm @onSubmit={{action "customSubmitAction"}} as |form|>
+      <PaperForm @onSubmit={{this.customSubmitAction}} as |form|>
         <div class="layout-row">
           <PaperInput @label="Favorite Number" @value={{this.favoriteNumber}} @onChange={{mut this.favoriteNumber}} @required={{true}} @min={{1}} @max={{10}} />
         </div>

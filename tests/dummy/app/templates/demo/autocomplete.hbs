@@ -9,7 +9,7 @@
       <blockquote>Use <code>\{{paper-autocomplete}}</code> to search for matches from local or remote data sources.</blockquote>
       <form>
         {{! BEGIN-SNIPPET autocomplete.basic-usage }}
-        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{action "addCountry"}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{mut this.countrySearchText}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery (action "searchCountries")}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{mut this.selectedCountry}} />
+        <PaperAutocomplete @disabled={{this.firstDisabled}} @onCreate={{this.addCountry}} @options={{this.items}} @allowClear={{true}} @defaultHighlighted={{if this.enableDefaultHighlighted this.highlightFirstMatch}} @searchText={{readonly this.countrySearchText}} @onSearchTextChange={{mut this.countrySearchText}} @selected={{this.selectedCountry}} @search={{if this.simulateQuery (action "searchCountries")}} @searchField="name" @labelPath="name" @placeholder="Select a Country..." @noMatchesMessage="Oops this country doesn't exist. Create a new country?" @onSelectionChange={{mut this.selectedCountry}} />
         {{! END-SNIPPET }}
       </form>
       <p>

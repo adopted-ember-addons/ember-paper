@@ -126,7 +126,7 @@
   </p>
   <p>
     {{! BEGIN-SNIPPET input.actions }}
-    <PaperInput @label="Event demonstration" @value={{this.eventTest}} @onChange={{mut this.eventTest}} @onFocus={{action "focusReceived"}} @onBlur={{action "blurReceived"}} @onKeyDown={{action "keyDownReceived"}} />
+    <PaperInput @label="Event demonstration" @value={{this.eventTest}} @onChange={{mut this.eventTest}} @onFocus={{this.focusReceived}} @onBlur={{this.blurReceived}} @onKeyDown={{this.keyDownReceived}} />
     {{! END-SNIPPET }}
     {{#if this.eventName}}
       <div>The leaf controller for this route received the sent <strong>{{this.eventName}}</strong> action.</div>

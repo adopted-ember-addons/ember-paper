@@ -24,7 +24,7 @@
       Checkbox (no ink)
     </PaperCheckbox>
 
-    <PaperCheckbox @label="Blockless version" @value={{this.value6}} @onChange={{action "toggleValue6"}} />
+    <PaperCheckbox @label="Blockless version" @value={{this.value6}} @onChange={{this.toggleValue6}} />
 
     <PaperCheckbox @indeterminate={{this.isIndeterminate}} @value={{this.value7}} @onChange={{mut this.value7}}>
       Indeterminate checkbox
