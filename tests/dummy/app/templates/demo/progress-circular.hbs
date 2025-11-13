@@ -44,7 +44,7 @@
       <PaperCheckbox @value={{this.isIndeterminate}} @onChange={{this.setIndeterminate}}>
         Indeterminate
       </PaperCheckbox>
-      <PaperCheckbox @value={{this.isDisabled}} @onChange={{mut this.isDisabled}}>
+      <PaperCheckbox @value={{this.isDisabled}} @onChange={{fn (mut this.isDisabled)}}>
         Disabled
       </PaperCheckbox>
       <div class="layout layout-align-center-center slider-container">
@@ -54,12 +54,12 @@
 
       <div class="layout layout-align-center-center slider-container">
         <span class="flex">Diameter ({{this.sliderDiameter}})</span>
-        <PaperSlider @class="flex" @value={{this.sliderDiameter}} @min={{0}} @max={{300}} @onChange={{mut this.sliderDiameter}} />
+        <PaperSlider @class="flex" @value={{this.sliderDiameter}} @min={{0}} @max={{300}} @onChange={{fn (mut this.sliderDiameter)}} />
       </div>
 
       <div class="layout layout-align-center-center slider-container">
         <span class="flex">Stroke ratio ({{this.strokeRatio}})</span>
-        <PaperSlider @class="flex" @value={{this.strokeRatio}} @min={{0}} @max={{0.5}} @step={{0.0025}} @onChange={{mut this.strokeRatio}} />
+        <PaperSlider @class="flex" @value={{this.strokeRatio}} @min={{0}} @max={{0.5}} @step={{0.0025}} @onChange={{fn (mut this.strokeRatio)}} />
       </div>
 
     </div>

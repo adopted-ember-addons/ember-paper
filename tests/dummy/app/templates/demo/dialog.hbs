@@ -134,9 +134,9 @@
     <PaperDialogContent>
       <h2 class="md-title">What would you name your dog?</h2>
       <p>Bowser is a common name.</p>
-      <PaperInput @placeholder="dog name" @autofocus={{true}} @value={{this.dogName}} @onChange={{mut this.dogName}} />
+      <PaperInput @placeholder="dog name" @autofocus={{true}} @value={{this.dogName}} @onChange={{fn (mut this.dogName)}} />
       <div>
-        <PaperCheckbox @value={{this.fullscreen}} @onChange={{mut this.fullscreen}}>Display fullscreen at small window size breakpoints</PaperCheckbox>
+        <PaperCheckbox @value={{this.fullscreen}} @onChange={{fn (mut this.fullscreen)}}>Display fullscreen at small window size breakpoints</PaperCheckbox>
       </div>
     </PaperDialogContent>
 

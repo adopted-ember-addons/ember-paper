@@ -22,7 +22,7 @@
         <PaperContent>
           <div class="layout-align-center-center layout-row" style="min-height: 300px; overflow: hidden">
             {{! BEGIN-SNIPPET speed-dial-basic-usage}}
-            <PaperSpeedDial @animation={{this.animation}} @direction={{this.direction}} @open={{this.open}} @onToggle={{mut this.open}} as |dial|>
+            <PaperSpeedDial @animation={{this.animation}} @direction={{this.direction}} @open={{this.open}} @onToggle={{fn (mut this.open)}} as |dial|>
               <dial.trigger>
                 <PaperButton @fab={{true}}>
                   {{paper-icon "menu"}}
@@ -58,7 +58,7 @@
 
             <div class="layout-column layout-align-start-center">
               <h4>Direction</h4>
-              <PaperRadioGroup @groupValue={{this.direction}} @onChange={{mut this.direction}} as |group|>
+              <PaperRadioGroup @groupValue={{this.direction}} @onChange={{fn (mut this.direction)}} as |group|>
                 <group.radio @value="up">Up</group.radio>
                 <group.radio @value="down">Down</group.radio>
                 <group.radio @value="left">Left</group.radio>
@@ -68,14 +68,14 @@
 
             <div class="layout-column layout-align-start-center">
               <h4>Open/Closed</h4>
-              <PaperCheckbox @value={{this.open}} @onChange={{mut this.open}}>
+              <PaperCheckbox @value={{this.open}} @onChange={{fn (mut this.open)}}>
                 open
               </PaperCheckbox>
             </div>
 
             <div class="layout-column layout-align-start-center">
               <h4>Animation</h4>
-              <PaperRadioGroup @groupValue={{this.animation}} @onChange={{mut this.animation}} as |group|>
+              <PaperRadioGroup @groupValue={{this.animation}} @onChange={{fn (mut this.animation)}} as |group|>
                 <group.radio @value="fling">Fling</group.radio>
                 <group.radio @value="scale">Scale</group.radio>
               </PaperRadioGroup>
@@ -123,7 +123,7 @@
         <PaperContent>
           <div class="layout-align-center-center layout-row" style="min-height: 300px; overflow: hidden">
             {{! BEGIN-SNIPPET speed-dial-advanced-usage}}
-            <PaperSpeedDial @onMouseEnter={{fn (mut this.open2) true}} @onMouseLeave={{fn (mut this.open2) false}} @open={{this.open2}} @onToggle={{mut this.open2}} @hoverFull={{this.hoverFull}} as |dial|>
+            <PaperSpeedDial @onMouseEnter={{fn (mut this.open2) true}} @onMouseLeave={{fn (mut this.open2) false}} @open={{this.open2}} @onToggle={{fn (mut this.open2)}} @hoverFull={{this.hoverFull}} as |dial|>
               <dial.trigger>
                 <PaperButton @fab={{true}}>
                   {{paper-icon "menu"}}
@@ -166,7 +166,7 @@
           <code>hoverFull=true</code>. Try it with the following checkbox:
         </p>
         <p>
-          <PaperCheckbox @value={{this.hoverFull}} @onChange={{mut this.hoverFull}}>
+          <PaperCheckbox @value={{this.hoverFull}} @onChange={{fn (mut this.hoverFull)}}>
             hoverFull
           </PaperCheckbox>
         </p>
