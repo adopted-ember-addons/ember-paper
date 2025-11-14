@@ -90,7 +90,7 @@
           <PaperItem as |controls|>
             <p>{{topping.name}}</p>
             <div class="md-secondary-container">
-              <controls.checkbox @value={{topping.enabled}} @secondary={{true}} @onChange={{action (mut topping.enabled)}} />
+              <controls.checkbox @value={{topping.enabled}} @secondary={{true}} @onChange={{fn (mut topping.enabled)}} />
             </div>
           </PaperItem>
         {{/each}}
@@ -101,15 +101,15 @@
         <PaperItem as |controls|>
           <p>Clicking the button to the right will fire the secondary action</p>
           <div class="md-secondary-container">
-            <controls.button @secondary={{true}} @onClick={{action "transitionTo" "more info"}}>
+            <controls.button @secondary={{true}} @onClick={{fn this.transitionTo "more info"}}>
               More Info
             </controls.button>
           </div>
         </PaperItem>
-        <PaperItem @onClick={{action "transitionTo" "primary action"}} as |controls|>
+        <PaperItem @onClick={{fn this.transitionTo "primary action"}} as |controls|>
           <p>Click anywhere to fire the primary action, or the button to fire the secondary</p>
           <div class="md-secondary-container">
-            <controls.button @secondary={{true}} @onClick={{action "transitionTo" "secondary action"}}>
+            <controls.button @secondary={{true}} @onClick={{fn this.transitionTo "secondary action"}}>
               More Info
             </controls.button>
           </div>
@@ -118,21 +118,21 @@
         <PaperDivider />
 
         <PaperSubheader>Clickable Items with Secondary Controls</PaperSubheader>
-        <PaperItem @onClick={{action "transitionToWifiMenu"}} as |controls|>
+        <PaperItem @onClick={{this.transitionToWifiMenu}} as |controls|>
           {{paper-icon "network-wifi"}}
           <p>Wi-Fi</p>
           <div class="md-secondary-container">
-            <controls.switch @secondary={{true}} @value={{this.wifiEnabled}} @onChange={{action (mut this.wifiEnabled)}} />
+            <controls.switch @secondary={{true}} @value={{this.wifiEnabled}} @onChange={{fn (mut this.wifiEnabled)}} />
           </div>
         </PaperItem>
-        <PaperItem @onClick={{action "transitionToBluetoothMenu"}} as |controls|>
+        <PaperItem @onClick={{this.transitionToBluetoothMenu}} as |controls|>
           {{paper-icon "bluetooth"}}
           <p>Bluetooth</p>
           <div class="md-secondary-container">
-            <controls.switch @secondary={{true}} @value={{this.bluetoothEnabled}} @onChange={{action (mut this.bluetoothEnabled)}} />
+            <controls.switch @secondary={{true}} @value={{this.bluetoothEnabled}} @onChange={{fn (mut this.bluetoothEnabled)}} />
           </div>
         </PaperItem>
-        <PaperItem @onClick={{action "transitionToDataUsage"}}>
+        <PaperItem @onClick={{this.transitionToDataUsage}}>
           {{paper-icon "data-usage"}}
           <p>Data Usage</p>
         </PaperItem>
@@ -142,10 +142,10 @@
         <PaperSubheader>Checkbox with Secondary Action</PaperSubheader>
         {{#each this.messageData as |item|}}
           <PaperItem as |controls|>
-            <controls.checkbox @value={{item.checked}} @onChange={{action (mut item.checked)}} />
+            <controls.checkbox @value={{item.checked}} @onChange={{fn (mut item.checked)}} />
             <p>{{item.message}}</p>
             <div class="md-secondary-container">
-              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{action "secondaryMessageClick" item}}>
+              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryMessageClick item}}>
                 {{paper-icon "message"}}
               </controls.button>
             </div>
@@ -156,15 +156,15 @@
 
         <PaperSubheader>Avatar with Secondary Action Icon</PaperSubheader>
         {{#each this.listData as |item|}}
-          <PaperItem @onClick={{action "goToPerson" item}} as |controls|>
+          <PaperItem @onClick={{fn this.goToPerson item}} as |controls|>
             <img src={{item.img}} alt={{item.name}} class="md-avatar">
             <p>{{item.name}}</p>
             <div class="md-secondary-container">
-              <controls.checkbox @value={{item.checked}} @onChange={{action (mut item.checked)}} />
-              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{action "secondaryMessageClick" item}}>
+              <controls.checkbox @value={{item.checked}} @onChange={{fn (mut item.checked)}} />
+              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryMessageClick item}}>
                 {{paper-icon "email"}}
               </controls.button>
-              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{action "secondaryMessageClick" item}}>
+              <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryMessageClick item}}>
                 {{paper-icon "message"}}
               </controls.button>
             </div>
@@ -175,7 +175,7 @@
 
         <PaperSubheader>Clickable Avatars</PaperSubheader>
         {{#each this.listData as |item|}}
-          <PaperItem @class="md-3-line" @onClick={{action "goToPerson" item}}>
+          <PaperItem @class="md-3-line" @onClick={{fn this.goToPerson item}}>
             <img src={{item.img}} alt={{item.name}} class="md-avatar">
             <div class="md-list-item-text">
               <h3>{{item.name}}</h3>
@@ -189,14 +189,14 @@
 
         <PaperSubheader>Avatar with Secondary Action Icon</PaperSubheader>
         {{#each this.listData as |item|}}
-          <PaperItem @class="md-3-line" @onClick={{action "goToPerson" item}} as |controls|>
+          <PaperItem @class="md-3-line" @onClick={{fn this.goToPerson item}} as |controls|>
             <img src={{item.img}} alt={{item.name}} class="md-avatar">
             <div class="md-list-item-text">
               <h3>{{item.name}}</h3>
               <h4>{{item.email}}</h4>
               <p>Some notes here.</p>
             </div>
-            <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{action "secondaryPersonClick" item}}>
+            <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn this.secondaryPersonClick item}}>
               {{paper-icon "phone"}}
             </controls.button>
           </PaperItem>
@@ -207,7 +207,7 @@
           <PaperItem as |controls|>
             <p>{{topping.name}}</p>
             <div class="md-secondary-container">
-              <controls.radio @groupValue={{this.radioSelectedTopping}} @value={{topping}} @secondary={{true}} @onChange={{action (mut this.radioSelectedTopping)}} />
+              <controls.radio @groupValue={{this.radioSelectedTopping}} @value={{topping}} @secondary={{true}} @onChange={{fn (mut this.radioSelectedTopping)}} />
             </div>
           </PaperItem>
         {{/each}}

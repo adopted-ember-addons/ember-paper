@@ -208,7 +208,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
           {{/paper-dialog-actions}}
         {{/paper-dialog}}
       {{/if}}
-      <button id="theorigin" onclick={{action this.openDialog}}>
+      <button id="theorigin" onclick={{this.openDialog}}>
         The origin
       </button>
     `);

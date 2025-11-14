@@ -1,18 +1,13 @@
-/* eslint-disable ember/no-actions-hash, ember/require-computed-property-dependencies, prettier/prettier */
-import { filter } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import { A } from '@ember/array';
 import { faker } from '@faker-js/faker';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  fruitNames: A(['Apple', 'Banana', 'Orange']),
+export default class extends Controller {
+  @tracked fruitNames = ['Apple', 'Banana', 'Orange'];
+  @tracked customFruitNames = ['Apple', 'Banana', 'Orange'];
+  @tracked numOfContacts = 10;
 
-  customFruitNames: A(['Apple', 'Banana', 'Orange']),
-
-  numOfContacts: 10,
-
-  contacts: computed('numOfContacts', function() {
+  get contacts() {
     let contacts = [];
     let numOfContacts = this.numOfContacts;
 
@@ -25,19 +20,17 @@ export default Controller.extend({
     }
 
     return contacts;
-  }),
+  }
 
-  selectedContacts: filter('contacts', function(c, index) {
-    return index % 2 === 0;
-  }),
+  @tracked selectedContacts = [];
 
-  remainingContacts: computed('contacts.[]', 'selectedContacts.[]', function() {
+  get remainingContacts() {
     return this.contacts.filter((c) => {
       return this.selectedContacts.indexOf(c) === -1;
     });
-  }),
+  }
 
-  altContacts: computed('numOfContacts', function() {
+  get altContacts() {
     let contacts = [];
     let numOfContacts = this.numOfContacts;
 
@@ -53,107 +46,113 @@ export default Controller.extend({
     }
 
     return contacts;
-  }),
+  }
 
-  selectedAltContacts: filter('altContacts', function(c, index) {
-    return index % 2 === 0;
-  }),
+  @tracked selectedAltContacts = [];
 
-  remainingAltContacts: computed('altContacts.[]', 'selectedAltContacts.[]', function() {
+  get remainingAltContacts() {
     return this.altContacts.filter((c) => {
       return this.selectedAltContacts.indexOf(c) === -1;
     });
-  }),
+  }
 
-  vegetables: A([{
-    name: 'Broccoli',
-    family: 'Brassica'
-  }]),
+  @tracked vegetables = [
+    {
+      name: 'Broccoli',
+      family: 'Brassica',
+    },
+  ];
 
-  allVegetables: A([{
-    name: 'Broccoli',
-    family: 'Brassica'
-  }, {
-    name: 'Cabbage',
-    family: 'Brassica'
-  }, {
-    name: 'Carrot',
-    family: 'Umbelliferous'
-  }, {
-    name: 'Lettuce',
-    family: 'Composite'
-  }, {
-    name: 'Spinach',
-    family: 'Goosefoot'
-  }]),
+  allVegetables = [
+    {
+      name: 'Broccoli',
+      family: 'Brassica',
+    },
+    {
+      name: 'Cabbage',
+      family: 'Brassica',
+    },
+    {
+      name: 'Carrot',
+      family: 'Umbelliferous',
+    },
+    {
+      name: 'Lettuce',
+      family: 'Composite',
+    },
+    {
+      name: 'Spinach',
+      family: 'Goosefoot',
+    },
+  ];
 
-  remainingVegetables: computed('allVegetables.@each.name', 'vegetables.@each.name', function() {
+  get remainingVegetables() {
     return this.allVegetables.filter((source) => {
-      return !this.vegetables.any(function(myVegetable) {
+      return !this.vegetables.some(function (myVegetable) {
         return source.name === myVegetable.name;
       });
     });
-  }),
+  }
 
-  vegeNames: A(['Broccoli']),
+  @tracked vegeNames = ['Broccoli'];
 
-  allVegeNames: A(['Broccoli', 'Cabbage', 'Carrot', 'Lettuce', 'Spinach']),
+  allVegeNames = ['Broccoli', 'Cabbage', 'Carrot', 'Lettuce', 'Spinach'];
 
-  remainingVegeNames: computed('vegeNames.length', function() {
+  get remainingVegeNames() {
     return this.allVegeNames.filter((source) => {
-      return !this.vegeNames.any(function(myVegeName) {
+      return !this.vegeNames.some(function (myVegeName) {
         return source === myVegeName;
       });
     });
-  }),
-
-  actions: {
-    removeItem(item) {
-      this.fruitNames.removeObject(item);
-    },
-
-    addItem(item) {
-      this.fruitNames.pushObject(item);
-    },
-
-    removeCustomItem(item) {
-      this.customFruitNames.removeObject(item);
-    },
-
-    addCustomItem(item) {
-      this.customFruitNames.pushObject(item);
-    },
-
-    removeVegetable(item) {
-      this.vegetables.removeObject(item);
-    },
-
-    addVegetable(item) {
-      this.vegetables.pushObject(item);
-    },
-
-    removeVegeName(item) {
-      this.vegeNames.removeObject(item);
-    },
-
-    addVegeName(item) {
-      this.vegeNames.pushObject(item);
-    },
-
-    addContact(item) {
-      this.selectedContacts.pushObject(item);
-    },
-
-    removeContact(item) {
-      this.selectedContacts.removeObject(item);
-    },
-
-    addAltContact(item) {
-      this.selectedAltContacts.pushObject(item);
-    },
-
-    removeAltContact(item) {
-      this.selectedAltContacts.removeObject(item);
-    }
   }
-});
+
+  removeItem = (item) => {
+    this.fruitNames = this.fruitNames.filter((i) => item !== i);
+  };
+
+  addItem = (item) => {
+    this.fruitNames = [...this.fruitNames, item];
+  };
+
+  removeCustomItem = (item) => {
+    this.customFruitNames = this.customFruitNames.filter((i) => item !== i);
+  };
+
+  addCustomItem = (item) => {
+    this.customFruitNames = [...this.customFruitNames, item];
+  };
+
+  removeVegetable = (item) => {
+    this.vegetables = this.vegetables.filter((i) => item !== i);
+  };
+
+  addVegetable = (item) => {
+    this.vegetables = [...this.vegetables, item];
+  };
+
+  removeVegeName = (item) => {
+    this.vegeNames = this.vegeNames.filter((i) => item !== i);
+  };
+
+  addVegeName = (item) => {
+    this.vegeNames = [...this.vegeNames, item];
+  };
+
+  addContact = (item) => {
+    this.selectedContacts = [...this.selectedContacts, item];
+  };
+
+  removeContact = (item) => {
+    this.selectedContacts = this.selectedContacts.filter((i) => item !== i);
+  };
+
+  addAltContact = (item) => {
+    this.selectedAltContacts = [...this.selectedAltContacts, item];
+  };
+
+  removeAltContact = (item) => {
+    this.selectedAltContacts = this.selectedAltContacts.filter(
+      (i) => item !== i,
+    );
+  };
+}

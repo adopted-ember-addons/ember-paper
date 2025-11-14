@@ -7,16 +7,16 @@
   <p>Enter an address</p>
   <div class="layout-row">
     {{! BEGIN-SNIPPET select.basic-usage }}
-    <PaperInput @label="Street Name" @value={{this.street}} @onChange={{action (mut this.street)}} />
-    <PaperInput @label="City" @value={{this.city}} @onChange={{action (mut this.city)}} />
-    <PaperSelect @disabled={{this.disableSelect}} @label="State" @options={{this.states}} @selected={{this.userState}} @onChange={{action (mut this.userState)}} as |state|>
+    <PaperInput @label="Street Name" @value={{this.street}} @onChange={{fn (mut this.street)}} />
+    <PaperInput @label="City" @value={{this.city}} @onChange={{fn (mut this.city)}} />
+    <PaperSelect @disabled={{this.disableSelect}} @label="State" @options={{this.states}} @selected={{this.userState}} @onChange={{fn (mut this.userState)}} as |state|>
       {{state.abbrev}}
     </PaperSelect>
     {{! END-SNIPPET }}
   </div>
 
   <p>
-    <PaperCheckbox @label="Disable select" @value={{this.disableSelect}} @onChange={{action (mut this.disableSelect)}} />
+    <PaperCheckbox @label="Disable select" @value={{this.disableSelect}} @onChange={{fn (mut this.disableSelect)}} />
   </p>
   <h3>Template</h3>
   <CodeSnippet @name="select.basic-usage.hbs" />
@@ -37,10 +37,10 @@
   <p>Pick your pizza below</p>
   <div class="layout-row">
     {{! BEGIN-SNIPPET select.option-groups }}
-    <PaperSelect @options={{this.sizes}} @label="Size" @required={{true}} @selected={{this.pizzaSize}} @onChange={{action (mut this.pizzaSize)}} as |size|>
+    <PaperSelect @options={{this.sizes}} @label="Size" @required={{true}} @selected={{this.pizzaSize}} @onChange={{fn (mut this.pizzaSize)}} as |size|>
       {{size}}
     </PaperSelect>
-    <PaperSelect @options={{this.groupedToppings}} @label="Topping" @selected={{this.topping}} @onChange={{action (mut this.topping)}} as |topping|>
+    <PaperSelect @options={{this.groupedToppings}} @label="Topping" @selected={{this.topping}} @onChange={{fn (mut this.topping)}} as |topping|>
       {{this.topping}}
     </PaperSelect>
     {{! END-SNIPPET }}
@@ -57,7 +57,7 @@
     </p>
     <div class="layout-column layout-align-center-center" style="height: 130px;">
       {{! BEGIN-SNIPPET select.async-search }}
-      <PaperSelect @placeholder="Assign to a user" @selected={{this.selectedUser}} @options={{this.users}} @onChange={{action (mut this.selectedUser)}} as |user|>
+      <PaperSelect @placeholder="Assign to a user" @selected={{this.selectedUser}} @options={{this.users}} @onChange={{fn (mut this.selectedUser)}} as |user|>
         {{user.name}}
       </PaperSelect>
 
@@ -76,7 +76,7 @@
   <div class="layout-column layout-align-center-center">
     <div class="layout-column layout-align-center-center" style="height: 130px;">
       {{! BEGIN-SNIPPET select.select-header }}
-      <PaperSelect @placeholder="Vegetable" @selected={{this.selectedVegetable}} @options={{this.vegetables}} @searchField="name" @searchPlaceholder="Search for a vegetable.." @searchEnabled={{true}} @onChange={{action (mut this.selectedVegetable)}} as |vegetable|>
+      <PaperSelect @placeholder="Vegetable" @selected={{this.selectedVegetable}} @options={{this.vegetables}} @searchField="name" @searchPlaceholder="Search for a vegetable.." @searchEnabled={{true}} @onChange={{fn (mut this.selectedVegetable)}} as |vegetable|>
         {{vegetable.name}}
       </PaperSelect>
 

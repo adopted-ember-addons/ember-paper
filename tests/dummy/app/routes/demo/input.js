@@ -1,21 +1,8 @@
-/* eslint-disable ember/no-actions-hash, ember/no-implicit-injections, prettier/prettier */
 import Route from '@ember/routing/route';
+import { tracked } from 'tracked-built-ins';
 
-export default Route.extend({
+export default class extends Route {
   model() {
-    // Create a new record for demonstration purposes. Normally, data
-    // would be retrieved from the store via find or findAll.
-    return this.store.createRecord('user', {});
-  },
-
-  actions: {
-
-    willTransition() {
-      // Clean up the record created for demonstration purposes.
-      let record = this.modelFor('demo.input');
-      record.rollbackAttributes();
-      this.store.unloadRecord(record);
-    }
-
+    return tracked({});
   }
-});
+}

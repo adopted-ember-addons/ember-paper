@@ -8,7 +8,7 @@
         <PaperToolbarTools>
           <h2>Basic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showBasicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showBasicUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -22,7 +22,7 @@
         <PaperContent>
           <div class="layout-align-center-center layout-row" style="min-height: 300px; overflow: hidden">
             {{! BEGIN-SNIPPET speed-dial-basic-usage}}
-            <PaperSpeedDial @animation={{this.animation}} @direction={{this.direction}} @open={{this.open}} @onToggle={{action (mut this.open)}} as |dial|>
+            <PaperSpeedDial @animation={{this.animation}} @direction={{this.direction}} @open={{this.open}} @onToggle={{fn (mut this.open)}} as |dial|>
               <dial.trigger>
                 <PaperButton @fab={{true}}>
                   {{paper-icon "menu"}}
@@ -31,19 +31,19 @@
 
               <dial.actions as |actions|>
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "people"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "accessibility"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "check-circle"}}
                   </PaperButton>
                 </actions.action>
@@ -58,7 +58,7 @@
 
             <div class="layout-column layout-align-start-center">
               <h4>Direction</h4>
-              <PaperRadioGroup @groupValue={{this.direction}} @onChange={{action (mut this.direction)}} as |group|>
+              <PaperRadioGroup @groupValue={{this.direction}} @onChange={{fn (mut this.direction)}} as |group|>
                 <group.radio @value="up">Up</group.radio>
                 <group.radio @value="down">Down</group.radio>
                 <group.radio @value="left">Left</group.radio>
@@ -68,14 +68,14 @@
 
             <div class="layout-column layout-align-start-center">
               <h4>Open/Closed</h4>
-              <PaperCheckbox @value={{this.open}} @onChange={{action (mut this.open)}}>
+              <PaperCheckbox @value={{this.open}} @onChange={{fn (mut this.open)}}>
                 open
               </PaperCheckbox>
             </div>
 
             <div class="layout-column layout-align-start-center">
               <h4>Animation</h4>
-              <PaperRadioGroup @groupValue={{this.animation}} @onChange={{action (mut this.animation)}} as |group|>
+              <PaperRadioGroup @groupValue={{this.animation}} @onChange={{fn (mut this.animation)}} as |group|>
                 <group.radio @value="fling">Fling</group.radio>
                 <group.radio @value="scale">Scale</group.radio>
               </PaperRadioGroup>
@@ -109,7 +109,7 @@
         <PaperToolbarTools>
           <h2>Advanced Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showAdvancedUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showAdvancedUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -123,7 +123,7 @@
         <PaperContent>
           <div class="layout-align-center-center layout-row" style="min-height: 300px; overflow: hidden">
             {{! BEGIN-SNIPPET speed-dial-advanced-usage}}
-            <PaperSpeedDial @onMouseEnter={{action (mut this.open2) true}} @onMouseLeave={{action (mut this.open2) false}} @open={{this.open2}} @onToggle={{action (mut this.open2)}} @hoverFull={{this.hoverFull}} as |dial|>
+            <PaperSpeedDial @onMouseEnter={{fn (mut this.open2) true}} @onMouseLeave={{fn (mut this.open2) false}} @open={{this.open2}} @onToggle={{fn (mut this.open2)}} @hoverFull={{this.hoverFull}} as |dial|>
               <dial.trigger>
                 <PaperButton @fab={{true}}>
                   {{paper-icon "menu"}}
@@ -132,19 +132,19 @@
 
               <dial.actions as |actions|>
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "people"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "accessibility"}}
                   </PaperButton>
                 </actions.action>
 
                 <actions.action>
-                  <PaperButton @mini={{true}} @onClick={{action (mut this.showDialog) true}}>
+                  <PaperButton @mini={{true}} @onClick={{fn (mut this.showDialog) true}}>
                     {{paper-icon "check-circle"}}
                   </PaperButton>
                 </actions.action>
@@ -166,7 +166,7 @@
           <code>hoverFull=true</code>. Try it with the following checkbox:
         </p>
         <p>
-          <PaperCheckbox @value={{this.hoverFull}} @onChange={{action (mut this.hoverFull)}}>
+          <PaperCheckbox @value={{this.hoverFull}} @onChange={{fn (mut this.hoverFull)}}>
             hoverFull
           </PaperCheckbox>
         </p>
@@ -176,7 +176,7 @@
 </DocContent>
 
 {{#if this.showDialog}}
-  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{action (mut this.showDialog) false}}>
+  <PaperDialog @fullscreen={{this.fullscreen}} @onClose={{fn (mut this.showDialog) false}}>
 
     <PaperDialogContent>
       <h2 class="md-title">An action was clicked!</h2>
@@ -185,7 +185,7 @@
 
     <PaperDialogActions @class="layout-row">
       <span class="flex"></span>
-      <PaperButton @primary={{true}} @onClick={{action (mut this.showDialog) false}}>Okay!</PaperButton>
+      <PaperButton @primary={{true}} @onClick={{fn (mut this.showDialog) false}}>Okay!</PaperButton>
     </PaperDialogActions>
 
   </PaperDialog>

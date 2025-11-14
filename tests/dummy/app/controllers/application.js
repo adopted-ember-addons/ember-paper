@@ -1,30 +1,27 @@
-/* eslint-disable ember/no-actions-hash */
-import { equal } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  router: service(),
+export default class extends Controller {
+  @service router;
 
-  actions: {
-    toggleExpandedItem(value, ev) {
-      if (this.expandedItem === value) {
-        value = null;
-      }
-      this.set('expandedItem', value);
-      ev.stopPropagation();
-    },
-  },
+  @tracked expandedItem;
 
-  expandedItem: computed('router.currentRouteName', function () {
-    if (this.router.currentRouteName.substr(0, 6) === 'layout') {
-      return 'layout';
-    } else {
-      return 'demos';
+  @action
+  toggleExpandedItem(value, ev) {
+    if (this.expandedItem === value) {
+      value = null;
     }
-  }),
+    this.expandedItem = value;
+    ev.stopPropagation();
+  }
 
-  demosExpanded: equal('expandedItem', 'demos'),
-  layoutExpanded: equal('expandedItem', 'layout'),
-});
+  get demosExpanded() {
+    return this.expandedItem === 'demos';
+  }
+
+  get layoutExpanded() {
+    return this.expandedItem === 'layout';
+  }
+}

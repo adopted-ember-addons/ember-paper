@@ -8,7 +8,7 @@
       <toolbar.tools>
         <h2>Basic Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggle" "showSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{fn this.toggle "showSourceCode"}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
         </PaperButton>
       </toolbar.tools>
@@ -22,7 +22,7 @@
       {{! BEGIN-SNIPPET sidenav.basic-usage }}
       <PaperSidenavContainer @class="inner-sidenav">
 
-        <PaperSidenav @class="md-whiteframe-z2" @name="left" @open={{this.leftSideBarOpen}} @onToggle={{action (mut this.leftSideBarOpen)}}>
+        <PaperSidenav @class="md-whiteframe-z2" @name="left" @open={{this.leftSideBarOpen}} @onToggle={{fn (mut this.leftSideBarOpen)}}>
           <PaperToolbar as |toolbar|>
             <toolbar.tools>Left Sidenav</toolbar.tools>
           </PaperToolbar>
@@ -45,13 +45,13 @@
             </p>
 
             <PaperSidenavToggle @name="left" as |toggleAction|>
-              <PaperButton @raised={{true}} @classNames="hide-gt-sm" @onClick={{action toggleAction}}>
+              <PaperButton @raised={{true}} @classNames="hide-gt-sm" @onClick={{toggleAction}}>
                 Toggle left sidenav
               </PaperButton>
             </PaperSidenavToggle>
 
             <PaperSidenavToggle @name="right" as |toggleAction|>
-              <PaperButton @raised={{true}} @onClick={{action toggleAction}}>
+              <PaperButton @raised={{true}} @onClick={{toggleAction}}>
                 Toggle right sidenav
               </PaperButton>
             </PaperSidenavToggle>
@@ -59,7 +59,7 @@
           </div>
         </PaperCardContent>
 
-        <PaperSidenav @class="md-whiteframe-z2" @name="right" @position="right" @open={{this.rightSideBarOpen}} @lockedOpen={{false}} @onToggle={{action (mut this.rightSideBarOpen)}}>
+        <PaperSidenav @class="md-whiteframe-z2" @name="right" @position="right" @open={{this.rightSideBarOpen}} @lockedOpen={{false}} @onToggle={{fn (mut this.rightSideBarOpen)}}>
           <PaperToolbar as |toolbar|>
             <toolbar.tools>Right Sidenav</toolbar.tools>
           </PaperToolbar>
@@ -79,7 +79,7 @@
       <toolbar.tools>
         <h2>Persistent Sidenav</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggle" "persistentCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{fn this.toggle "persistentCode"}} @iconButton={{true}}>
           {{paper-icon "code"}}
         </PaperButton>
       </toolbar.tools>
@@ -93,7 +93,7 @@
       {{! BEGIN-SNIPPET sidenav.persistent }}
       <PaperSidenavContainer @class="inner-sidenav">
 
-        <PaperSidenav @class="md-whiteframe-z2" @name="left2" @open={{this.leftSideBarOpen2}} @lockedOpen={{this.leftSideBarLockedOpen}} @onToggle={{action (mut this.leftSideBarOpen2)}}>
+        <PaperSidenav @class="md-whiteframe-z2" @name="left2" @open={{this.leftSideBarOpen2}} @lockedOpen={{this.leftSideBarLockedOpen}} @onToggle={{fn (mut this.leftSideBarOpen2)}}>
           <PaperToolbar as |toolbar|>
             <toolbar.tools>Left Sidenav</toolbar.tools>
           </PaperToolbar>
@@ -112,7 +112,7 @@
               Left sidenav is <strong>{{if this.leftSideBarLockedOpen "locked" "unlocked"}}</strong>.
             </p>
 
-            <PaperButton @raised={{true}} @onClick={{action "toggle" "leftSideBarLockedOpen"}}>
+            <PaperButton @raised={{true}} @onClick={{fn this.toggle "leftSideBarLockedOpen"}}>
               {{if this.leftSideBarLockedOpen "Unlock" "Lock"}} left sidenav
             </PaperButton>
 

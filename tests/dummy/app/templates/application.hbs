@@ -1,6 +1,6 @@
 {{! template-lint-disable no-action }}
 <PaperSidenavContainer @class="site-nav-container">
-  <PaperSidenav @class="md-whiteframe-z2 site-sidenav" @lockedOpen="gt-sm" @open={{this.isSidenavOpen}} @onToggle={{action (mut this.isSidenavOpen)}}>
+  <PaperSidenav @class="md-whiteframe-z2 site-sidenav" @lockedOpen="gt-sm" @open={{this.isSidenavOpen}} @onToggle={{fn (mut this.isSidenavOpen)}}>
     <PaperToolbar @class="site-content-toolbar" @tall={{true}}>
       <div class="logo layout-column layout-align-center-center">
         <img alt="ember" src="/ember-logo-white.png">
@@ -13,7 +13,7 @@
       <PaperList>
         <MenuItem @active={{is-active "index" this.router.currentRouteName}} @href={{href-to "index"}}>Introduction</MenuItem>
 
-        <MenuItem @onClick={{action "toggleExpandedItem" "demos"}} @expanded={{this.demosExpanded}} @canExpand={{true}}>Components</MenuItem>
+        <MenuItem @onClick={{fn this.toggleExpandedItem "demos"}} @expanded={{this.demosExpanded}} @canExpand={{true}}>Components</MenuItem>
 
         <div class="submenu">
           {{#liquid-if this.demosExpanded}}
@@ -47,7 +47,7 @@
         <MenuItem @active={{is-active "typography" this.router.currentRouteName}} @href={{href-to "typography"}}>Typography</MenuItem>
         <MenuItem @active={{is-active "theme" this.router.currentRouteName}} @href={{href-to "theme"}}>Color & Theme</MenuItem>
 
-        <MenuItem @onClick={{action "toggleExpandedItem" "layout"}} @expanded={{this.layoutExpanded}} @canExpand={{true}}>Layout</MenuItem>
+        <MenuItem @onClick={{fn this.toggleExpandedItem "layout"}} @expanded={{this.layoutExpanded}} @canExpand={{true}}>Layout</MenuItem>
         <div class="submenu">
           {{#liquid-if this.layoutExpanded}}
             <SubmenuItem @active={{is-active "layout.introduction" this.router.currentRouteName}} @href={{href-to "layout.introduction"}}>Introduction</SubmenuItem>

@@ -30,13 +30,13 @@
 
           <menu.content @width={{4}} as |content|>
             {{#each this.items as |item|}}
-              <content.menu-item @onClick={{action this.openSomething}}>
+              <content.menu-item @onClick={{this.openSomething}}>
                 {{paper-icon item.icon}}
                 <span>{{item.title}}</span>
               </content.menu-item>
             {{/each}}
 
-            <content.menu-item @onClick={{action this.openSomething}} @disabled={{true}}>
+            <content.menu-item @onClick={{this.openSomething}} @disabled={{true}}>
               {{paper-icon "adb"}}
               <span>This is disabled.</span>
             </content.menu-item>
@@ -44,7 +44,7 @@
             <PaperDivider />
 
             {{#each this.items as |item|}}
-              <content.menu-item @onClick={{action this.openSomething}}>
+              <content.menu-item @onClick={{this.openSomething}}>
                 {{paper-icon item.icon}} {{item.title}}
               </content.menu-item>
             {{/each}}
@@ -83,7 +83,7 @@
 
               <menu.content as |content|>
                 {{#each this.items as |item|}}
-                  <content.menu-item @onClick={{action this.openSomething}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     {{paper-icon item.icon class="md-menu-align-target"}}
                     <span>{{item.title}}</span>
                   </content.menu-item>
@@ -104,7 +104,7 @@
 
               <menu.content as |content|>
                 {{#each this.items as |item|}}
-                  <content.menu-item @onClick={{action this.openSomething}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     {{paper-icon item.icon class="md-menu-align-target"}}
                     <span>{{item.title}}</span>
                   </content.menu-item>
@@ -124,19 +124,19 @@
 
               <menu.content as |content|>
                 {{#each this.items as |item|}}
-                  <content.menu-item @onClick={{action this.openSomething}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <p style="width: 190px;">{{item.title}}</p>
                     {{paper-icon item.icon class="md-menu-align-target"}}
                   </content.menu-item>
                 {{/each}}
                 {{#each this.items as |item|}}
-                  <content.menu-item @onClick={{action this.openSomething}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <p style="width: 190px;">{{item.title}}</p>
                     {{paper-icon item.icon class="md-menu-align-target"}}
                   </content.menu-item>
                 {{/each}}
                 {{#each this.items as |item|}}
-                  <content.menu-item @onClick={{action this.openSomething}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <p style="width: 190px;">{{item.title}}</p>
                     {{paper-icon item.icon class="md-menu-align-target"}}
                   </content.menu-item>
@@ -187,7 +187,7 @@
 
               <menu.content @width={{6}} as |content|>
                 {{#each this.options as |item|}}
-                  <content.menu-item @onClick={{action "openSomething"}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <span class="md-menu-align-target">Option</span> {{item}}
                   </content.menu-item>
                 {{/each}}
@@ -206,7 +206,7 @@
 
               <menu.content @width={{4}} as |content|>
                 {{#each this.options as |item|}}
-                  <content.menu-item @onClick={{action "openSomething"}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <span class="md-menu-align-target">Option</span> {{item}}
                   </content.menu-item>
                 {{/each}}
@@ -225,7 +225,7 @@
 
               <menu.content @width={{2}} as |content|>
                 {{#each this.options as |item|}}
-                  <content.menu-item @onClick={{action "openSomething"}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <span class="md-menu-align-target">Option</span> {{item}}
                   </content.menu-item>
                 {{/each}}
@@ -266,7 +266,7 @@
 
               <menu.content @dense={{true}} as |content|>
                 {{#each this.options as |item|}}
-                  <content.menu-item @onClick={{action "openSomething"}}>
+                  <content.menu-item @onClick={{this.openSomething}}>
                     <span class="md-menu-align-target">Option</span> {{item}}
                   </content.menu-item>
                 {{/each}}

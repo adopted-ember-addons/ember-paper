@@ -9,7 +9,7 @@
         <PaperToolbarTools>
           <h2>Basic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showBasicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showBasicUsageSourceCode"}} @iconButton={{true}}>
             <PaperIcon @icon="code" />
           </PaperButton>
         </PaperToolbarTools>
@@ -22,7 +22,7 @@
       <div class="doc-content-example">
         <PaperContent>
           {{! BEGIN-SNIPPET basic-usage}}
-          <PaperTabs @center={{this.center}} @stretch={{this.stretch}} @borderBottom={{this.borderBottom}} @selected={{this.selectedBasicTab}} @onChange={{action (mut this.selectedBasicTab)}} as |tabs|>
+          <PaperTabs @center={{this.center}} @stretch={{this.stretch}} @borderBottom={{this.borderBottom}} @selected={{this.selectedBasicTab}} @onChange={{fn (mut this.selectedBasicTab)}} as |tabs|>
             <tabs.tab>
               Page One
             </tabs.tab>
@@ -53,15 +53,15 @@
         </PaperContent>
         <PaperCardContent>
 
-          <PaperCheckbox @value={{this.center}} @onChange={{action (mut this.center)}}>
+          <PaperCheckbox @value={{this.center}} @onChange={{fn (mut this.center)}}>
             Center tabs
           </PaperCheckbox>
 
-          <PaperCheckbox @value={{this.stretch}} @onChange={{action (mut this.stretch)}}>
+          <PaperCheckbox @value={{this.stretch}} @onChange={{fn (mut this.stretch)}}>
             Stretch tabs
           </PaperCheckbox>
 
-          <PaperCheckbox @value={{this.borderBottom}} @onChange={{action (mut this.borderBottom)}}>
+          <PaperCheckbox @value={{this.borderBottom}} @onChange={{fn (mut this.borderBottom)}}>
             Border bottom
           </PaperCheckbox>
 
@@ -105,7 +105,7 @@
         <PaperToolbarTools>
           <h2>Dynamic Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showDynamicUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showDynamicUsageSourceCode"}} @iconButton={{true}}>
             {{paper-icon "code"}}
           </PaperButton>
         </PaperToolbarTools>
@@ -118,7 +118,7 @@
       <div class="doc-content-example">
         <PaperContent>
           {{! BEGIN-SNIPPET dynamic-usage}}
-          <PaperTabs @primary={{true}} @borderBottom={{true}} @selected={{this.selectedChapter}} @onChange={{action (mut this.selectedChapter)}} as |tabs|>
+          <PaperTabs @primary={{true}} @borderBottom={{true}} @selected={{this.selectedChapter}} @onChange={{fn (mut this.selectedChapter)}} as |tabs|>
             {{#each this.chapters as |chapter|}}
               <tabs.tab @value={{chapter}}>
                 {{chapter.title}}
@@ -129,7 +129,7 @@
           {{#liquid-bind (hash tab=this.selectedChapter.index m=this.selectedChapter) class="md-padding dynamic-animation" as |current|}}
             <h1 class="md-display-2">{{current.m.title}}</h1>
             <p>{{current.m.body}}</p>
-            <PaperButton @primary={{true}} @raised={{true}} @disabled={{eq this.chapters.length 1}} @onClick={{action "removeChapter" current.m}}>
+            <PaperButton @primary={{true}} @raised={{true}} @disabled={{eq this.chapters.length 1}} @onClick={{fn this.removeChapter current.m}}>
               Remove chapter
             </PaperButton>
           {{/liquid-bind}}
@@ -141,10 +141,10 @@
 
       <PaperCardContent>
         <div class="md-padding layout-row layout-align-space-around-start">
-          <PaperInput @class="flex-20" @label="Title" @value={{this.newTitle}} @required={{true}} @onChange={{action (mut this.newTitle)}} />
-          <PaperInput @class="flex-60" @label="Content" @textarea={{true}} @value={{this.newContent}} @required={{true}} @onChange={{action (mut this.newContent)}} />
+          <PaperInput @class="flex-20" @label="Title" @value={{this.newTitle}} @required={{true}} @onChange={{fn (mut this.newTitle)}} />
+          <PaperInput @class="flex-60" @label="Content" @textarea={{true}} @value={{this.newContent}} @required={{true}} @onChange={{fn (mut this.newContent)}} />
           <div class="flex-20 layout-row layout-align-center-start">
-            <PaperButton @primary={{true}} @raised={{true}} @disabled={{not (and this.newTitle this.newContent)}} @onClick={{action "addChapter"}}>
+            <PaperButton @primary={{true}} @raised={{true}} @disabled={{not (and this.newTitle this.newContent)}} @onClick={{this.addChapter}}>
               Add chapter
             </PaperButton>
           </div>
@@ -173,7 +173,7 @@
         <PaperToolbarTools>
           <h2>Routable Usage</h2>
           <span class="flex"></span>
-          <PaperButton @onClick={{action "toggle" "showRoutableUsageSourceCode"}} @iconButton={{true}}>
+          <PaperButton @onClick={{fn this.toggle "showRoutableUsageSourceCode"}} @iconButton={{true}}>
             <PaperIcon @icon="code" />
           </PaperButton>
         </PaperToolbarTools>
@@ -186,7 +186,7 @@
       <div class="doc-content-example">
         <PaperContent>
           {{! BEGIN-SNIPPET routable-usage}}
-          <PaperTabs @selected={{this.router.currentRouteName}} @borderBottom={{true}} @onChange={{action "noop"}} as |tabs|>
+          <PaperTabs @selected={{this.router.currentRouteName}} @borderBottom={{true}} @onChange={{this.noop}} as |tabs|>
             <tabs.tab @value="demo.tabs.index" @href={{href-to "demo.tabs.index"}}>
               Index
             </tabs.tab>

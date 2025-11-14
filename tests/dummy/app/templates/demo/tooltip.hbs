@@ -8,7 +8,7 @@
       <PaperToolbarTools>
         <h2>Basic Usage</h2>
         <span class="flex"></span>
-        <PaperButton @onClick={{action "toggle" "showSourceCode"}} @iconButton={{true}}>
+        <PaperButton @onClick={{this.toggleSource}} @iconButton={{true}}>
           <PaperIcon @icon="code" />
           <PaperTooltip>
             {{if this.showSourceCode "Hide" "Show"}} code
@@ -68,7 +68,7 @@
           {{! END-SNIPPET tooltip }}
         </div>
 
-        <PaperRadioGroup @groupValue={{this.position}} @onChange={{action (mut this.position)}} as |group|>
+        <PaperRadioGroup @groupValue={{this.position}} @onChange={{fn (mut this.position)}} as |group|>
           <group.radio @value="bottom">
             Bottom
           </group.radio>

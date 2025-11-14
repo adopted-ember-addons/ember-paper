@@ -16,20 +16,20 @@
 
       <div class="layout layout-align-center-center slider-container">
         <span>R</span>
-        <PaperSlider @class="flex" @min={{0}} @max={{255}} @value={{this.color.red}} @onChange={{action (mut this.color.red)}} />
-        <PaperInput @type="number" @value={{this.color.red}} @onChange={{action (mut this.color.red)}} />
+        <PaperSlider @class="flex" @min={{0}} @max={{255}} @value={{this.color.red}} @onChange={{fn (mut this.color.red)}} />
+        <PaperInput @type="number" @value={{this.color.red}} @onChange={{fn (mut this.color.red)}} />
       </div>
 
       <div class="layout layout-align-center-center slider-container">
         <span>G</span>
-        <PaperSlider @class="flex md-accent" @min={{0}} @max={{255}} @value={{this.color.green}} @onChange={{action (mut this.color.green)}} />
-        <PaperInput @type="number" @value={{this.color.green}} @onChange={{action (mut this.color.green)}} />
+        <PaperSlider @class="flex md-accent" @min={{0}} @max={{255}} @value={{this.color.green}} @onChange={{fn (mut this.color.green)}} />
+        <PaperInput @type="number" @value={{this.color.green}} @onChange={{fn (mut this.color.green)}} />
       </div>
 
       <div class="layout layout-align-center-center slider-container">
         <span>B</span>
-        <PaperSlider @class="flex md-primary" @min={{0}} @max={{255}} @value={{this.color.blue}} @onChange={{action (mut this.color.blue)}} />
-        <PaperInput @type="number" @value={{this.color.blue}} @onChange={{action (mut this.color.blue)}} />
+        <PaperSlider @class="flex md-primary" @min={{0}} @max={{255}} @value={{this.color.blue}} @onChange={{fn (mut this.color.blue)}} />
+        <PaperInput @type="number" @value={{this.color.blue}} @onChange={{fn (mut this.color.blue)}} />
       </div>
 
       <h2>Rating: {{this.rating}}/5 - demo of theming classes</h2>
@@ -37,28 +37,28 @@
         <div class="layout flex-10 layout-align-center-center">
           <span>default</span>
         </div>
-        <PaperSlider @class="flex" @discrete={{true}} @value={{this.rating1}} @step={{1}} @min={{1}} @max={{5}} @onChange={{action (mut this.rating1)}} />
+        <PaperSlider @class="flex" @discrete={{true}} @value={{this.rating1}} @step={{1}} @min={{1}} @max={{5}} @onChange={{fn (mut this.rating1)}} />
       </div>
       <div class="layout layout-align-center-center slider-container">
         <div class="layout flex-10 layout-align-center-center">
           <span>md-warn</span>
         </div>
-        <PaperSlider @class="flex" @warn={{true}} @discrete={{true}} @value={{this.rating2}} @step={{1}} @min={{1}} @max={{5}} @onChange={{action (mut this.rating2)}} />
+        <PaperSlider @class="flex" @warn={{true}} @discrete={{true}} @value={{this.rating2}} @step={{1}} @min={{1}} @max={{5}} @onChange={{fn (mut this.rating2)}} />
       </div>
       <div class="layout layout-align-center-center slider-container">
         <div class="layout flex-10 layout-align-center-center">
           <span>md-primary</span>
         </div>
-        <PaperSlider @class="flex" @primary={{true}} @discrete={{true}} @value={{this.rating3}} @step={{1}} @min={{1}} @max={{5}} @onChange={{action (mut this.rating3)}} />
+        <PaperSlider @class="flex" @primary={{true}} @discrete={{true}} @value={{this.rating3}} @step={{1}} @min={{1}} @max={{5}} @onChange={{fn (mut this.rating3)}} />
       </div>
 
       <h2>Disabled</h2>
       <div class="layout layout-align-center-center slider-container">
         <PaperIcon @icon="brightness-low" />
-        <PaperSlider @class="flex" @value={{this.disabled1}} @disabled={{this.isSliderDisabled}} @onChange={{action (mut this.disabled1)}} />
-        <PaperInput @type="number" @value={{this.disabled1}} @onChange={{action (mut this.disabled1)}} />
+        <PaperSlider @class="flex" @value={{this.disabled1}} @disabled={{this.isSliderDisabled}} @onChange={{fn (mut this.disabled1)}} />
+        <PaperInput @type="number" @value={{this.disabled1}} @onChange={{fn (mut this.disabled1)}} />
       </div>
-      <PaperCheckbox @value={{this.isSliderDisabled}} @onChange={{action (mut this.isSliderDisabled)}} />
+      <PaperCheckbox @value={{this.isSliderDisabled}} @onChange={{fn (mut this.isSliderDisabled)}} />
       <PaperSlider @value={{this.disabled2}} @disabled={{true}} />
 
       <h2>Disabled, Discrete</h2>
