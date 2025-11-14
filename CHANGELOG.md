@@ -1,5 +1,23 @@
 # Ember Paper Changelog
 
+## Release (2025-11-14)
+
+ember-paper 1.0.0-beta.39 (patch)
+
+#### :bug: Bug Fix
+* `ember-paper`
+  * [#1338](https://github.com/adopted-ember-addons/ember-paper/pull/1338) make sure select box for autocomplete renders in the right place ([@mansona](https://github.com/mansona))
+  * [#1337](https://github.com/adopted-ember-addons/ember-paper/pull/1337) fix bug with default animation for PaperSpeedDial not displaying correctly ([@mansona](https://github.com/mansona))
+  * [#1336](https://github.com/adopted-ember-addons/ember-paper/pull/1336) fix error when removing a PaperTab ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* `ember-paper`
+  * [#1339](https://github.com/adopted-ember-addons/ember-paper/pull/1339) [test app] remove all cases of {{action}} helper ([@mansona](https://github.com/mansona))
+  * [#1334](https://github.com/adopted-ember-addons/ember-paper/pull/1334) [tests app] fix Component Template Resolving deprecation ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
 ## Release (2025-11-13)
 
 ember-paper 1.0.0-beta.38 (major)
