@@ -67,7 +67,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -115,7 +115,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -131,7 +131,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) closeOnClick=false lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=this.sidenavToggle closeOnClick=false lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
     `);
@@ -214,11 +214,11 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=(action toggleAction)}}
+        {{#paper-button id="toggle-button" onClick=toggleAction}}
           Toggle sidenav
         {{/paper-button}}
       {{/paper-sidenav-toggle}}
@@ -235,14 +235,14 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
-      {{#paper-sidenav name="balili" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balili" open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle name="balele" as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=(action toggleAction)}}
+        {{#paper-button id="toggle-button" onClick=toggleAction}}
           Toggle sidenav
         {{/paper-button}}
       {{/paper-sidenav-toggle}}
@@ -259,14 +259,14 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
-      {{#paper-sidenav name="balele" open=true onToggle=(action this.sidenavToggle) lockedOpen=false}}
+      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
         Hi!
       {{/paper-sidenav}}
       {{#paper-sidenav-toggle name="balele" as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=(action toggleAction)}}
+        {{#paper-button id="toggle-button" onClick=toggleAction}}
           Toggle sidenav
         {{/paper-button}}
       {{/paper-sidenav-toggle}}

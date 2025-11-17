@@ -1,11 +1,10 @@
-{{! template-lint-disable no-action }}
 <md-tabs-wrapper class={{if this.shouldStretch "md-stretch-tabs"}}>
 
   {{#if this.shouldPaginate}}
-    <md-prev-button role="button" class={{unless this.canPageBack "md-disabled"}} onclick={{action "previousPage"}}>
+    <md-prev-button role="button" class={{unless this.canPageBack "md-disabled"}} onclick={{this.previousPage}}>
       {{paper-icon "keyboard-arrow-left"}}
     </md-prev-button>
-    <md-next-button role="button" class={{unless this.canPageForward "md-disabled"}} onclick={{action "nextPage"}}>
+    <md-next-button role="button" class={{unless this.canPageForward "md-disabled"}} onclick={{this.nextPage}}>
       {{paper-icon "keyboard-arrow-left"}}
     </md-next-button>
   {{/if}}
@@ -18,7 +17,7 @@
           noInk=this.noInk
           selected=this.selected
           parentComponent=this
-          onSelect=(action "localOnChange")
+          onSelect=this.localOnChange
         )
       )}}
 

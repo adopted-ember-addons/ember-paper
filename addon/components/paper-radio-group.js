@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods, ember/no-actions-hash, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-get, ember/no-mixins, prettier/prettier */
+/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-get, ember/no-mixins, prettier/prettier */
 /**
  * @module ember-paper
  */
@@ -96,10 +96,4 @@ export default class PaperRadioGroup extends Component.extend(FocusableMixin) {
     childRadio.set('focused', true);
     invokeAction(this, 'onChange', childRadio.get('value'));
   }
-
-  actions = {
-    onChange(value) {
-      invokeAction(this, 'onChange', value);
-    },
-  };
 }

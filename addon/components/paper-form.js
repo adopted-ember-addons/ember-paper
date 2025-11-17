@@ -1,11 +1,12 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/no-mixins, prettier/prettier */
+/* eslint-disable ember/no-component-lifecycle-hooks, ember/require-tagless-components */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-classic-components, prettier/prettier */
 import { tagName } from '@ember-decorators/component';
-import { action, computed } from '@ember/object';
-import { and, not } from '@ember/object/computed';
+import { action, set } from '@ember/object';
 
 import Component from '@ember/component';
-import ParentMixin from 'ember-paper/mixins/parent-mixin';
+
 import { invokeAction } from 'ember-paper/utils/invoke-action';
+import { tracked } from '@glimmer/tracking';
 
 /**
  * @class PaperForm
@@ -13,30 +14,41 @@ import { invokeAction } from 'ember-paper/utils/invoke-action';
  * @uses ParentMixin
  */
 @tagName('form')
-export default class PaperForm extends Component.extend(ParentMixin) {
+export default class PaperForm extends Component {
   inputComponent = 'paper-input';
   submitButtonComponent = 'paper-button';
   selectComponent = 'paper-select';
   autocompleteComponent = 'paper-autocomplete';
+  isTouched = false;
 
-  @not('isInvalid')
-  isValid;
+  @tracked errors = [];
 
-  @computed('childComponents.@each.isInvalid')
+  @tracked childComponents = [];
+
+  register = (newChild) => {
+    this.childComponents = [...this.childComponents, newChild];
+  }
+
+  deRegister = (child) => {
+    this.childComponents = this.childComponents.filter(
+      (item) => item !== child
+    );
+  }
+
+  get isValid() {
+    return !this.isInvalid;
+  };
+
   get isInvalid() {
-    return this.childComponents.isAny('isInvalid');
+    return this.errors?.length || this.childComponents.some((child) => child.isInvalid);
   }
 
-  @computed('childComponents.@each.isTouched')
-  get isTouched() {
-    return this.childComponents.isAny('isTouched');
-  }
-
-  @and('isInvalid', 'isTouched')
-  isInvalidAndTouched;
+  get isInvalidAndTouched() {
+    return this.isInvalid && this.isTouched;
+  };
 
   submit() {
-    this.send('localOnSubmit');
+    this.localOnSubmit();
     return false;
   }
 
@@ -61,11 +73,26 @@ export default class PaperForm extends Component.extend(ParentMixin) {
   @action
   localOnSubmit() {
     if (this.isInvalid) {
-      this.childComponents.setEach('isTouched', true);
-      invokeAction(this, 'onInvalid');
+      this.childComponents.forEach((child) => set(child, 'isTouched', false));
+      this.childComponents = [...this.childComponents];
+      this.onInvalid()
     } else {
-      invokeAction(this, 'onSubmit');
-      this.childComponents.setEach('isTouched', false);
+      this.onSubmit?.();
+      this.childComponents.forEach((child) => set(child, 'isTouched', false));
+      this.childComponents = [...this.childComponents];
     }
+  }
+
+  // Lifecycle hooks
+  didReceiveAttrs() {
+    super.didReceiveAttrs(...arguments);
+
+    let { value, errors } = this;
+    let { _prevValue, _prevErrors } = this;
+    if (value !== _prevValue || errors !== _prevErrors) {
+      this.localOnValidityChange();
+    }
+    this._prevValue = value;
+    this._prevErrors = errors;
   }
 }

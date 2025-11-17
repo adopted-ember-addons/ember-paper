@@ -1,8 +1,8 @@
-{{! template-lint-disable no-action no-at-ember-render-modifiers }}
+{{! template-lint-disable no-at-ember-render-modifiers }}
 {{!-- send the backdrop to the same place as the content --}}
 {{#if @dropdown.isOpen}}
   {{#maybe-in-element this.destinationElement @renderInPlace}}
-    <PaperBackdrop class="md-select-backdrop md-click-catcher" @onClick={{action @dropdown.actions.close}}/>
+    <PaperBackdrop class="md-select-backdrop md-click-catcher" @onClick={{@dropdown.actions.close}}/>
   {{/maybe-in-element}}
 {{/if}}
 

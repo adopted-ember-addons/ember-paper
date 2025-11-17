@@ -87,7 +87,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-speed-dial onToggle=(action this.onToggle) as |dial|}}
+      {{#paper-speed-dial onToggle=this.onToggle as |dial|}}
         {{dial.trigger}}
       {{/paper-speed-dial}}
     `);

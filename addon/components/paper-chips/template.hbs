@@ -1,4 +1,4 @@
-{{! template-lint-disable no-action no-invalid-interactive }}
+{{! template-lint-disable no-invalid-interactive }}
 <md-chips class="md-default-theme {{@class}}" ...attributes>
 
   <md-chips-wrap
@@ -50,7 +50,7 @@
             @inputClass="md-input"
             @options={{@options}}
             @closeOnSelect={{true}}
-            @defaultHighlighted={{if @defaultHighlighted @defaultHighlighted (action "noop")}}
+            @defaultHighlighted={{paper-optional-action @defaultHighlighted}}
             @placeholder={{@placeholder}}
             @searchField={{@searchField}}
             @search={{@search}}

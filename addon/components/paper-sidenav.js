@@ -1,31 +1,29 @@
-/* eslint-disable ember/no-actions-hash, ember/no-classic-components */
+/* eslint-disable ember/no-classic-components */
 /**
  * @module ember-paper
  */
-import { not } from '@ember/object/computed';
 
 import Component from '@ember/component';
-import { invokeAction } from 'ember-paper/utils/invoke-action';
+import { tracked } from '@glimmer/tracking';
 
 /**
  * @class
  * @extends Ember.Component
  */
-export default Component.extend({
-  tagName: '',
-  name: 'default',
-  position: 'left',
-  lockedOpen: 'gt-sm',
-  open: false,
-  closed: not('open'),
-  closeOnClick: true,
+export default class extends Component {
+  tagName = '';
+  name = 'default';
+  position = 'left';
+  lockedOpen = 'gt-sm';
+  closeOnClick = true;
 
-  actions: {
-    onToggle() {
-      invokeAction(this, 'onToggle', ...arguments);
-    },
-    onBackdropTap() {
-      invokeAction(this, 'onToggle', false);
-    },
-  },
-});
+  @tracked open = false;
+
+  get closed() {
+    return !this.open;
+  }
+
+  localOnBackdropTap = () => {
+    this.onToggle?.(false);
+  };
+}

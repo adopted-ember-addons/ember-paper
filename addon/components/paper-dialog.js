@@ -1,10 +1,8 @@
-/* eslint-disable ember/no-actions-hash, ember/no-classic-components, ember/no-component-lifecycle-hooks, ember/require-computed-property-dependencies */
+/* eslint-disable ember/no-classic-components, ember/no-component-lifecycle-hooks */
 /**
  * @module ember-paper
  */
-import { or } from '@ember/object/computed';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 import { invokeAction } from 'ember-paper/utils/invoke-action';
 
@@ -12,26 +10,31 @@ import { invokeAction } from 'ember-paper/utils/invoke-action';
  * @class PaperDialog
  * @extends Ember.Component
  */
-export default Component.extend({
-  tagName: '',
-  escapeToClose: true,
-  focusOnOpen: true,
-  opaque: true,
+export default class extends Component {
+  tagName = '';
+  escapeToClose = true;
+  focusOnOpen = true;
+  opaque = true;
 
   // Calculate a default that is always valid for the parent of the backdrop.
-  wormholeSelector: '#paper-wormhole',
-
-  defaultedParent: or('parent', 'wormholeSelector'),
+  wormholeSelector = '#paper-wormhole';
+  get defaultedParent() {
+    return this.parent ?? this.wormholeSelector;
+  }
 
   // Calculate a default that is always valid where the opening transition should originate.
-  defaultedOpenFrom: or('openFrom', 'origin', 'parent'),
+  get defaultedOpenFrom() {
+    return this.openFrom ?? this.origin ?? this.parent;
+  }
 
   // Calculate a default that is always valid where the closing transition should terminate.
-  defaultedCloseTo: or('closeTo', 'origin', 'parent'),
+  get defaultedCloseTo() {
+    return this.closeTo ?? this.origin ?? this.parent;
+  }
 
   // Calculate the id of the wormhole destination, setting it if need be. The
   // id is that of the 'parent', if provided, or 'paper-wormhole' if not.
-  destinationId: computed('defaultedParent', function () {
+  get destinationId() {
     let config = getOwner(this).resolveRegistration('config:environment');
 
     if (config.environment === 'test' && !this.parent) {
@@ -53,15 +56,16 @@ export default Component.extend({
       }
       return `#${id}`;
     }
-  }),
+  }
 
   // Find the element referenced by destinationId
-  destinationEl: computed('destinationId', function () {
+  get destinationEl() {
     return document.querySelector(this.destinationId);
-  }),
+  }
 
   didInsertElement() {
-    this._super(...arguments);
+    super.didInsertElement(...arguments);
+    super.didInsertElement(...arguments);
     if (this.escapeToClose) {
       this._destinationEle = document.querySelector(this.destinationId);
       this._onKeyDown = (e) => {
@@ -71,21 +75,19 @@ export default Component.extend({
       };
       this._destinationEle.addEventListener('keydown', this._onKeyDown);
     }
-  },
+  }
 
   willDestroyElement() {
-    this._super(...arguments);
+    super.willDestroyElement(...arguments);
     if (this.escapeToClose && this._destinationEle) {
       this._destinationEle.removeEventListener('keydown', this._onKeyDown);
       this._onKeyDown = null;
     }
-  },
+  }
 
-  actions: {
-    outsideClicked() {
-      if (this.clickOutsideToClose && this.onClose) {
-        invokeAction(this, 'onClose');
-      }
-    },
-  },
-});
+  outsideClicked = () => {
+    if (this.clickOutsideToClose && this.onClose) {
+      this.onClose();
+    }
+  };
+}

@@ -11,7 +11,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
     assert.expect(2);
 
     this.set('value', true);
-    await render(hbs`{{paper-checkbox value=this.value label="Blue" onChange=(action (mut this.value))}}`);
+    await render(hbs`{{paper-checkbox value=this.value label="Blue" onChange=(fn (mut this.value))}}`);
 
     assert.dom('md-checkbox').hasClass('md-checked');
 
@@ -66,7 +66,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.expect(2);
 
       this.set('value', false);
-      await render(hbs`{{paper-checkbox value=this.value onChange=(action (mut this.value))}}`);
+      await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value))}}`);
       assert.equal(this.value, false);
 
       await triggerKeyEvent('md-checkbox', 'keypress', keyCode);
@@ -78,7 +78,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.expect(2);
 
       this.set('value', true);
-      await render(hbs`{{paper-checkbox value=this.value onChange=(action (mut this.value))}}`);
+      await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value))}}`);
       assert.equal(this.value, true);
 
       await triggerKeyEvent('md-checkbox', 'keypress', keyCode);
@@ -90,7 +90,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
   test('blockless version should set label inside', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-checkbox value=this.value onChange=(action (mut this.value)) label="çup?"}}`);
+    await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value)) label="çup?"}}`);
 
     assert.dom('.md-label > span').hasText('çup?');
   });
@@ -99,7 +99,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-checkbox value=this.value onChange=(action (mut this.value))}}
+      {{#paper-checkbox value=this.value onChange=(fn (mut this.value))}}
         çup?
       {{/paper-checkbox}}
     `);
@@ -120,7 +120,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
 
     this.set('value', true);
     await render(hbs`
-      {{paper-checkbox value=this.value indeterminate=this.indeterminate label="Blue" onChange=(action (mut this.value))}}
+      {{paper-checkbox value=this.value indeterminate=this.indeterminate label="Blue" onChange=(fn (mut this.value))}}
     `);
 
     assert.dom('md-checkbox').hasClass('md-checked');

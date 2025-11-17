@@ -1,4 +1,4 @@
-{{! template-lint-disable no-action no-autofocus-attribute no-curly-component-invocation no-positive-tabindex }}
+{{! template-lint-disable no-autofocus-attribute no-curly-component-invocation no-positive-tabindex }}
 {{#if @label}}
   <label for={{this.inputElementId}} class={{if @required "md-required"}}>{{@label}}</label>
 {{/if}}
@@ -16,11 +16,11 @@
     autofocus={{this.autofocus}}
     aria-describedby={{concat this.elementId "-char-count " this.elementId "-error-messages"}}
     onfocus={{@onFocus}}
-    onblur={{action "handleBlur"}}
+    onblur={{this.handleBlur}}
     onkeydown={{@onKeyDown}}
     onkeyup={{@onKeyUp}}
     onclick={{@onClick}}
-    oninput={{action "handleInput"}}
+    oninput={{this.handleInput}}
 
     name={{@passThru.name}}
     rows={{@passThru.rows}}
@@ -46,11 +46,11 @@
     autofocus={{this.autofocus}}
     aria-describedby={{concat this.elementId "-char-count " this.elementId "-error-messages"}}
     onfocus={{@onFocus}}
-    onblur={{action "handleBlur"}}
+    onblur={{this.handleBlur}}
     onkeydown={{@onKeyDown}}
     onkeyup={{@onKeyUp}}
     onclick={{@onClick}}
-    oninput={{action "handleInput"}}
+    oninput={{this.handleInput}}
 
     accept={{@passThru.accept}}
     autocomplete={{@passThru.autocomplete}}

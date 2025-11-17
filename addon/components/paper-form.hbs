@@ -1,4 +1,3 @@
-{{! template-lint-disable no-action }}
 {{yield (hash
   isValid=this.isValid
   isInvalid=this.isInvalid
@@ -6,18 +5,18 @@
   isInvalidAndTouched=this.isInvalidAndTouched
   input=(component this.inputComponent
     parentComponent=this
-    onValidityChange=(action "localOnValidityChange")
+    onValidityChange=this.localOnValidityChange
   )
   submit-button=(component this.submitButtonComponent
     type="submit"
   )
   select=(component this.selectComponent
   	parentComponent=this
-  	onValidityChange=(action "localOnValidityChange")
+  	onValidityChange=this.localOnValidityChange
   )
   autocomplete=(component this.autocompleteComponent
   	parentComponent=this
-  	onValidityChange=(action "localOnValidityChange")
+  	onValidityChange=this.localOnValidityChange
   )
-  onSubmit=(action "localOnSubmit")
+  onSubmit=this.localOnSubmit
 )}}

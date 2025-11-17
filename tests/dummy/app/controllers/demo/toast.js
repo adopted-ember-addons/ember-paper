@@ -43,9 +43,9 @@ export default class extends Controller {
     });
   };
   // END-SNIPPET
-  cancelToast(toast) {
+  cancelToast = (toast) => {
     this.paperToaster.cancelToast(toast);
-  }
+  };
   closeToast = () => {
     this.showToast = false;
   };

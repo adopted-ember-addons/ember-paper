@@ -1,4 +1,3 @@
-{{! template-lint-disable no-action }}
 <PowerSelect
   @selected={{@selected}}
   @options={{@options}}
@@ -9,7 +8,7 @@
   @searchField={{@searchField}}
   @searchPlaceholder={{@searchPlaceholder}}
   @search={{@search}}
-  @registerAPI={{action (mut this.publicAPI)}}
+  @registerAPI={{fn (mut this.publicAPI)}}
   @allowClear={{@allowClear}}
   @noMatchesMessage={{@noMatchesMessage}}
   @defaultHighlighted={{@defaultHighlighted}}

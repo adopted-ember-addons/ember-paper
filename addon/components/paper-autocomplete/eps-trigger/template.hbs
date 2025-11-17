@@ -1,4 +1,4 @@
-{{! template-lint-disable no-action no-at-ember-render-modifiers no-autofocus-attribute require-input-label }}
+{{! template-lint-disable no-at-ember-render-modifiers no-autofocus-attribute require-input-label }}
 <md-autocomplete-wrap
   class="{{unless @extra.label "md-whiteframe-z1"}} {{if @select.isOpen "md-menu-showing"}} {{if this.showingClearButton "md-show-clear-button"}} layout-row"
   {{did-insert this.didInsert}}>
@@ -50,7 +50,7 @@
   {{/if}}
 
   {{#if (and (or @select.selected this.text) @allowClear (not @select.disabled))}}
-    <PaperAutocomplete::ResetButton @onReset={{action this.clear}} @onDidTransitionOut={{action this.resetButtonDestroyed}}>
+    <PaperAutocomplete::ResetButton @onReset={{this.clear}} @onDidTransitionOut={{this.resetButtonDestroyed}}>
       <PaperIcon @icon="close"/>
     </PaperAutocomplete::ResetButton>
   {{/if}}

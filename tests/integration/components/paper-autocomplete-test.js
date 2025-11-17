@@ -23,7 +23,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         {{#paper-autocomplete
             options=countries
             selected=selected
-            onSelectionChange=(action (mut selected)) as |opt|}}
+            onSelectionChange=(fn (mut selected)) as |opt|}}
           {{opt}}
         {{/paper-autocomplete}}
         `);
@@ -34,7 +34,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         {{#paper-autocomplete
             options=countries
             searchText=searchText
-            onSearchTextChange=(action (mut searchText)) as |opt|}}
+            onSearchTextChange=(fn (mut searchText)) as |opt|}}
           {{opt}}
         {{/paper-autocomplete}}
         `);
@@ -45,9 +45,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         {{#paper-autocomplete
             options=countries
             searchText=searchText
-            onSearchTextChange=(action (mut searchText))
+            onSearchTextChange=(fn (mut searchText))
             selected=selected
-            onSelectionChange=(action (mut selected)) as |opt|}}
+            onSelectionChange=(fn (mut selected)) as |opt|}}
           {{opt}}
         {{/paper-autocomplete}}
         `);
@@ -62,9 +62,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -87,9 +87,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
       placeholder="Item"
       options=this.items
       searchText=this.searchText
-      onSearchTextChange=(action (mut this.searchText))
+      onSearchTextChange=(fn (mut this.searchText))
       selected=this.selectedItem
-      onSelectionChange=(action (mut this.selectedItem))
+      onSelectionChange=(fn (mut this.selectedItem))
       as |item|
     }}
       {{item}}
@@ -114,9 +114,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -144,9 +144,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -184,9 +184,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -210,9 +210,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -242,9 +242,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         searchText=this.searchText
-        onSearchTextChange=(action (mut this.searchText))
+        onSearchTextChange=(fn (mut this.searchText))
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item autocomplete|
       }}
         {{paper-autocomplete-highlight
@@ -274,7 +274,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         placeholder="Item"
         options=this.items
         selected=this.selectedItem
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|
       }}
         {{item}}
@@ -304,7 +304,7 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
         options=this.items
         selected=this.selectedItem
         errors=this.v.errors
-        onSelectionChange=(action (mut this.selectedItem))
+        onSelectionChange=(fn (mut this.selectedItem))
         as |item|}}
         {{item}}
       {{/paper-autocomplete}}
@@ -331,12 +331,12 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action this.submitForm) as |form|}}
+      {{#paper-form onSubmit=this.submitForm as |form|}}
         {{form.autocomplete
           allowClear=true
           options=this.items
           selected=this.selectedItem
-          onSelectionChange=(action (mut this.selectedItem))
+          onSelectionChange=(fn (mut this.selectedItem))
         }}
       {{/paper-form}}
     `);
