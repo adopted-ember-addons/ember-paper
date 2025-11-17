@@ -4,7 +4,10 @@ import { modifier } from 'ember-modifier';
 const LOCK_BODY_CLASS = 'ember-paper-lockbody';
 
 export default modifier(
-  function lockBody(/*element /*, positional, named*/) {
+  function lockBody(_element, _positional, named) {
+    if(named.skipLockBody) {
+      return;
+    }
     document.querySelector('body').classList.add(LOCK_BODY_CLASS);
 
     return () => {

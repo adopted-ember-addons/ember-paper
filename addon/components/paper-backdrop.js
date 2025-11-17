@@ -10,6 +10,7 @@ import Component from '@ember/component';
  */
 export default Component.extend({
   tagName: '',
+  skipLockBody: false,
 
   // addDestroyedElementClone(original, clone) {
   //   if (original.parentNode) {

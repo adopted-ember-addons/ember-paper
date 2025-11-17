@@ -1,6 +1,6 @@
 {{! template-lint-disable no-invalid-interactive }}
 <md-backdrop
-  {{lock-body}}
+  {{lock-body skipLockBody=this.skipLockBody}}
   {{on "click" (fn this.sendClickAction @onClick)}}
   {{on "touchEnd" (fn this.sendClickAction @onClick)}}
   {{css-transition
