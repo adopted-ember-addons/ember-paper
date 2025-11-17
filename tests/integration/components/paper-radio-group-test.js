@@ -13,7 +13,7 @@ module('Integration | Component | paper-radio-group', function(hooks) {
 
     this.set('groupValue', '1');
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(action (mut this.groupValue)) as |group|}}
+      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
         {{#group.radio value="1"}}
           Radio button 1
         {{/group.radio}}
@@ -90,7 +90,7 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue disabled=true onChange=(action (mut this.groupValue)) as |group|}}
+      {{#paper-radio-group groupValue=this.groupValue disabled=true onChange=(fn (mut this.groupValue)) as |group|}}
         {{#group.radio value="1"}}
           Radio button 1
         {{/group.radio}}
@@ -111,7 +111,7 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(action (mut this.groupValue)) as |group|}}
+      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
         {{#group.radio value="1"}}
           Radio button 1
         {{/group.radio}}
@@ -137,7 +137,7 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(action (mut this.groupValue)) as |group|}}
+      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
         {{#group.radio value="1"}}
           Radio button 1
         {{/group.radio}}
@@ -163,7 +163,7 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(action (mut this.groupValue)) as |group|}}
+      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
         {{#group.radio value=0}}
           Radio button 1
         {{/group.radio}}

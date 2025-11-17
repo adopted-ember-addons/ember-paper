@@ -67,6 +67,8 @@ jobs:
           - ember-lts-4.12
           - ember-lts-5.4
           - ember-lts-5.8
+          - ember-release
+          - embroider-safe
 
     steps:
       - uses: actions/checkout@v4
@@ -94,10 +96,8 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-          - ember-release
           - ember-beta
           - ember-canary
-          - embroider-safe
           - embroider-optimized
           - no-deprecations
           - ember-release-no-deprecations

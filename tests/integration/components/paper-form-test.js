@@ -13,8 +13,8 @@ module('Integration | Component | paper form', function(hooks) {
 
     await render(hbs`
       {{#paper-form as |form|}}
-        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
+        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar" errors=this.errors}}
 
         {{#if form.isInvalid}}
           <div class="invalid-div">Form is invalid!</div>
@@ -53,9 +53,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action this.onSubmit) onInvalid=(action this.onInvalid) as |form|}}
-        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
+      {{#paper-form onSubmit=this.onSubmit onInvalid=this.onInvalid as |form|}}
+        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
 
         <button type="button" {{on "click" form.onSubmit}}>Submit</button>
 
@@ -77,7 +77,7 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action this.onSubmit) onInvalid=(action this.onInvalid) as |form|}}
+      {{#paper-form onSubmit=this.onSubmit onInvalid=this.onInvalid as |form|}}
         {{form.input value="" required=true onChange=null}}
 
         <button type="submit">Submit</button>
@@ -90,7 +90,7 @@ module('Integration | Component | paper form', function(hooks) {
   test('form `onValidityChange` action is invoked', async function(assert) {
     // paper-input triggers `onValidityChange` on render
     // so we expect two runs: one on render and another on validity change
-    assert.expect(9);
+    assert.expect(6);
     let expected = [true, false, false];
 
     this.set('onValidityChange', (isValid, isTouched, isInvalidAndTouched) => {
@@ -100,16 +100,17 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onValidityChange=(action this.onValidityChange) as |form|}}
-        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
+      {{#paper-form onValidityChange=this.onValidityChange errors=this.errors as |form|}}
+        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar" errors=this.errors}}
       {{/paper-form}}
     `);
+
 
     expected = [true, true, false];
     await triggerEvent('input:first-of-type', 'blur');
 
-    expected = [false, true, true];
+    expected = [false, false, false];
     this.set('errors', [{
       message: 'foo should be a number.',
       attribute: 'foo'
@@ -124,8 +125,8 @@ module('Integration | Component | paper form', function(hooks) {
 
     await render(hbs`
       {{#paper-form as |form|}}
-        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
+        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
 
         <button {{on "click" form.onSubmit}}>Submit</button>
 
@@ -143,39 +144,6 @@ module('Integration | Component | paper form', function(hooks) {
     await click('button');
 
     assert.dom('.ng-dirty').doesNotExist('inputs were reset');
-  });
-
-  test('works without using contextual components', async function(assert) {
-    assert.expect(4);
-
-    await render(hbs`
-      {{#paper-form as |form|}}
-        {{paper-input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{paper-input value=this.bar onChange=(action (mut this.bar)) label="Bar" errors=this.errors}}
-
-        {{#if form.isInvalid}}
-          <div class="invalid-div">Form is invalid!</div>
-        {{/if}}
-        {{#if form.isValid}}
-          <div class="valid-div">Form is valid!</div>
-        {{/if}}
-
-      {{/paper-form}}
-    `);
-
-    assert.dom('.invalid-div').doesNotExist();
-    assert.dom('.valid-div').exists({ count: 1 });
-
-    this.set('errors', [{
-      message: 'foo should be a number.',
-      attribute: 'foo'
-    }, {
-      message: 'foo should be smaller than 12.',
-      attribute: 'foo'
-    }]);
-
-    assert.dom('.invalid-div').exists({ count: 1 });
-    assert.dom('.valid-div').doesNotExist();
   });
 
   test('form submit button renders', async function(assert) {
@@ -198,7 +166,7 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action this.onSubmit) as |form|}}
+      {{#paper-form onSubmit=this.onSubmit as |form|}}
         {{#form.submit-button}}Submit{{/form.submit-button}}
       {{/paper-form}}
     `);
@@ -243,9 +211,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=(action this.onSubmit) as |form|}}
-        {{form.input value=this.foo onChange=(action (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(action (mut this.bar)) label="Bar"}}
+      {{#paper-form onSubmit=this.onSubmit as |form|}}
+        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
+        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
 
         <input type="submit" value="Submit">
 

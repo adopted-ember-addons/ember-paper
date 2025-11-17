@@ -1,6 +1,5 @@
-{{! template-lint-disable no-action }}
 {{#unless this.closed}}
-  <PaperBackdrop @opaque={{true}} @class="md-sidenav-backdrop" @onClick={{action "onBackdropTap"}} />
+  <PaperBackdrop @skipLockBody={{@skipLockBody}} @opaque={{true}} @class="md-sidenav-backdrop" @onClick={{this.localOnBackdropTap}} />
 {{/unless}}
 
 <PaperSidenavInner
@@ -10,7 +9,7 @@
   @lockedOpen={{this.lockedOpen}}
   @closed={{this.closed}}
   @closeOnClick={{this.closeOnClick}}
-  @onToggle={{action "onToggle"}}
+  @onToggle={{paper-optional-action this.onToggle}}
   ...attributes>
   {{yield}}
 </PaperSidenavInner>

@@ -26,7 +26,7 @@ module('Integration | Component | paper switch', function(hooks) {
 
   test('should not set focused class', async function(assert) {
     await render(hbs`
-      {{#paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}
+      {{#paper-switch value=this.switchValue onChange=(fn (mut this.switchValue))}}
         Radio button 1
       {{/paper-switch}}
     `);
@@ -38,7 +38,7 @@ module('Integration | Component | paper switch', function(hooks) {
 
   test('should set focused class', async function(assert) {
     await render(hbs`
-      {{#paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}
+      {{#paper-switch value=this.switchValue onChange=(fn (mut this.switchValue))}}
         Radio button 1
       {{/paper-switch}}
     `);
@@ -78,7 +78,7 @@ module('Integration | Component | paper switch', function(hooks) {
       assert.expect(2);
 
       this.set('switchValue', false);
-      await render(hbs`{{paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}`);
+      await render(hbs`{{paper-switch value=this.switchValue onChange=(fn (mut this.switchValue))}}`);
       assert.equal(this.switchValue, false);
 
       await triggerKeyEvent('md-switch', 'keypress', keyCode);
@@ -90,7 +90,7 @@ module('Integration | Component | paper switch', function(hooks) {
       assert.expect(2);
 
       this.set('switchValue', true);
-      await render(hbs`{{paper-switch value=this.switchValue onChange=(action (mut this.switchValue))}}`);
+      await render(hbs`{{paper-switch value=this.switchValue onChange=(fn (mut this.switchValue))}}`);
       assert.equal(this.switchValue, true);
 
       await triggerKeyEvent('md-switch', 'keypress', keyCode);

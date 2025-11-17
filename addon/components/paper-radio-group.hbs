@@ -1,13 +1,12 @@
-{{! template-lint-disable no-action }}
 {{yield (hash
   label=(component this.labelComponent
-    setAriaLabelledby=(action (mut this.ariaLabelledby))
+    setAriaLabelledby=(fn (mut this.ariaLabelledby))
   )
   radio=(component this.radioComponent
     toggle=this.toggle
     disabled=this.disabled
     groupValue=@groupValue
-    onChange=(action "onChange")
+    onChange=(paper-optional-action this.onChange)
     parentComponent=this
     shouldRegister=true)
 )}}

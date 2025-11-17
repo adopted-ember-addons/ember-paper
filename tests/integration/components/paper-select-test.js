@@ -18,7 +18,7 @@ module('Integration | Component | paper-select', function(hooks) {
       placeholder="Size"
       options=this.sizes
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -35,7 +35,7 @@ module('Integration | Component | paper-select', function(hooks) {
       placeholder="Size"
       options=this.sizes
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -60,7 +60,7 @@ module('Integration | Component | paper-select', function(hooks) {
       placeholder="Size"
       options=this.sizes
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -80,7 +80,7 @@ module('Integration | Component | paper-select', function(hooks) {
       options=this.sizes
       searchEnabled=true
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -99,7 +99,7 @@ module('Integration | Component | paper-select', function(hooks) {
       options=this.sizes
       searchEnabled=true
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}
@@ -123,7 +123,7 @@ module('Integration | Component | paper-select', function(hooks) {
       search=this.search
       searchEnabled=true
       selected=this.selectedSize
-      onChange=(action (mut this.selectedSize))
+      onChange=(fn (mut this.selectedSize))
       as |size|
     }}
       {{size}}

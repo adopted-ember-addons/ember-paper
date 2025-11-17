@@ -1,4 +1,3 @@
-{{! template-lint-disable no-action }}
 <md-input-container class="{{@class}} {{if @selected "md-input-has-value"}} {{if this.isInvalidAndTouched "md-input-invalid"}} {{if this.isFocusedAndSelected "md-input-focused"}}" ...attributes>
 
   <PowerSelect
@@ -11,7 +10,7 @@
     @searchEnabled={{@searchEnabled}}
     @searchField={{@searchField}}
     @searchPlaceholder={{@searchPlaceholder}}
-    @registerAPI={{action (mut this.publicAPI)}}
+    @registerAPI={{fn (mut this.publicAPI)}}
     @animationEnabled={{false}}
 
     @calculatePosition={{this.calculatePosition}}

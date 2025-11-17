@@ -63,7 +63,7 @@ module('Integration | Component | paper-chips', function(hooks) {
 
     await render(hbs`
       {{paper-chips
-        addItem=(action this.addItems)
+        addItem=this.addItems
         defaultHighlighted=this.defaultHighlighted
         options=this.items
         content=this.selectedItems}}

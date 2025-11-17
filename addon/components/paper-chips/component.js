@@ -155,9 +155,6 @@ class PaperChips extends Component {
       this.set('activeChip', index);
     }
   }
-
-  @action
-  noop() {}
 }
 
 export default PaperChips;

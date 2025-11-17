@@ -1,4 +1,4 @@
-{{! template-lint-disable no-action no-with }}
+{{! template-lint-disable no-with }}
 {{#let (hash
   checkbox=(component "paper-checkbox" parentComponent=this bubbles=false shouldRegister=true)
   button=(component "paper-button" parentComponent=this bubbles=false shouldRegister=true skipProxy=true)
@@ -8,7 +8,7 @@
 
   {{#if this.hasPrimaryAction}}
     <div class="md-button md-no-style">
-      <PaperButton @class="md-no-style" @onClick={{@onClick}} @href={{@href}} @target={{@target}} @onMouseEnter={{action this.handleMouseEnter}} @onMouseLeave={{action this.handleMouseLeave}} />
+      <PaperButton @class="md-no-style" @onClick={{@onClick}} @href={{@href}} @target={{@target}} @onMouseEnter={{this.handleMouseEnter}} @onMouseLeave={{this.handleMouseLeave}} />
       <div class="md-list-item-inner">
         {{yield controls}}
       </div>

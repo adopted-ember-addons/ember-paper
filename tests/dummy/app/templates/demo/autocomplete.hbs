@@ -1,4 +1,4 @@
-{{! template-lint-disable no-action no-curly-component-invocation no-duplicate-landmark-elements }}
+{{! template-lint-disable no-curly-component-invocation no-duplicate-landmark-elements }}
 <PageToolbar @pageTitle="Autocomplete" @isDemo={{true}} />
 
 <DocContent>
@@ -57,7 +57,7 @@
           placeholder="Type e.g. ember, paper, one, two etc."
           options=this.arrayOfItems
           selected=this.selectedItem
-          onSelectionChange=(action (mut this.selectedItem))
+          onSelectionChange=(fn (mut this.selectedItem))
           as |item term|}}
           <span class="item-title">
             {{paper-icon "star"}}

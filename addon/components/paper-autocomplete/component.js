@@ -15,8 +15,6 @@ import { indexOfOption } from 'ember-power-select/utils/group-utils';
 @layout(template)
 class PaperAutocomplete extends Component.extend(ValidationMixin) {
 
-  isTouched = false;
-
   init() {
     this._initComponent();
     super.init(...arguments);
@@ -58,7 +56,6 @@ class PaperAutocomplete extends Component.extend(ValidationMixin) {
   @action
   close() {
     this.didAnimateScale = false;
-    this.set('isTouched', true);
     this.notifyValidityChange();
 
     if (this.onClose) {

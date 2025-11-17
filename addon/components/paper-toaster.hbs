@@ -1,7 +1,7 @@
-{{! template-lint-disable no-action no-curly-component-invocation }}
+{{! template-lint-disable no-curly-component-invocation }}
 {{yield}}
 {{#if this.activeToast.show}}
-  <PaperToast @onClose={{action this.onClose this.activeToast}} @position={{this.activeToast.position}} @duration={{this.activeToast.duration}} @class={{this.activeToast.toastClass}} @parent={{@parent}} as |toast|>
+  <PaperToast @onClose={{fn this.onClose this.activeToast}} @position={{this.activeToast.position}} @duration={{this.activeToast.duration}} @class={{this.activeToast.toastClass}} @parent={{@parent}} as |toast|>
     {{#if this.activeToast.componentName}}
       {{component this.activeToast.componentName}}
     {{else}}

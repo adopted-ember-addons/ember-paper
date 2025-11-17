@@ -259,7 +259,7 @@ module('Integration | Component | paper-input', function(hooks) {
     this.value = 'aaabbb';
 
     await render(hbs`
-      {{paper-input value=this.value onChange=(action (mut this.value)) maxlength=8}}
+      {{paper-input value=this.value onChange=(fn (mut this.value)) maxlength=8}}
     `);
 
     assert.dom('.md-char-counter').exists({ count: 1 }, 'renders char counter');
@@ -489,7 +489,7 @@ module('Integration | Component | paper-input', function(hooks) {
   });
 
   test('hasValue works when user types', async function(assert) {
-    await render(hbs`{{paper-input value=this.foo onChange=(action (mut this.foo))}}`);
+    await render(hbs`{{paper-input value=this.foo onChange=(fn (mut this.foo))}}`);
 
     assert.dom('md-input-container')
       .doesNotHaveClass('md-input-has-value', 'should not have md-input-has-value class if input does not have value');
@@ -502,7 +502,7 @@ module('Integration | Component | paper-input', function(hooks) {
 
   test('hasValue works when `value` updated programatically', async function(assert) {
     this.foo = '';
-    await render(hbs`{{paper-input value=this.foo onChange=(action (mut this.foo))}}`);
+    await render(hbs`{{paper-input value=this.foo onChange=(fn (mut this.foo))}}`);
 
     assert.dom('md-input-container').doesNotHaveClass('md-input-has-value');
 
@@ -515,7 +515,7 @@ module('Integration | Component | paper-input', function(hooks) {
   test('can render other stuff using paper-input block', async function(assert) {
     this.foo = '';
     await render(hbs`
-      {{#paper-input value=this.foo onChange=(action (mut this.foo))}}
+      {{#paper-input value=this.foo onChange=(fn (mut this.foo))}}
         <div class="other-stuff"></div>
       {{/paper-input}}
     `);

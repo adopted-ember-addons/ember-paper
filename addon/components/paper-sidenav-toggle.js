@@ -10,12 +10,12 @@ import Component from '@ember/component';
  * @class PaperSidenavToggle
  * @extends Ember.Component
  */
-export default Component.extend({
-  tagName: '',
-  name: 'default',
-  paperSidenav: service(),
+export default class extends Component {
+  tagName = '';
+  name = 'default';
+  @service paperSidenav;
 
-  toggle() {
+  toggle = () => {
     this.paperSidenav.toggle(this.name);
-  },
-});
+  };
+}

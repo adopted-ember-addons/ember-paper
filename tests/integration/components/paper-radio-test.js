@@ -12,10 +12,10 @@ module('Integration | Component | paper radio', function(hooks) {
 
     this.set('groupValue', '1');
     await render(hbs`
-      {{#paper-radio value="1" groupValue=this.groupValue onChange=(action (mut this.groupValue))}}
+      {{#paper-radio value="1" groupValue=this.groupValue onChange=(fn (mut this.groupValue))}}
         Radio button 1
       {{/paper-radio}}
-      {{#paper-radio value="2" groupValue=this.groupValue onChange=(action (mut this.groupValue))}}
+      {{#paper-radio value="2" groupValue=this.groupValue onChange=(fn (mut this.groupValue))}}
         Radio button 2
       {{/paper-radio}}
     `);
@@ -81,7 +81,7 @@ module('Integration | Component | paper radio', function(hooks) {
   test('blockless version should set label inside', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-radio value="1" onChange=(action (mut this.value)) label="çup?"}}`);
+    await render(hbs`{{paper-radio value="1" onChange=(fn (mut this.value)) label="çup?"}}`);
 
     assert.dom('.md-label > span').hasText('çup?');
   });
@@ -90,7 +90,7 @@ module('Integration | Component | paper radio', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio value="1" onChange=(action (mut this.value))}}
+      {{#paper-radio value="1" onChange=(fn (mut this.value))}}
         çup?
       {{/paper-radio}}
     `);
