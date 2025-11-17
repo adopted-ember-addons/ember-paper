@@ -1257,6 +1257,7 @@
         <PaperSidenav
           @class='md-whiteframe-z2'
           @name='left'
+          @skipLockBody={{true}}
           @open={{this.sidenavLeftSideBarOpen}}
           @onToggle={{fn (mut this.sidenavLeftSideBarOpen)}}
         >
@@ -1320,6 +1321,7 @@
           @position='right'
           @open={{this.sidenavRightSideBarOpen}}
           @lockedOpen={{false}}
+          @skipLockBody={{true}}
           @onToggle={{fn (mut this.sidenavRightSideBarOpen)}}
         >
           <PaperToolbar as |toolbar|>
@@ -1955,6 +1957,7 @@
     @focusOnOpen={{false}}
     @onClose={{this.dialogToggleOpen}}
     @parent='#dialog-catalog'
+    @skipLockBody={{true}}
   >
     <form>
       <PaperToolbar>
