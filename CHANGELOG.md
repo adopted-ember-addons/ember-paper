@@ -1,5 +1,30 @@
 # Ember Paper Changelog
 
+## Release (2025-11-17)
+
+ember-paper 1.0.0-beta.39 (minor)
+
+#### :rocket: Enhancement
+* `ember-paper`
+  * [#1341](https://github.com/adopted-ember-addons/ember-paper/pull/1341) remove actions deprecation from all components and add support for Ember 6.x ([@mansona](https://github.com/mansona))
+
+#### :bug: Bug Fix
+* `ember-paper`
+  * [#1338](https://github.com/adopted-ember-addons/ember-paper/pull/1338) make sure select box for autocomplete renders in the right place ([@mansona](https://github.com/mansona))
+  * [#1337](https://github.com/adopted-ember-addons/ember-paper/pull/1337) fix bug with default animation for PaperSpeedDial not displaying correctly ([@mansona](https://github.com/mansona))
+  * [#1336](https://github.com/adopted-ember-addons/ember-paper/pull/1336) fix error when removing a PaperTab ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* `ember-paper`
+  * [#1340](https://github.com/adopted-ember-addons/ember-paper/pull/1340) Fix catalog - stop PaperBackdrop from allowing you to scroll ([@mansona](https://github.com/mansona))
+  * [#1320](https://github.com/adopted-ember-addons/ember-paper/pull/1320) Css Fix for site Child Alignment demo ([@Hari-b1](https://github.com/Hari-b1))
+  * [#1339](https://github.com/adopted-ember-addons/ember-paper/pull/1339) [test app] remove all cases of {{action}} helper ([@mansona](https://github.com/mansona))
+  * [#1334](https://github.com/adopted-ember-addons/ember-paper/pull/1334) [tests app] fix Component Template Resolving deprecation ([@mansona](https://github.com/mansona))
+
+#### Committers: 2
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Hariharan ([@Hari-b1](https://github.com/Hari-b1))
+
 ## Release (2025-11-13)
 
 ember-paper 1.0.0-beta.38 (major)

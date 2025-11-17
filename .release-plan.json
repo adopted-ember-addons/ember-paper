@@ -1,17 +1,17 @@
 {
   "solution": {
     "ember-paper": {
-      "impact": "major",
-      "oldVersion": "1.0.0-beta.37",
-      "newVersion": "1.0.0-beta.38",
+      "impact": "minor",
+      "oldVersion": "1.0.0-beta.38",
+      "newVersion": "1.0.0-beta.39",
       "constraints": [
-        {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
-        },
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         },
         {
           "impact": "patch",
@@ -21,5 +21,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-13)\n\nember-paper 1.0.0-beta.38 (major)\n\n#### :boom: Breaking Change\n* `ember-paper`\n  * [#1323](https://github.com/adopted-ember-addons/ember-paper/pull/1323) update ember basic dropdown and power select and drop support for Ember < 3.28 ([@mansona](https://github.com/mansona))\n  * [#1324](https://github.com/adopted-ember-addons/ember-paper/pull/1324) update toast-hammer to new modifier and drop support for Ember < 3.24 ([@mansona](https://github.com/mansona))\n  * [#1301](https://github.com/adopted-ember-addons/ember-paper/pull/1301) allow full-screen snapshots ([@mansona](https://github.com/mansona))\n\n#### :rocket: Enhancement\n* `ember-paper`\n  * [#1332](https://github.com/adopted-ember-addons/ember-paper/pull/1332) Add support for Ember v5.x ([@mansona](https://github.com/mansona))\n  * [#1331](https://github.com/adopted-ember-addons/ember-paper/pull/1331) fix owner-inject deprecation ([@mansona](https://github.com/mansona))\n  * [#1330](https://github.com/adopted-ember-addons/ember-paper/pull/1330) Add support for Ember v4.x ([@mansona](https://github.com/mansona))\n  * [#1326](https://github.com/adopted-ember-addons/ember-paper/pull/1326) fix ensure-safe-component deprecation ([@mansona](https://github.com/mansona))\n  * [#1325](https://github.com/adopted-ember-addons/ember-paper/pull/1325) stop using @ember/string loc function ([@mansona](https://github.com/mansona))\n  * [#1322](https://github.com/adopted-ember-addons/ember-paper/pull/1322) Fix ember-global and get-with-default deprecations ([@mansona](https://github.com/mansona))\n  * [#1321](https://github.com/adopted-ember-addons/ember-paper/pull/1321) remove ember-composability-tools ([@mansona](https://github.com/mansona))\n\n#### :house: Internal\n* `ember-paper`\n  * [#1333](https://github.com/adopted-ember-addons/ember-paper/pull/1333) fix the select demo ([@mansona](https://github.com/mansona))\n  * [#1329](https://github.com/adopted-ember-addons/ember-paper/pull/1329) update ember-code-snippet ([@mansona](https://github.com/mansona))\n  * [#1328](https://github.com/adopted-ember-addons/ember-paper/pull/1328) fix computed-property override deprecation in tests ([@mansona](https://github.com/mansona))\n  * [#1327](https://github.com/adopted-ember-addons/ember-paper/pull/1327) run no-implicit-this codemod on tests ([@mansona](https://github.com/mansona))\n  * [#1290](https://github.com/adopted-ember-addons/ember-paper/pull/1290) ci: adds no deprecations workflow ([@matthewhartstonge](https://github.com/matthewhartstonge))\n  * [#1316](https://github.com/adopted-ember-addons/ember-paper/pull/1316) chore(deps): updates to `release-plan@^0.11.0`. ([@matthewhartstonge](https://github.com/matthewhartstonge))\n  * [#1294](https://github.com/adopted-ember-addons/ember-paper/pull/1294) chore: remove events mixin. ([@matthewhartstonge](https://github.com/matthewhartstonge))\n  * [#1308](https://github.com/adopted-ember-addons/ember-paper/pull/1308) chore(tests/dummy/app/controllers/catalog): stabilises catalog contacts. ([@matthewhartstonge](https://github.com/matthewhartstonge))\n  * [#1307](https://github.com/adopted-ember-addons/ember-paper/pull/1307) fix lint-to-the-future dashboard build ([@mansona](https://github.com/mansona))\n  * [#1296](https://github.com/adopted-ember-addons/ember-paper/pull/1296) Add percy ([@mansona](https://github.com/mansona))\n\n#### Committers: 2\n- Chris Manson ([@mansona](https://github.com/mansona))\n- Matthew Hartstonge ([@matthewhartstonge](https://github.com/matthewhartstonge))\n"
+  "description": "## Release (2025-11-17)\n\nember-paper 1.0.0-beta.39 (minor)\n\n#### :rocket: Enhancement\n* `ember-paper`\n  * [#1341](https://github.com/adopted-ember-addons/ember-paper/pull/1341) remove actions deprecation from all components and add support for Ember 6.x ([@mansona](https://github.com/mansona))\n\n#### :bug: Bug Fix\n* `ember-paper`\n  * [#1338](https://github.com/adopted-ember-addons/ember-paper/pull/1338) make sure select box for autocomplete renders in the right place ([@mansona](https://github.com/mansona))\n  * [#1337](https://github.com/adopted-ember-addons/ember-paper/pull/1337) fix bug with default animation for PaperSpeedDial not displaying correctly ([@mansona](https://github.com/mansona))\n  * [#1336](https://github.com/adopted-ember-addons/ember-paper/pull/1336) fix error when removing a PaperTab ([@mansona](https://github.com/mansona))\n\n#### :house: Internal\n* `ember-paper`\n  * [#1340](https://github.com/adopted-ember-addons/ember-paper/pull/1340) Fix catalog - stop PaperBackdrop from allowing you to scroll ([@mansona](https://github.com/mansona))\n  * [#1320](https://github.com/adopted-ember-addons/ember-paper/pull/1320) Css Fix for site Child Alignment demo ([@Hari-b1](https://github.com/Hari-b1))\n  * [#1339](https://github.com/adopted-ember-addons/ember-paper/pull/1339) [test app] remove all cases of {{action}} helper ([@mansona](https://github.com/mansona))\n  * [#1334](https://github.com/adopted-ember-addons/ember-paper/pull/1334) [tests app] fix Component Template Resolving deprecation ([@mansona](https://github.com/mansona))\n\n#### Committers: 2\n- Chris Manson ([@mansona](https://github.com/mansona))\n- Hariharan ([@Hari-b1](https://github.com/Hari-b1))\n"
 }
