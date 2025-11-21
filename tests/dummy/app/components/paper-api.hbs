@@ -1,12 +1,10 @@
-{{! template-lint-disable no-curly-component-invocation }}
 {{#if this.title}}
   <h3>{{this.title}}</h3>
 {{/if}}
 
 {{yield}}
 <div class="table-wrapper">
-  {{! template-lint-disable table-groups }}
-  <table class="paper-api">
+    <table class="paper-api">
     {{#if this.header}}
       <thead>
         <tr>

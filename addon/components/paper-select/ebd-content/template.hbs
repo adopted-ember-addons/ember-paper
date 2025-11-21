@@ -1,4 +1,4 @@
-{{! template-lint-disable no-at-ember-render-modifiers }}
+{{! template-lint-disable no-at-ember-render-modifiers no-invalid-interactive }}
 {{!-- send the backdrop to the same place as the content --}}
 {{#if @dropdown.isOpen}}
   {{#maybe-in-element this.destinationElement @renderInPlace}}
@@ -30,8 +30,7 @@
 
   ...attributes>
 
-  {{! template-lint-disable no-invalid-interactive }}
-  <md-select-menu class="md-default-theme {{if @searchEnabled "md-overflow"}}" {{on "keydown" this.handleKeyDown}}>
+    <md-select-menu class="md-default-theme {{if @searchEnabled "md-overflow"}}" {{on "keydown" this.handleKeyDown}}>
     {{yield}}
   </md-select-menu>
 </BasicDropdownContent>
