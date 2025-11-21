@@ -2,6 +2,20 @@
 
 ## Release (2025-11-21)
 
+* ember-paper 1.0.1 (patch)
+
+#### :house: Internal
+* `ember-paper`
+  * [#1349](https://github.com/adopted-ember-addons/ember-paper/pull/1349) update lint-to-the-future ([@mansona](https://github.com/mansona))
+  * [#1348](https://github.com/adopted-ember-addons/ember-paper/pull/1348) fix curly bracket invocation in demo app ([@mansona](https://github.com/mansona))
+  * [#1346](https://github.com/adopted-ember-addons/ember-paper/pull/1346) remove all unused template-lint-disable directives ([@mansona](https://github.com/mansona))
+  * [#1345](https://github.com/adopted-ember-addons/ember-paper/pull/1345) run the angle bracket codemod on all tests ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
+## Release (2025-11-21)
+
 * ember-paper 1.0.0 (minor)
 
 #### :rocket: Enhancement
