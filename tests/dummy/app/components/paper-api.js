@@ -24,13 +24,6 @@ export default Component.extend({
   categorySpec: Object.freeze([]),
   sort: true,
 
-  // Predefined categories.
-  color: Object.freeze([
-    'Theme colors',
-    ['warn', 'boolean', 'Displays the button in the theme\'s warn color.'],
-    ['accent', 'boolean', 'Displays the button in the theme\'s Accent color.']
-  ]),
-
   categories: computed('categorySpec', function() {
     let categories = [];
     this.categorySpec.forEach((category) => {
@@ -58,6 +51,4 @@ export default Component.extend({
     });
   }
 
-}).reopenClass({
-  positionalParams: 'categorySpec'
-});
+})
