@@ -133,12 +133,5 @@
     "versionCompatibility": {
       "ember": ">=3.20.0 < 4.0.0"
     }
-  },
-  "release-plan": {
-    "semverIncrementAs": {
-      "major": "prerelease",
-      "minor": "prerelease",
-      "patch": "prerelease"
-    }
   }
 }
