@@ -225,24 +225,26 @@
   </div>
 
   <div class="md-padding">
-    {{paper-api
-      (p-section
-        (p-row "selected" "string or number" "Value of the active tab. Each tab automatically gets an index as its value. Default is `0` (the first tab active).")
-        (p-row "onChange" "action" "An action triggered when the active tab changes.")
-        (p-row "accent" "boolean" "Pass `true` to enable accent color scheme.")
-        (p-row "primary" "boolean" "Pass `true` to enable primary color scheme.")
-        (p-row "stretch" "boolean or matchMedia query" "Use true/false to permanently enable/disable tab stretching. You can also use a matchMedia query to enable tab stretching only at certain viewport sizes. Default value is `sm` (`(min-width: 600px) and (max-width: 959px)`).")
-        (p-row "borderBottom" "boolean" "Use true to enable border beneath tabs. Default is false.")
+    <PaperApi @categorySpec={{array
+      (array
+        (array "selected" "string or number" "Value of the active tab. Each tab automatically gets an index as its value. Default is `0` (the first tab active).")
+        (array "onChange" "action" "An action triggered when the active tab changes.")
+        (array "accent" "boolean" "Pass `true` to enable accent color scheme.")
+        (array "primary" "boolean" "Pass `true` to enable primary color scheme.")
+        (array "stretch" "boolean or matchMedia query" "Use true/false to permanently enable/disable tab stretching. You can also use a matchMedia query to enable tab stretching only at certain viewport sizes. Default value is `sm` (`(min-width: 600px) and (max-width: 959px)`).")
+        (array "borderBottom" "boolean" "Use true to enable border beneath tabs. Default is false.")
       )
-      (p-section
+      (array
         "`tabs.tab` API"
-        (p-row "value" "string" "Value associated with the tab. To activate the tab, `selected` needs to have this value. Each tab gets a value automatically set to its index, so you don't need to use this property unless you need specific values for some special case.")
-        (p-row "isSelected" "boolean" "Optionally you can set a specific tab as selected directly without relying on the global tabs value.")
-        (p-row "disabled" "boolean" "Pass `true` to disable the tab button.")
-        (p-row "href" "string" "You can pass an href to the tab button to render a link. Hint: use `ember-href-to` to generate route urls.")
-        (p-row "onClick" "action" "An action triggered when the tab button is clicked.")
-      ) title="API Usage"
+        (array "value" "string" "Value associated with the tab. To activate the tab, `selected` needs to have this value. Each tab gets a value automatically set to its index, so you don't need to use this property unless you need specific values for some special case.")
+        (array "isSelected" "boolean" "Optionally you can set a specific tab as selected directly without relying on the global tabs value.")
+        (array "disabled" "boolean" "Pass `true` to disable the tab button.")
+        (array "href" "string" "You can pass an href to the tab button to render a link. Hint: use `ember-href-to` to generate route urls.")
+        (array "onClick" "action" "An action triggered when the tab button is clicked.")
+      )
     }}
+      @title="API Usage"
+    />
   </div>
 
 </DocContent>
