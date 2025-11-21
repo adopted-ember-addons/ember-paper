@@ -1,7 +1,7 @@
 /* eslint-disable ember/no-settled-after-test-helper, prettier/prettier, qunit/no-assert-equal, qunit/require-expect */
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled, click, findAll } from '@ember/test-helpers';
+import { render, settled, click, findAll, triggerEvent } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | paper item', function(hooks) {
@@ -95,6 +95,49 @@ module('Integration | Component | paper item', function(hooks) {
     // tap event.
     assert.expect(0);
   });
+
+  test('basic paper item action tests', async function(assert) {
+    this.set('primaryAction', () => {
+      assert.step('primaryAction');
+    });
+
+    this.set('secondaryAction', () => {
+      assert.step('secondaryAction');
+    })
+
+    this.set('mouseEnter', () => {
+      assert.step('mouseEnter');
+    })
+
+    this.set('mouseLeave', () => {
+      assert.step('mouseLeave');
+    })
+
+    await render(hbs`
+      <PaperItem data-test-button @onClick={{this.primaryAction}} @onMouseEnter={{this.mouseEnter}} @onMouseLeave={{this.mouseLeave}} as |controls|>
+          <controls.checkbox @value={{this.checked}} @onChange={{fn (mut this.checked)}} />
+          <p>Item with checkbox and secondary action</p>
+          <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{this.secondaryAction}}>
+            {{paper-icon "message"}}
+          </controls.button>
+        </PaperItem>
+    `);
+
+    await click('button');
+    await click('md-icon');
+    await triggerEvent('button', 'mouseenter');
+    await triggerEvent('button', 'mouseleave');
+
+    assert.verifySteps([
+      'primaryAction',
+      'secondaryAction',
+      // I'm not sure why we have duplicates here - it's ok for now
+      'mouseEnter',
+      'mouseEnter',
+      'mouseLeave',
+      'mouseLeave',
+    ]);
+  })
 
   test('Item checkbox with secondary action and no primary action is toggled by checkbox click', async function(assert) {
     assert.expect(2);

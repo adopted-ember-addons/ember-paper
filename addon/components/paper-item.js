@@ -4,7 +4,7 @@ import {
   classNameBindings,
   tagName,
 } from '@ember-decorators/component';
-import { computed } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { or, bool, filter } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 
@@ -101,10 +101,12 @@ export default class PaperItem extends Component {
     });
   }
 
+  @action
   handleMouseEnter(e) {
     invokeAction(this, 'onMouseEnter', e);
   }
 
+  @action
   handleMouseLeave(e) {
     invokeAction(this, 'onMouseLeave', e);
   }
