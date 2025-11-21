@@ -1,5 +1,20 @@
 # Ember Paper Changelog
 
+## Release (2025-11-21)
+
+* ember-paper 1.0.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-paper`
+  * [#1343](https://github.com/adopted-ember-addons/ember-paper/pull/1343) Release 1.0.0 stable ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* `ember-paper`
+  * [#1342](https://github.com/adopted-ember-addons/ember-paper/pull/1342) update release-plan ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
 ## Release (2025-11-17)
 
 ember-paper 1.0.0-beta.39 (minor)
