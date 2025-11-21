@@ -11,8 +11,8 @@ module('Integration | Component | paper toolbar', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-toolbar tall=true}}
-      {{/paper-toolbar}}
+      <PaperToolbar @tall={{true}}>
+      </PaperToolbar>
     `);
 
     assert.dom('md-toolbar').hasClass('md-tall');
@@ -22,10 +22,10 @@ module('Integration | Component | paper toolbar', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-toolbar tall=true}}
-        {{#paper-toolbar-tools}}
-        {{/paper-toolbar-tools}}
-      {{/paper-toolbar}}
+      <PaperToolbar @tall={{true}}>
+        <PaperToolbarTools>
+        </PaperToolbarTools>
+      </PaperToolbar>
     `);
 
     assert.dom('.md-toolbar-tools').exists({ count: 1 });

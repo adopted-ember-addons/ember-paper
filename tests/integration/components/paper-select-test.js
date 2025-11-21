@@ -13,16 +13,9 @@ module('Integration | Component | paper-select', function(hooks) {
   });
 
   test('opens on click', async function(assert) {
-    await render(hbs`{{#paper-select
-      disabled=this.disableSelect
-      placeholder="Size"
-      options=this.sizes
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @disabled={{this.disableSelect}} @placeholder="Size" @options={{this.sizes}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     await clickTrigger('md-input-container');
 
@@ -30,16 +23,9 @@ module('Integration | Component | paper-select', function(hooks) {
   });
 
   test('backdrop removed if select closed', async function(assert) {
-    await render(hbs`{{#paper-select
-      disabled=this.disableSelect
-      placeholder="Size"
-      options=this.sizes
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @disabled={{this.disableSelect}} @placeholder="Size" @options={{this.sizes}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     assert.dom('md-backdrop').doesNotExist();
 
@@ -55,16 +41,9 @@ module('Integration | Component | paper-select', function(hooks) {
   });
 
   test('it can select an option', async function(assert) {
-    await render(hbs`{{#paper-select
-      disabled=this.disableSelect
-      placeholder="Size"
-      options=this.sizes
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @disabled={{this.disableSelect}} @placeholder="Size" @options={{this.sizes}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     await clickTrigger('md-input-container');
 
@@ -74,17 +53,9 @@ module('Integration | Component | paper-select', function(hooks) {
   });
 
   test('header is rendered above content', async function(assert) {
-    await render(hbs`{{#paper-select
-      disabled=this.disableSelect
-      placeholder="Size"
-      options=this.sizes
-      searchEnabled=true
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @disabled={{this.disableSelect}} @placeholder="Size" @options={{this.sizes}} @searchEnabled={{true}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     await clickTrigger('md-input-container');
 
@@ -93,17 +64,9 @@ module('Integration | Component | paper-select', function(hooks) {
   });
 
   test('it can search a value', async function(assert) {
-    await render(hbs`{{#paper-select
-      disabled=this.disableSelect
-      placeholder="Size"
-      options=this.sizes
-      searchEnabled=true
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @disabled={{this.disableSelect}} @placeholder="Size" @options={{this.sizes}} @searchEnabled={{true}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     await clickTrigger('md-input-container');
 
@@ -119,15 +82,9 @@ module('Integration | Component | paper-select', function(hooks) {
   test('it shows search message before entering search string', async function(assert) {
     this.search = (value) => this.sizes.filter((size) => size.includes(value));
 
-    await render(hbs`{{#paper-select
-      search=this.search
-      searchEnabled=true
-      selected=this.selectedSize
-      onChange=(fn (mut this.selectedSize))
-      as |size|
-    }}
+    await render(hbs`<PaperSelect @search={{this.search}} @searchEnabled={{true}} @selected={{this.selectedSize}} @onChange={{fn (mut this.selectedSize)}} as |size|>
       {{size}}
-    {{/paper-select}}`);
+    </PaperSelect>`);
 
     await clickTrigger('md-input-container');
     assert.dom('md-select-menu > md-content').exists();

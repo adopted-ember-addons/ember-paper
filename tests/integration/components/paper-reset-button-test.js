@@ -11,15 +11,15 @@ module('Integration | Component | paper reset button', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{this.paper-reset-button}}`);
+    await render(hbs`<this.paper-reset-button />`);
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      {{#paper-reset-button}}
+      <PaperResetButton>
         template block text
-      {{/paper-reset-button}}
+      </PaperResetButton>
     `);
 
     assert.dom(this.element).hasText('template block text');

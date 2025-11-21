@@ -8,22 +8,22 @@ module('Integration | Component | paper progress linear', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should auto-set the md-mode to "indeterminate" if not specified', async function(assert) {
-    await render(hbs`{{paper-progress-linear}}`);
+    await render(hbs`<PaperProgressLinear />`);
     assert.dom('md-progress-linear').hasAttribute('md-mode', 'indeterminate');
   });
 
   test('should auto-set the md-mode to "determinate" if a value is specified', async function(assert) {
-    await render(hbs`{{paper-progress-linear value=12}}`);
+    await render(hbs`<PaperProgressLinear @value={{12}} />`);
     assert.dom('md-progress-linear').hasAttribute('md-mode', 'determinate');
   });
 
   test('should auto-set the md-mode to "buffer" if a value and bufferValue is specified', async function(assert) {
-    await render(hbs`{{paper-progress-linear  value=50  bufferValue=100}}`);
+    await render(hbs`<PaperProgressLinear @value={{50}} @bufferValue={{100}} />`);
     assert.dom('md-progress-linear').hasAttribute('md-mode', 'buffer');
   });
 
   test('it sets transform based on value', async function(assert) {
-    await render(hbs`{{paper-progress-linear value=50}}`);
+    await render(hbs`<PaperProgressLinear @value={{50}} />`);
 
     let bar2 = find('.md-bar2');
     let bar2style = bar2.style.transform || bar2.style['-webkit-transform'];
@@ -32,7 +32,7 @@ module('Integration | Component | paper progress linear', function(hooks) {
   });
 
   test('it sets transform based on buffer value', async function(assert) {
-    await render(hbs`{{paper-progress-linear value=50 bufferValue=75}}`);
+    await render(hbs`<PaperProgressLinear @value={{50}} @bufferValue={{75}} />`);
 
     let bar1 = find('.md-bar1');
     let bar1style = bar1.style.transform || bar1.style['-webkit-transform'];
@@ -41,7 +41,7 @@ module('Integration | Component | paper progress linear', function(hooks) {
   });
 
   test('it should not set transition in query mode', async function(assert) {
-    await render(hbs`{{paper-progress-linear value=80 mode="query"}}`);
+    await render(hbs`<PaperProgressLinear @value={{80}} @mode="query" />`);
 
     let bar2 = find('.md-bar2');
     let bar2style = bar2.style.transform || bar2.style['-webkit-transform'];

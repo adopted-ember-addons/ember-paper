@@ -20,7 +20,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
   test('renders a container with flex and layout-row classes', async function(assert) {
     assert.expect(2);
 
-    await render(hbs`{{paper-sidenav-container class="sidenav-container"}}`);
+    await render(hbs`<PaperSidenavContainer @class="sidenav-container" />`);
 
     assert.dom('.sidenav-container').hasClass('flex');
     assert.dom('.sidenav-container').hasClass('layout-row');
@@ -29,7 +29,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
   test('sidenav uses md-sidenav-left by default', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-sidenav}}`);
+    await render(hbs`<PaperSidenav />`);
 
     assert.dom('md-sidenav').hasClass('md-sidenav-left');
   });
@@ -37,7 +37,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
   test('sidenav uses md-sidenav-right with position="right"', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-sidenav position="right"}}`);
+    await render(hbs`<PaperSidenav @position="right" />`);
 
     assert.dom('md-sidenav').hasClass('md-sidenav-right');
   });
@@ -45,7 +45,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
   test('sidenav starts open when `open=true`', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-sidenav open=true lockedOpen=false}}`);
+    await render(hbs`<PaperSidenav @open={{true}} @lockedOpen={{false}} />`);
 
     assert.dom('md-sidenav').doesNotHaveClass('md-closed');
   });
@@ -53,7 +53,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
   test('sidenav starts closed when `open=true`', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-sidenav open=false lockedOpen=false}}`);
+    await render(hbs`<PaperSidenav @open={{false}} @lockedOpen={{false}} />`);
 
     assert.dom('md-sidenav').hasClass('md-closed');
 
@@ -67,9 +67,9 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      <PaperSidenav @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
+      </PaperSidenav>
     `);
 
     await click('md-backdrop');
@@ -80,7 +80,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
 
     this.set('isOpen', false);
 
-    await render(hbs`{{paper-sidenav open=this.isOpen lockedOpen=false}}`);
+    await render(hbs`<PaperSidenav @open={{this.isOpen}} @lockedOpen={{false}} />`);
 
     assert.dom('md-sidenav').hasClass('md-closed');
 
@@ -96,7 +96,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
 
     this.set('isOpen', true);
 
-    await render(hbs`{{paper-sidenav open=this.isOpen lockedOpen=false}}`);
+    await render(hbs`<PaperSidenav @open={{this.isOpen}} @lockedOpen={{false}} />`);
 
     assert.dom('md-sidenav').doesNotHaveClass('md-closed');
 
@@ -115,9 +115,9 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      <PaperSidenav @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
+      </PaperSidenav>
     `);
 
     await click('md-sidenav');
@@ -131,9 +131,9 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=this.sidenavToggle closeOnClick=false lockedOpen=false}}
+      <PaperSidenav @open={{true}} @onToggle={{this.sidenavToggle}} @closeOnClick={{false}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
+      </PaperSidenav>
     `);
 
     await click('md-sidenav');
@@ -146,7 +146,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
       return { matches: true };
     };
 
-    await render(hbs`{{paper-sidenav}}`);
+    await render(hbs`<PaperSidenav />`);
 
     assert.dom('md-sidenav').hasClass('md-locked-open');
   });
@@ -158,7 +158,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
       return { matches: false };
     };
 
-    await render(hbs`{{paper-sidenav}}`);
+    await render(hbs`<PaperSidenav />`);
 
     assert.dom('md-sidenav').doesNotHaveClass('md-locked-open');
   });
@@ -170,7 +170,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
       return { matches: false };
     };
 
-    await render(hbs`{{paper-sidenav}}`);
+    await render(hbs`<PaperSidenav />`);
 
     assert.dom('md-sidenav').doesNotHaveClass('md-locked-open');
 
@@ -192,7 +192,7 @@ module('Integration | Component | paper sidenav', function(hooks) {
       return { matches: true };
     };
 
-    await render(hbs`{{paper-sidenav}}`);
+    await render(hbs`<PaperSidenav />`);
 
     assert.dom('md-sidenav').hasClass('md-locked-open');
 
@@ -214,14 +214,14 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      <PaperSidenav @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav-toggle as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=toggleAction}}
+      </PaperSidenav>
+      <PaperSidenavToggle as |toggleAction|>
+        <PaperButton @id="toggle-button" @onClick={{toggleAction}}>
           Toggle sidenav
-        {{/paper-button}}
-      {{/paper-sidenav-toggle}}
+        </PaperButton>
+      </PaperSidenavToggle>
     `);
 
     await click('#toggle-button');
@@ -235,17 +235,17 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      <PaperSidenav @name="balele" @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav name="balili" open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      </PaperSidenav>
+      <PaperSidenav @name="balili" @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav-toggle name="balele" as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=toggleAction}}
+      </PaperSidenav>
+      <PaperSidenavToggle @name="balele" as |toggleAction|>
+        <PaperButton @id="toggle-button" @onClick={{toggleAction}}>
           Toggle sidenav
-        {{/paper-button}}
-      {{/paper-sidenav-toggle}}
+        </PaperButton>
+      </PaperSidenavToggle>
     `);
 
     await click('#toggle-button');
@@ -259,17 +259,17 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      <PaperSidenav @name="balele" @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav name="balele" open=true onToggle=this.sidenavToggle lockedOpen=false}}
+      </PaperSidenav>
+      <PaperSidenav @name="balele" @open={{true}} @onToggle={{this.sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav-toggle name="balele" as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=toggleAction}}
+      </PaperSidenav>
+      <PaperSidenavToggle @name="balele" as |toggleAction|>
+        <PaperButton @id="toggle-button" @onClick={{toggleAction}}>
           Toggle sidenav
-        {{/paper-button}}
-      {{/paper-sidenav-toggle}}
+        </PaperButton>
+      </PaperSidenavToggle>
     `);
 
     await click('#toggle-button');
@@ -284,14 +284,14 @@ module('Integration | Component | paper sidenav', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-sidenav name="balele" open=true onToggle=(action sidenavToggle) lockedOpen=false}}
+      <PaperSidenav @name="balele" @open={{true}} @onToggle={{action sidenavToggle}} @lockedOpen={{false}}>
         Hi!
-      {{/paper-sidenav}}
-      {{#paper-sidenav-toggle name="çup" as |toggleAction|}}
-        {{#paper-button id="toggle-button" onClick=(action toggleAction)}}
+      </PaperSidenav>
+      <PaperSidenavToggle @name="çup" as |toggleAction|>
+        <PaperButton @id="toggle-button" @onClick={{action toggleAction}}>
           Toggle sidenav
-        {{/paper-button}}
-      {{/paper-sidenav-toggle}}
+        </PaperButton>
+      </PaperSidenavToggle>
     `);
 
     assert.throws(async () => {

@@ -9,23 +9,23 @@ module('Integration | Component | paper-button', function(hooks) {
 
   test('renders block label', async function(assert) {
     await render(hbs`
-      {{#paper-button}}
+      <PaperButton>
         Block label
-      {{/paper-button}}
+      </PaperButton>
     `);
     assert.dom('button').hasText('Block label');
   });
 
   test('renders inline label', async function(assert) {
     await render(hbs`
-      {{paper-button label="Inline label"}}
+      <PaperButton @label="Inline label" />
     `);
     assert.dom('button').hasText('Inline label');
   });
 
   test('renders type button by default', async function(assert) {
     await render(hbs`
-      {{paper-button label="Inline label"}}
+      <PaperButton @label="Inline label" />
     `);
 
     assert.dom('button').hasAttribute('type', 'button');
@@ -38,9 +38,9 @@ module('Integration | Component | paper-button', function(hooks) {
       assert.ok(true);
     });
     await render(hbs`
-      {{#paper-button onClick=this.foo}}
+      <PaperButton @onClick={{this.foo}}>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     await click('.md-button');
@@ -51,18 +51,18 @@ module('Integration | Component | paper-button', function(hooks) {
     assert.expect(0);
 
     await render(hbs`
-      {{#paper-button}}
+      <PaperButton>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
     await click('.md-button');
   });
 
   test('uses md-raised class when raised=true', async function(assert) {
     await render(hbs`
-      {{#paper-button raised=true}}
+      <PaperButton @raised={{true}}>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('.md-button').hasClass('md-raised');
@@ -70,9 +70,9 @@ module('Integration | Component | paper-button', function(hooks) {
 
   test('uses md-icon-button class when iconButton=true', async function(assert) {
     await render(hbs`
-      {{#paper-button iconButton=true}}
+      <PaperButton @iconButton={{true}}>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('.md-button').hasClass('md-icon-button');
@@ -80,9 +80,9 @@ module('Integration | Component | paper-button', function(hooks) {
 
   test('uses md-fab class when fab=true', async function(assert) {
     await render(hbs`
-      {{#paper-button fab=true}}
+      <PaperButton @fab={{true}}>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('.md-button').hasClass('md-fab');
@@ -91,9 +91,9 @@ module('Integration | Component | paper-button', function(hooks) {
   test('uses md-mini and md-fab class when mini=true', async function(assert) {
     assert.expect(2);
     await render(hbs`
-      {{#paper-button mini=true}}
+      <PaperButton @mini={{true}}>
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('.md-button').hasClass('md-fab');
@@ -103,9 +103,9 @@ module('Integration | Component | paper-button', function(hooks) {
 
   test('uses a tag when href is specified', async function(assert) {
     await render(hbs`
-      {{#paper-button href="http://example.com"}}
+      <PaperButton @href="http://example.com">
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('a.md-button').exists({ count: 1 });
@@ -114,9 +114,9 @@ module('Integration | Component | paper-button', function(hooks) {
 
   test('renders target', async function(assert) {
     await render(hbs`
-      {{#paper-button href="http://example.com" target="_blank"}}
+      <PaperButton @href="http://example.com" @target="_blank">
         A label
-      {{/paper-button}}
+      </PaperButton>
     `);
 
     assert.dom('a.md-button').exists({ count: 1 });

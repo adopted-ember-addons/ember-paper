@@ -11,12 +11,12 @@ module('Integration | Component | paper item', function(hooks) {
     assert.expect(1);
     this.set('checkboxEnabled', false);
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
+      <PaperList>
+        <PaperItem as |controls|>
           <p>Checkbox 1</p>
-          {{controls.checkbox value=this.checkboxEnabled onChange=(fn (mut this.checkboxEnabled))}}
-        {{/paper-item}}
-      {{/paper-list}}
+          <controls.checkbox @value={{this.checkboxEnabled}} @onChange={{fn (mut this.checkboxEnabled)}} />
+        </PaperItem>
+      </PaperList>
     `);
 
     await settled();
@@ -30,12 +30,12 @@ module('Integration | Component | paper item', function(hooks) {
     assert.expect(1);
     this.set('checkboxEnabled', false);
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
+      <PaperList>
+        <PaperItem as |controls|>
           <p>Checkbox 1</p>
-          {{controls.checkbox disabled=true value=this.checkboxEnabled onChange=(fn (mut this.checkboxEnabled))}}
-        {{/paper-item}}
-      {{/paper-list}}
+          <controls.checkbox @disabled={{true}} @value={{this.checkboxEnabled}} @onChange={{fn (mut this.checkboxEnabled)}} />
+        </PaperItem>
+      </PaperList>
     `);
 
     await settled();
@@ -49,12 +49,12 @@ module('Integration | Component | paper item', function(hooks) {
     assert.expect(1);
     this.set('checkboxEnabled', false);
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
+      <PaperList>
+        <PaperItem as |controls|>
           <p>Checkbox 1</p>
-          {{controls.checkbox value=this.checkboxEnabled onChange=(fn (mut this.checkboxEnabled))}}
-        {{/paper-item}}
-      {{/paper-list}}
+          <controls.checkbox @value={{this.checkboxEnabled}} @onChange={{fn (mut this.checkboxEnabled)}} />
+        </PaperItem>
+      </PaperList>
     `);
     await settled();
     await click('.md-list-item-inner');
@@ -66,22 +66,16 @@ module('Integration | Component | paper item', function(hooks) {
 
     this.set('selectedValue', null);
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
+      <PaperList>
+        <PaperItem as |controls|>
           <p>Checkbox 1</p>
-          {{controls.radio
-            groupValue=this.selectedValue
-            value="some value 1"
-            onChange=(fn (mut this.selectedValue))}}
-        {{/paper-item}}
-        {{#paper-item as |controls|}}
+          <controls.radio @groupValue={{this.selectedValue}} @value="some value 1" @onChange={{fn (mut this.selectedValue)}} />
+        </PaperItem>
+        <PaperItem as |controls|>
           <p>Checkbox 2</p>
-          {{controls.radio
-            groupValue=this.selectedValue
-            value="some value 2"
-            onChange=(fn (mut this.selectedValue))}}
-        {{/paper-item}}
-      {{/paper-list}}
+          <controls.radio @groupValue={{this.selectedValue}} @value="some value 2" @onChange={{fn (mut this.selectedValue)}} />
+        </PaperItem>
+      </PaperList>
     `);
     await settled();
     let items = findAll('.md-list-item-inner');
@@ -108,15 +102,15 @@ module('Integration | Component | paper item', function(hooks) {
     this.set('checked', false);
 
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
-          {{controls.checkbox value=this.checked onChange=(fn (mut this.checked))}}
+      <PaperList>
+        <PaperItem as |controls|>
+          <controls.checkbox @value={{this.checked}} @onChange={{fn (mut this.checked)}} />
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(fn (mut this.secondaryValue))}}
+          <controls.button @iconButton={{true}} @onClick={{fn (mut this.secondaryValue)}}>
             {{paper-icon "message"}}
-          {{/controls.button}}
-        {{/paper-item}}
-      {{/paper-list}}
+          </controls.button>
+        </PaperItem>
+      </PaperList>
     `);
 
     await settled();
@@ -132,15 +126,15 @@ module('Integration | Component | paper item', function(hooks) {
     this.set('checked', false);
 
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item as |controls|}}
-          {{controls.checkbox value=this.checked onChange=(fn (mut this.checked))}}
+      <PaperList>
+        <PaperItem as |controls|>
+          <controls.checkbox @value={{this.checked}} @onChange={{fn (mut this.checked)}} />
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(fn (mut this.secondaryValue))}}
+          <controls.button @iconButton={{true}} @onClick={{fn (mut this.secondaryValue)}}>
             {{paper-icon "message"}}
-          {{/controls.button}}
-        {{/paper-item}}
-      {{/paper-list}}
+          </controls.button>
+        </PaperItem>
+      </PaperList>
     `);
     await settled();
 
@@ -160,15 +154,15 @@ module('Integration | Component | paper item', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item onClick=this.primaryAction as |controls|}}
-          {{controls.checkbox value=this.checked onChange=(fn (mut this.checked))}}
+      <PaperList>
+        <PaperItem @onClick={{this.primaryAction}} as |controls|>
+          <controls.checkbox @value={{this.checked}} @onChange={{fn (mut this.checked)}} />
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button secondary=true iconButton=true onClick=(fn (mut this.secondaryValue))}}
+          <controls.button @secondary={{true}} @iconButton={{true}} @onClick={{fn (mut this.secondaryValue)}}>
             {{paper-icon "message"}}
-          {{/controls.button}}
-        {{/paper-item}}
-      {{/paper-list}}
+          </controls.button>
+        </PaperItem>
+      </PaperList>
     `);
     await settled();
 
@@ -188,15 +182,15 @@ module('Integration | Component | paper item', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-list}}
-        {{#paper-item onClick=this.primaryAction as |controls|}}
-          {{controls.checkbox value=this.checked onChange=(fn (mut this.checked))}}
+      <PaperList>
+        <PaperItem @onClick={{this.primaryAction}} as |controls|>
+          <controls.checkbox @value={{this.checked}} @onChange={{fn (mut this.checked)}} />
           <p>Item with checkbox and secondary action</p>
-          {{#controls.button iconButton=true onClick=(fn (mut this.secondaryValue))}}
+          <controls.button @iconButton={{true}} @onClick={{fn (mut this.secondaryValue)}}>
             {{paper-icon "message"}}
-          {{/controls.button}}
-        {{/paper-item}}
-      {{/paper-list}}
+          </controls.button>
+        </PaperItem>
+      </PaperList>
     `);
 
     await settled();

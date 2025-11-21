@@ -16,20 +16,20 @@ module('Integration | Component | paper-radio-group-label', function(hooks) {
 
     this.set('setAriaLabelledby', setAriaLabelledby);
 
-    await render(hbs`{{paper-radio-group-label setAriaLabelledby=this.setAriaLabelledby}}`);
+    await render(hbs`<PaperRadioGroupLabel @setAriaLabelledby={{this.setAriaLabelledby}} />`);
   });
 
   test('it sets label content based on text property', async function(assert) {
-    await render(hbs`{{paper-radio-group-label text="hello"}}`);
+    await render(hbs`<PaperRadioGroupLabel @text="hello" />`);
 
     assert.dom('md-label').hasText('hello');
   });
 
   test('it shows label passed as a block', async function(assert) {
     await render(hbs`
-      {{#paper-radio-group-label}}
+      <PaperRadioGroupLabel>
         hello block
-      {{/paper-radio-group-label}}
+      </PaperRadioGroupLabel>
     `);
 
     assert.dom('md-label').hasText('hello block');

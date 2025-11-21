@@ -12,9 +12,9 @@ module('Integration | Component | paper form', function(hooks) {
     assert.expect(4);
 
     await render(hbs`
-      {{#paper-form as |form|}}
-        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar" errors=this.errors}}
+      <PaperForm as |form|>
+        <form.input @value={{this.foo}} @onChange={{fn (mut this.foo)}} @label="Foo" />
+        <form.input @value={{this.bar}} @onChange={{fn (mut this.bar)}} @label="Bar" @errors={{this.errors}} />
 
         {{#if form.isInvalid}}
           <div class="invalid-div">Form is invalid!</div>
@@ -23,7 +23,7 @@ module('Integration | Component | paper form', function(hooks) {
           <div class="valid-div">Form is valid!</div>
         {{/if}}
 
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.invalid-div').doesNotExist();
@@ -53,13 +53,13 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=this.onSubmit onInvalid=this.onInvalid as |form|}}
-        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
+      <PaperForm @onSubmit={{this.onSubmit}} @onInvalid={{this.onInvalid}} as |form|>
+        <form.input @value={{this.foo}} @onChange={{fn (mut this.foo)}} @label="Foo" />
+        <form.input @value={{this.bar}} @onChange={{fn (mut this.bar)}} @label="Bar" />
 
         <button type="button" {{on "click" form.onSubmit}}>Submit</button>
 
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     await click('button');
@@ -77,11 +77,11 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=this.onSubmit onInvalid=this.onInvalid as |form|}}
-        {{form.input value="" required=true onChange=null}}
+      <PaperForm @onSubmit={{this.onSubmit}} @onInvalid={{this.onInvalid}} as |form|>
+        <form.input @value="" @required={{true}} @onChange={{null}} />
 
         <button type="submit">Submit</button>
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     await click('button[type=submit]');
@@ -100,10 +100,10 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onValidityChange=this.onValidityChange errors=this.errors as |form|}}
-        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar" errors=this.errors}}
-      {{/paper-form}}
+      <PaperForm @onValidityChange={{this.onValidityChange}} @errors={{this.errors}} as |form|>
+        <form.input @value={{this.foo}} @onChange={{fn (mut this.foo)}} @label="Foo" />
+        <form.input @value={{this.bar}} @onChange={{fn (mut this.bar)}} @label="Bar" @errors={{this.errors}} />
+      </PaperForm>
     `);
 
 
@@ -124,13 +124,13 @@ module('Integration | Component | paper form', function(hooks) {
     assert.expect(3);
 
     await render(hbs`
-      {{#paper-form as |form|}}
-        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
+      <PaperForm as |form|>
+        <form.input @value={{this.foo}} @onChange={{fn (mut this.foo)}} @label="Foo" />
+        <form.input @value={{this.bar}} @onChange={{fn (mut this.bar)}} @label="Bar" />
 
-        <button {{on "click" form.onSubmit}}>Submit</button>
+        <button type="button" {{on "click" form.onSubmit}}>Submit</button>
 
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     // no touched inputs
@@ -150,9 +150,9 @@ module('Integration | Component | paper form', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-form as |form|}}
-        {{#form.submit-button}}Submit{{/form.submit-button}}
-      {{/paper-form}}
+      <PaperForm as |form|>
+        <form.submit-button>Submit</form.submit-button>
+      </PaperForm>
     `);
 
     assert.dom('button').exists({ count: 1 });
@@ -166,9 +166,9 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=this.onSubmit as |form|}}
-        {{#form.submit-button}}Submit{{/form.submit-button}}
-      {{/paper-form}}
+      <PaperForm @onSubmit={{this.onSubmit}} as |form|>
+        <form.submit-button>Submit</form.submit-button>
+      </PaperForm>
     `);
 
     await click('button');
@@ -178,9 +178,9 @@ module('Integration | Component | paper form', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-form as |form|}}
-        {{#form.submit-button}}Submit{{/form.submit-button}}
-      {{/paper-form}}
+      <PaperForm as |form|>
+        <form.submit-button>Submit</form.submit-button>
+      </PaperForm>
     `);
 
     assert.dom('button').hasAttribute('type', 'submit');
@@ -194,9 +194,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form submitButtonComponent="custom-submit-button" as |form|}}
-        {{form.submit-button}}
-      {{/paper-form}}
+      <PaperForm @submitButtonComponent="custom-submit-button" as |form|>
+        <form.submit-button />
+      </PaperForm>
     `);
 
     assert.dom('.custom-submit-button')
@@ -211,13 +211,13 @@ module('Integration | Component | paper form', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=this.onSubmit as |form|}}
-        {{form.input value=this.foo onChange=(fn (mut this.foo)) label="Foo"}}
-        {{form.input value=this.bar onChange=(fn (mut this.bar)) label="Bar"}}
+      <PaperForm @onSubmit={{this.onSubmit}} as |form|>
+        <form.input @value={{this.foo}} @onChange={{fn (mut this.foo)}} @label="Foo" />
+        <form.input @value={{this.bar}} @onChange={{fn (mut this.bar)}} @label="Bar" />
 
         <input type="submit" value="Submit">
 
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     await click('input[type=submit]');
@@ -231,9 +231,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form as |form|}}
+      <PaperForm as |form|>
         {{form.input}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-input')
@@ -252,9 +252,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form inputComponent="custom-input" as |form|}}
+      <PaperForm @inputComponent="custom-input" as |form|>
         {{form.input}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-input')
@@ -271,9 +271,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form as |form|}}
+      <PaperForm as |form|>
         {{form.select}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-select')
@@ -292,9 +292,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form selectComponent="custom-select" as |form|}}
+      <PaperForm @selectComponent="custom-select" as |form|>
         {{form.select}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-select')
@@ -311,9 +311,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form as |form|}}
+      <PaperForm as |form|>
         {{form.autocomplete}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-autocomplete')
@@ -332,9 +332,9 @@ module('Integration | Component | paper form', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-form autocompleteComponent="custom-autocomplete" as |form|}}
+      <PaperForm @autocompleteComponent="custom-autocomplete" as |form|>
         {{form.autocomplete}}
-      {{/paper-form}}
+      </PaperForm>
     `);
 
     assert.dom('.paper-autocomplete')

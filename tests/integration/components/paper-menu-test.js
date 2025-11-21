@@ -10,18 +10,18 @@ module('Integration | Component | paper-menu', function(hooks) {
   test('opens on click', async function(assert) {
     assert.expect(1);
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-          {{#content.menu-item}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+          <content.menu-item>
             <span id="menu-item">Test</span>
-          {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+          </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
 
     await settled();
@@ -35,18 +35,18 @@ module('Integration | Component | paper-menu', function(hooks) {
   test('opens with all items disabled', async function(assert) {
     assert.expect(1);
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-          {{#content.menu-item disabled=true}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+          <content.menu-item @disabled={{true}}>
             <span id="menu-item">Test</span>
-          {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+          </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
 
     await settled();
@@ -60,18 +60,18 @@ module('Integration | Component | paper-menu', function(hooks) {
   test('backdrop removed if menu closed', async function(assert) {
     assert.expect(2);
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-            {{#content.menu-item}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+            <content.menu-item>
               <span id="menu-item">Test</span>
-            {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+            </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
 
     await settled();
@@ -87,18 +87,18 @@ module('Integration | Component | paper-menu', function(hooks) {
   test('backdrop removed if backdrop clicked', async function(assert) {
     assert.expect(2);
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-          {{#content.menu-item}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+          <content.menu-item>
             <span id="menu-item">Test</span>
-          {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+          </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
 
     await settled();
@@ -117,21 +117,21 @@ module('Integration | Component | paper-menu', function(hooks) {
     this.openSomething = () => {};
 
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-            {{#content.menu-item onClick=this.openSomething}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+            <content.menu-item @onClick={{this.openSomething}}>
               <span id="menu-item">Test</span>
-            {{/content.menu-item}}
-            {{#content.menu-item onClick=this.openSomething}}
+            </content.menu-item>
+            <content.menu-item @onClick={{this.openSomething}}>
               <span id="menu-item2">Test 2</span>
-            {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+            </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
 
     await settled();
@@ -163,21 +163,21 @@ module('Integration | Component | paper-menu', function(hooks) {
 
   test('md-menu doesn\'t have a tabindex attribute', async function(assert) {
     await render(hbs`
-      {{#paper-menu as |menu|}}
-        {{#menu.trigger}}
-          {{#paper-button iconButton=true}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
             {{paper-icon "local_phone"}}
-          {{/paper-button}}
-        {{/menu.trigger}}
-        {{#menu.content width=4 as |content|}}
-            {{#content.menu-item onClick=this.openSomething}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+            <content.menu-item @onClick={{this.openSomething}}>
               <span id="menu-item">Test</span>
-            {{/content.menu-item}}
-            {{#content.menu-item onClick=this.openSomething}}
+            </content.menu-item>
+            <content.menu-item @onClick={{this.openSomething}}>
               <span id="menu-item2">Test 2</span>
-            {{/content.menu-item}}
-        {{/menu.content}}
-      {{/paper-menu}}
+            </content.menu-item>
+        </menu.content>
+      </PaperMenu>
     `);
     assert.dom('md-menu').hasAttribute('tabindex', '-1');
   });

@@ -12,12 +12,12 @@ module('Integration | Component | paper radio', function(hooks) {
 
     this.set('groupValue', '1');
     await render(hbs`
-      {{#paper-radio value="1" groupValue=this.groupValue onChange=(fn (mut this.groupValue))}}
+      <PaperRadio @value="1" @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}}>
         Radio button 1
-      {{/paper-radio}}
-      {{#paper-radio value="2" groupValue=this.groupValue onChange=(fn (mut this.groupValue))}}
+      </PaperRadio>
+      <PaperRadio @value="2" @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}}>
         Radio button 2
-      {{/paper-radio}}
+      </PaperRadio>
     `);
     assert.dom('md-radio-button').hasClass('md-checked');
 
@@ -33,12 +33,12 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio value="1" groupValue=this.groupValue onChange=this.handleChange}}
+      <PaperRadio @value="1" @groupValue={{this.groupValue}} @onChange={{this.handleChange}}>
         Radio button 1
-      {{/paper-radio}}
-      {{#paper-radio value="2" groupValue=this.groupValue onChange=this.handleChange}}
+      </PaperRadio>
+      <PaperRadio @value="2" @groupValue={{this.groupValue}} @onChange={{this.handleChange}}>
         Radio button 2
-      {{/paper-radio}}
+      </PaperRadio>
     `);
 
     await click('md-radio-button:first-child');
@@ -54,9 +54,9 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio toggle=true value="1" groupValue=this.groupValue onChange=this.handleChange}}
+      <PaperRadio @toggle={{true}} @value="1" @groupValue={{this.groupValue}} @onChange={{this.handleChange}}>
         Radio button 1
-      {{/paper-radio}}
+      </PaperRadio>
     `);
 
     await click('md-radio-button');
@@ -70,9 +70,9 @@ module('Integration | Component | paper radio', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio disabled=true value="1" groupValue=this.groupValue onChange=this.handleChange}}
+      <PaperRadio @disabled={{true}} @value="1" @groupValue={{this.groupValue}} @onChange={{this.handleChange}}>
         Radio button 1
-      {{/paper-radio}}
+      </PaperRadio>
     `);
 
     await click('md-radio-button');
@@ -81,7 +81,7 @@ module('Integration | Component | paper radio', function(hooks) {
   test('blockless version should set label inside', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-radio value="1" onChange=(fn (mut this.value)) label="çup?"}}`);
+    await render(hbs`<PaperRadio @value="1" @onChange={{fn (mut this.value)}} @label="çup?" />`);
 
     assert.dom('.md-label > span').hasText('çup?');
   });
@@ -90,9 +90,9 @@ module('Integration | Component | paper radio', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio value="1" onChange=(fn (mut this.value))}}
+      <PaperRadio @value="1" @onChange={{fn (mut this.value)}}>
         çup?
-      {{/paper-radio}}
+      </PaperRadio>
     `);
 
     assert.dom('.md-label > span').hasText('çup?');
@@ -102,7 +102,7 @@ module('Integration | Component | paper radio', function(hooks) {
     assert.expect(1);
 
     assert.throws(() => {
-      this.render(hbs`{{paper-radio value="1"}}`);
+      this.render(hbs`<PaperRadio @value="1" />`);
     }, /requires an `onChange` action/);
   });*/
 
@@ -110,7 +110,7 @@ module('Integration | Component | paper radio', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{paper-radio onChange=null}}
+      <PaperRadio @onChange={{null}} />
     `);
 
     assert.dom('md-radio-button').hasAttribute('role');
@@ -121,7 +121,7 @@ module('Integration | Component | paper radio', function(hooks) {
 
     this.set('groupValue', null);
 
-    await render(hbs`{{paper-radio value="1" groupValue=this.groupValue onChange=null}}`);
+    await render(hbs`<PaperRadio @value="1" @groupValue={{this.groupValue}} @onChange={{null}} />`);
 
     assert.dom('md-radio-button').hasAttribute('aria-checked', 'false');
 
@@ -133,7 +133,7 @@ module('Integration | Component | paper radio', function(hooks) {
   test('it sets aria-label when ariaLabel is passed', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-radio onChange=null ariaLabel="first radio button"}}`);
+    await render(hbs`<PaperRadio @onChange={{null}} @ariaLabel="first radio button" />`);
 
     assert.dom('md-radio-button').hasAttribute('aria-label', 'first radio button');
   });

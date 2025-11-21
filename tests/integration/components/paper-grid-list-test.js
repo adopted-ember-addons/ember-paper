@@ -54,10 +54,10 @@ module('Integration | Component | paper-grid-list', function(hooks) {
   test('it renders tiles with tag name', async function(assert) {
     assert.expect(1);
     await render(hbs`
-      {{#paper-grid-list cols="1" rowHeight="4:3" as |grid|}}
-        {{#grid.tile}}
-        {{/grid.tile}}
-      {{/paper-grid-list}}
+      <PaperGridList @cols="1" @rowHeight="4:3" as |grid|>
+        <grid.tile>
+        </grid.tile>
+      </PaperGridList>
     `);
 
     assert.dom('md-grid-tile').exists({ count: 1 });
@@ -66,12 +66,12 @@ module('Integration | Component | paper-grid-list', function(hooks) {
   test('it renders tiles with footer', async function(assert) {
     assert.expect(1);
     await render(hbs`
-      {{#paper-grid-list cols="1" rowHeight="4:3" as |grid|}}
-        {{#grid.tile as |tile|}}
-          {{#tile.footer}}
-          {{/tile.footer}}
-        {{/grid.tile}}
-      {{/paper-grid-list}}
+      <PaperGridList @cols="1" @rowHeight="4:3" as |grid|>
+        <grid.tile as |tile|>
+          <tile.footer>
+          </tile.footer>
+        </grid.tile>
+      </PaperGridList>
     `);
 
     assert.dom('md-grid-tile-footer').exists({ count: 1 });
@@ -83,13 +83,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list gutter="20px" cols="3" rowHeight="4:3" as |grid|}}
+        <PaperGridList @gutter="20px" @cols="3" @rowHeight="4:3" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -102,13 +102,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="3" rowHeight="75px" as |grid|}}
+        <PaperGridList @cols="3" @rowHeight="75px" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -121,13 +121,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:200px;">
-        {{#paper-grid-list cols="2" rowHeight="2:1" as |grid|}}
+        <PaperGridList @cols="2" @rowHeight="2:1" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -141,13 +141,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:200px;height:120px;">
-        {{#paper-grid-list cols="1" rowHeight="fit" as |grid|}}
+        <PaperGridList @cols="1" @rowHeight="fit" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -160,16 +160,16 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="3" rowHeight="4:3" as |grid|}}
-          {{#grid.tile colspan="3" class="COLSPAN" as |tile|}}
+        <PaperGridList @cols="3" @rowHeight="4:3" as |grid|>
+          <grid.tile @colspan="3" @class="COLSPAN" as |tile|>
             COLSPAN
-          {{/grid.tile}}
+          </grid.tile>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -182,16 +182,16 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="1" rowHeight="4:3" as |grid|}}
-          {{#grid.tile rowspan="2" class="ROWSPAN" as |tile|}}
+        <PaperGridList @cols="1" @rowHeight="4:3" as |grid|>
+          <grid.tile @rowspan="2" @class="ROWSPAN" as |tile|>
             ROWSPAN
-          {{/grid.tile}}
+          </grid.tile>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -206,13 +206,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols=this.cols rowHeight="4:3" as |grid|}}
+        <PaperGridList @cols={{this.cols}} @rowHeight="4:3" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -234,13 +234,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="4" rowHeight="4:3" as |grid|}}
+        <PaperGridList @cols="4" @rowHeight="4:3" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -263,13 +263,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="4" rowHeight="4:3" as |grid|}}
+        <PaperGridList @cols="4" @rowHeight="4:3" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 
@@ -291,13 +291,13 @@ module('Integration | Component | paper-grid-list', function(hooks) {
 
     await render(hbs`
       <div style="width:199px;">
-        {{#paper-grid-list cols="4" rowHeight="4:3" as |grid|}}
+        <PaperGridList @cols="4" @rowHeight="4:3" as |grid|>
           {{#each this.tiles as |item|}}
-            {{#grid.tile class=item as |tile|}}
+            <grid.tile @class={{item}} as |tile|>
               {{item}}
-            {{/grid.tile}}
+            </grid.tile>
           {{/each}}
-        {{/paper-grid-list}}
+        </PaperGridList>
       </div>
     `);
 

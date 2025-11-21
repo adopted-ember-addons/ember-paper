@@ -9,11 +9,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('default active tab is the first', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
+      <PaperTabs as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('.md-tab:nth-child(1)').hasClass('md-active');
@@ -21,11 +21,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('can set default selected tab', async function(assert) {
     await render(hbs`
-      {{#paper-tabs selected=1 as |tabs|}}
+      <PaperTabs @selected={{1}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('.md-tab:nth-child(2)').hasClass('md-active');
@@ -33,17 +33,17 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('block nav bar items renders block', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
-        {{#tabs.tab}}
+      <PaperTabs as |tabs|>
+        <tabs.tab>
           one
-        {{/tabs.tab}}
-        {{#tabs.tab}}
+        </tabs.tab>
+        <tabs.tab>
           two
-        {{/tabs.tab}}
-        {{#tabs.tab}}
+        </tabs.tab>
+        <tabs.tab>
           three
-        {{/tabs.tab}}
-      {{/paper-tabs}}
+        </tabs.tab>
+      </PaperTabs>
     `);
 
     assert.ok(find('.md-tab:nth-child(1)').textContent, 'one');
@@ -55,11 +55,11 @@ module('Integration | Component | paper tabs', function(hooks) {
     this.selected = 1;
 
     await render(hbs`
-      {{#paper-tabs selected=this.selected as |tabs|}}
+      <PaperTabs @selected={{this.selected}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('.md-tab:nth-child(2)').hasClass('md-active');
@@ -72,11 +72,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('clicking on a tab sets it to active', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
+      <PaperTabs as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     await click('.md-tab:nth-child(3)');
@@ -86,11 +86,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('clicking on multiple tabs works', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
+      <PaperTabs as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     await click('.md-tab:nth-child(2)');
@@ -108,11 +108,11 @@ module('Integration | Component | paper tabs', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-tabs onChange=this.onChange as |tabs|}}
+      <PaperTabs @onChange={{this.onChange}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     await click('.md-tab:nth-child(2)');
@@ -126,11 +126,11 @@ module('Integration | Component | paper tabs', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-tabs onChange=this.onChange as |tabs|}}
+      <PaperTabs @onChange={{this.onChange}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
-        {{tabs.tab onClick=this.onClick}}
-      {{/paper-tabs}}
+        <tabs.tab @onClick={{this.onClick}} />
+      </PaperTabs>
     `);
 
     await click('.md-tab:nth-child(3)');
@@ -138,11 +138,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('has ink bar by default', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
+      <PaperTabs as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('md-ink-bar').exists();
@@ -151,11 +151,11 @@ module('Integration | Component | paper tabs', function(hooks) {
   test('noInkBar disables ink bar', async function(assert) {
 
     await render(hbs`
-      {{#paper-tabs noInkBar=true as |tabs|}}
+      <PaperTabs @noInkBar={{true}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('md-ink-bar').doesNotExist();
@@ -163,11 +163,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('ink bar has md-left or md-right class', async function(assert) {
     await render(hbs`
-        {{#paper-tabs as |tabs|}}
-          {{tabs.tab name="Tab one"}}
-          {{tabs.tab name="Tab two"}}
-          {{tabs.tab name="Tab three"}}
-        {{/paper-tabs}}
+        <PaperTabs as |tabs|>
+          <tabs.tab @name="Tab one" />
+          <tabs.tab @name="Tab two" />
+          <tabs.tab @name="Tab three" />
+        </PaperTabs>
       `);
 
     assert.dom('md-ink-bar').hasClass('md-right');
@@ -184,11 +184,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('borderBottom true adds border', async function(assert) {
     await render(hbs`
-      {{#paper-tabs borderBottom=true as |tabs|}}
+      <PaperTabs @borderBottom={{true}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.ok(find('md-tabs').hasAttribute('md-border-bottom'));
@@ -196,11 +196,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('stretch true adds correct class', async function(assert) {
     await render(hbs`
-      {{#paper-tabs stretch=true as |tabs|}}
+      <PaperTabs @stretch={{true}} as |tabs|>
         {{tabs.tab}}
         {{tabs.tab}}
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('md-tabs-wrapper').hasClass('md-stretch-tabs');
@@ -208,11 +208,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('using href renders anchor tags', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
-        {{tabs.tab href="a"}}
-        {{tabs.tab href="b"}}
-        {{tabs.tab href="c"}}
-      {{/paper-tabs}}
+      <PaperTabs as |tabs|>
+        <tabs.tab @href="a" />
+        <tabs.tab @href="b" />
+        <tabs.tab @href="c" />
+      </PaperTabs>
     `);
 
     let tabs = findAll('a.md-tab');
@@ -224,9 +224,9 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('using href renders anchor tags', async function(assert) {
     await render(hbs`
-      {{#paper-tabs center=true as |tabs|}}
+      <PaperTabs @center={{true}} as |tabs|>
         {{tabs.tab}}
-      {{/paper-tabs}}
+      </PaperTabs>
     `);
 
     assert.dom('md-tabs-canvas').hasClass('md-center-tabs');
@@ -235,17 +235,17 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('disabled tab cannot be accessed', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
-        {{#tabs.tab}}
+      <PaperTabs as |tabs|>
+        <tabs.tab>
           one
-        {{/tabs.tab}}
-        {{#tabs.tab disabled=true}}
+        </tabs.tab>
+        <tabs.tab @disabled={{true}}>
           two
-        {{/tabs.tab}}
-        {{#tabs.tab}}
+        </tabs.tab>
+        <tabs.tab>
           three
-        {{/tabs.tab}}
-      {{/paper-tabs}}
+        </tabs.tab>
+      </PaperTabs>
     `);
 
     await click('.md-tab:nth-child(2)');
@@ -255,11 +255,11 @@ module('Integration | Component | paper tabs', function(hooks) {
 
   test('using href and disabled does not render anchor tags', async function(assert) {
     await render(hbs`
-      {{#paper-tabs as |tabs|}}
-        {{tabs.tab href="a"}}
-        {{tabs.tab href="b" disabled=true}}
-        {{tabs.tab href="c"}}
-      {{/paper-tabs}}
+      <PaperTabs as |tabs|>
+        <tabs.tab @href="a" />
+        <tabs.tab @href="b" @disabled={{true}} />
+        <tabs.tab @href="c" />
+      </PaperTabs>
     `);
 
     assert.notOk(find('.md-tab:nth-child(2)').hasAttribute('href'));
