@@ -1,15 +1,11 @@
 {
   "solution": {
     "ember-paper": {
-      "impact": "minor",
-      "oldVersion": "1.0.0-beta.39",
-      "newVersion": "1.0.0",
+      "impact": "patch",
+      "oldVersion": "1.0.0",
+      "newVersion": "1.0.1",
       "tagName": "latest",
       "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
         {
           "impact": "patch",
           "reason": "Appears in changelog section :house: Internal"
@@ -18,5 +14,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-11-21)\n\n* ember-paper 1.0.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-paper`\n  * [#1343](https://github.com/adopted-ember-addons/ember-paper/pull/1343) Release 1.0.0 stable ([@mansona](https://github.com/mansona))\n\n#### :house: Internal\n* `ember-paper`\n  * [#1342](https://github.com/adopted-ember-addons/ember-paper/pull/1342) update release-plan ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
+  "description": "## Release (2025-11-21)\n\n* ember-paper 1.0.1 (patch)\n\n#### :house: Internal\n* `ember-paper`\n  * [#1349](https://github.com/adopted-ember-addons/ember-paper/pull/1349) update lint-to-the-future ([@mansona](https://github.com/mansona))\n  * [#1348](https://github.com/adopted-ember-addons/ember-paper/pull/1348) fix curly bracket invocation in demo app ([@mansona](https://github.com/mansona))\n  * [#1346](https://github.com/adopted-ember-addons/ember-paper/pull/1346) remove all unused template-lint-disable directives ([@mansona](https://github.com/mansona))\n  * [#1345](https://github.com/adopted-ember-addons/ember-paper/pull/1345) run the angle bracket codemod on all tests ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
 }
