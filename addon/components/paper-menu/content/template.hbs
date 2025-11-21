@@ -1,4 +1,4 @@
-{{! template-lint-disable no-at-ember-render-modifiers }}
+{{! template-lint-disable no-at-ember-render-modifiers no-invalid-interactive }}
 {{!-- send the backdrop to the same place as the content --}}
 {{#if @dropdown.isOpen}}
   {{#maybe-in-element this.destinationElement @renderInPlace}}
@@ -26,8 +26,7 @@
   @otherStyles={{this.customStyles}}
   @animationEnabled={{false}}
   ...attributes>
-  {{! template-lint-disable no-invalid-interactive }}
-  <md-menu-content width={{@width}} class={{if @dense "md-dense"}} {{did-insert this.focusItem}} {{on "keydown" this.handleKeyDown}}>
+    <md-menu-content width={{@width}} class={{if @dense "md-dense"}} {{did-insert this.focusItem}} {{on "keydown" this.handleKeyDown}}>
     {{yield (hash
       menu-item=(component "paper-menu/item" dropdown=@dropdown parentComponent=this)
     )}}
