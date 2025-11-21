@@ -1,4 +1,4 @@
-{{! template-lint-disable no-curly-component-invocation no-unbalanced-curlies }}
+{{! template-lint-disable no-unbalanced-curlies }}
 <PageToolbar @pageTitle="Tabs" @isDemo={{true}} />
 
 <DocContent @class="tabs-demo">
@@ -195,7 +195,7 @@
             </tabs.tab>
           </PaperTabs>
 
-          {{liquid-outlet class="md-padding"}}
+          <LiquidOutlet class="md-padding" />
           {{! END-SNIPPET }}
         </PaperContent>
       </div>
