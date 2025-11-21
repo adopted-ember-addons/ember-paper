@@ -11,9 +11,7 @@ module('Integration | Component | paper-chips', function(hooks) {
     this.items = ['Two', 'Three', 'Ten', 'Thirtneen'];
     this.selectedItems = [];
     await render(hbs`
-    {{paper-chips
-      options=this.items
-      content=this.selectedItems}}`);
+    <PaperChips @options={{this.items}} @content={{this.selectedItems}} />`);
 
     await fillIn('md-chips input', 'T');
     await waitFor('.md-autocomplete-suggestions li', { timeout: 2000 });
@@ -25,9 +23,7 @@ module('Integration | Component | paper-chips', function(hooks) {
     this.selectedItems = [];
 
     await render(hbs`
-    {{paper-chips
-      options=this.items
-      content=this.selectedItems}}`);
+    <PaperChips @options={{this.items}} @content={{this.selectedItems}} />`);
 
     await fillIn('md-chips input', 'T');
 
@@ -42,10 +38,7 @@ module('Integration | Component | paper-chips', function(hooks) {
     this.defaultHighlighted = (a) => a.results[1];
 
     await render(hbs`
-    {{paper-chips
-      defaultHighlighted=this.defaultHighlighted
-      options=this.items
-      content=this.selectedItems}}`);
+    <PaperChips @defaultHighlighted={{this.defaultHighlighted}} @options={{this.items}} @content={{this.selectedItems}} />`);
 
     await fillIn('md-chips input', 'T');
     await waitFor('.md-autocomplete-suggestions li', { timeout: 2000 });
@@ -62,11 +55,7 @@ module('Integration | Component | paper-chips', function(hooks) {
     };
 
     await render(hbs`
-      {{paper-chips
-        addItem=this.addItems
-        defaultHighlighted=this.defaultHighlighted
-        options=this.items
-        content=this.selectedItems}}
+      <PaperChips @addItem={{this.addItems}} @defaultHighlighted={{this.defaultHighlighted}} @options={{this.items}} @content={{this.selectedItems}} />
     `);
 
     await fillIn('md-chips input', 'T');

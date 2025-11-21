@@ -11,8 +11,8 @@ module('Integration | Component | paper divider', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-divider inset=true}}
-      {{/paper-divider}}
+      <PaperDivider @inset={{true}}>
+      </PaperDivider>
     `);
 
     assert.dom('md-divider').hasAttribute('md-inset');
@@ -22,8 +22,8 @@ module('Integration | Component | paper divider', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-divider inset=false}}
-      {{/paper-divider}}
+      <PaperDivider @inset={{false}}>
+      </PaperDivider>
     `);
 
     assert.dom('md-divider').doesNotHaveAttribute('md-inset');
@@ -33,8 +33,8 @@ module('Integration | Component | paper divider', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-divider}}
-      {{/paper-divider}}
+      <PaperDivider>
+      </PaperDivider>
     `);
     // Attribute should NOT be present in md-divider
     assert.dom('md-divider').doesNotHaveAttribute('md-inset');

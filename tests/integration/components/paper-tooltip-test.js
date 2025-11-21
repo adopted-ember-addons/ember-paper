@@ -12,12 +12,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
       test(`opens after ${openEvent} and closes after ${closeEvent}`, async function(assert) {
 
         await render(hbs`
-          {{#paper-button}}
+          <PaperButton>
             button
-            {{#paper-tooltip}}
+            <PaperTooltip>
               tooltip
-            {{/paper-tooltip}}
-          {{/paper-button}}
+            </PaperTooltip>
+          </PaperButton>
         `);
 
         await triggerEvent('.md-button', openEvent);
@@ -35,12 +35,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
     test(`closes after global ${closeEvent}`, async function(assert) {
 
       await render(hbs`
-        {{#paper-button}}
+        <PaperButton>
           button
-          {{#paper-tooltip}}
+          <PaperTooltip>
             tooltip
-          {{/paper-tooltip}}
-        {{/paper-button}}
+          </PaperTooltip>
+        </PaperButton>
       `);
 
       await triggerEvent('.md-button', 'mouseenter');
@@ -58,12 +58,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
   test('renders on bottom by default', async function(assert) {
 
     await render(hbs`
-      {{#paper-button}}
+      <PaperButton>
         button
-        {{#paper-tooltip}}
+        <PaperTooltip>
           tooltip
-        {{/paper-tooltip}}
-      {{/paper-button}}
+        </PaperTooltip>
+      </PaperButton>
     `);
 
     await triggerEvent('.md-button', 'mouseenter');
@@ -74,12 +74,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
   test('renders on bottom by default', async function(assert) {
 
     await render(hbs`
-      {{#paper-button}}
+      <PaperButton>
         button
-        {{#paper-tooltip}}
+        <PaperTooltip>
           tooltip
-        {{/paper-tooltip}}
-      {{/paper-button}}
+        </PaperTooltip>
+      </PaperButton>
     `);
 
     await triggerEvent('.md-button', 'mouseenter');
@@ -91,12 +91,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
     test(`renders on ${position}`, async function(assert) {
       this.position = position;
       await render(hbs`
-        {{#paper-button}}
+        <PaperButton>
           button
-          {{#paper-tooltip position=this.position}}
+          <PaperTooltip @position={{this.position}}>
             tooltip
-          {{/paper-tooltip}}
-        {{/paper-button}}
+          </PaperTooltip>
+        </PaperButton>
       `);
 
       await triggerEvent('.md-button', 'mouseenter');
@@ -108,12 +108,12 @@ module('Integration | Component | paper-tooltip', function(hooks) {
   test('custom class is applied on md-tooltip element', async function(assert) {
 
     await render(hbs`
-      {{#paper-button}}
+      <PaperButton>
         button
-        {{#paper-tooltip class="my-tooltip"}}
+        <PaperTooltip @class="my-tooltip">
           tooltip
-        {{/paper-tooltip}}
-      {{/paper-button}}
+        </PaperTooltip>
+      </PaperButton>
     `);
 
     await triggerEvent('.md-button', 'mouseenter');

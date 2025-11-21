@@ -9,7 +9,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('should render proper dialog wrapping selectors', async function(assert) {
     await render(hbs`
-      {{paper-dialog}}
+      <PaperDialog />
     `);
 
     let selectors = findAll('#ember-testing > .md-dialog-container md-dialog');
@@ -20,7 +20,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('should render empty dialog when blockless', async function(assert) {
     await render(hbs`
-      {{paper-dialog}}
+      <PaperDialog />
     `);
 
     let dialogContent = find('md-dialog').innerHTML
@@ -31,16 +31,16 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('should yield content as a block component', async function(assert) {
     await render(hbs`
-      {{#paper-dialog}}
+      <PaperDialog>
         Lorem ipsum.
-      {{/paper-dialog}}
+      </PaperDialog>
     `);
     assert.dom('md-dialog').hasText('Lorem ipsum.');
   });
 
   test('should render in ember-testing if no parent is defined', async function(assert) {
     await render(hbs`
-      {{paper-dialog}}
+      <PaperDialog />
     `);
     assert.dom('#ember-testing md-dialog').exists({ count: 1 });
   });
@@ -49,9 +49,9 @@ module('Integration | Component | paper-dialog', function(hooks) {
     await render(hbs`
       <div id="paper-wormhole"></div>
       <div id="sagittarius-a"></div>
-      {{#paper-dialog parent="#sagittarius-a"}}
+      <PaperDialog @parent="#sagittarius-a">
         So this is singularity, eh?
-      {{/paper-dialog}}
+      </PaperDialog>
     `);
 
     assert.dom('#paper-wormhole md-dialog').doesNotExist();
@@ -63,7 +63,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
   test('should only prevent scrolling behind scoped modal', async function(assert) {
     await render(hbs`
       <div id="sagittarius-a"></div>
-      {{paper-dialog parent="#sagittarius-a"}}
+      <PaperDialog @parent="#sagittarius-a" />
     `);
 
     assert.equal(window.getComputedStyle(find('md-backdrop')).getPropertyValue('position'), 'absolute', 'backdrop is absolute');
@@ -72,7 +72,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
   test('backdrop is opaque by default', async function(assert) {
     await render(hbs`
       <div id="paper-wormhole"></div>
-      {{paper-dialog}}
+      <PaperDialog />
     `);
     assert.dom('md-backdrop').hasClass('md-opaque');
   });
@@ -80,7 +80,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
   test('backdrop opaqueness can be disabled ', async function(assert) {
     await render(hbs`
       <div id="paper-wormhole"></div>
-      {{paper-dialog opaque=false}}
+      <PaperDialog @opaque={{false}} />
     `);
     assert.dom('md-backdrop').doesNotHaveClass('md-opaque');
   });
@@ -89,7 +89,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{paper-dialog}}
+      <PaperDialog />
     `);
 
     assert.equal(find('md-backdrop').style.position, 'fixed', 'backdrop is fixed');
@@ -98,7 +98,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
   skip('applies transitions when opening and closing', async function(assert) {
     await render(hbs`
       {{#if this.dialogOpen}}
-        {{paper-dialog}}
+        <PaperDialog />
       {{/if}}
     `);
     this.set('dialogOpen', true);
@@ -130,7 +130,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
     await render(hbs`
       {{#if this.dialogOpen}}
-        {{paper-dialog clickOutsideToClose=true onClose=this.closeDialog}}
+        <PaperDialog @clickOutsideToClose={{true}} @onClose={{this.closeDialog}} />
       {{/if}}
     `);
 
@@ -142,7 +142,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
   test('click outside should not close dialog by default', async function(assert) {
     assert.expect(2);
     await render(hbs`
-      {{paper-dialog}}
+      <PaperDialog />
     `);
 
     assert.dom('md-dialog').exists();
@@ -155,9 +155,9 @@ module('Integration | Component | paper-dialog', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-dialog clickOutsideToClose=true}}
-        <button id="the-button">Go somewhere</button>
-      {{/paper-dialog}}
+      <PaperDialog @clickOutsideToClose={{true}}>
+        <button type="button" id="the-button">Go somewhere</button>
+      </PaperDialog>
     `);
 
     assert.dom('md-dialog').exists({ count: 1 });
@@ -168,7 +168,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('has opt-in support for fullscreen at responsive breakpoint', async function(assert) {
     await render(hbs`
-      {{paper-dialog fullscreen=true}}
+      <PaperDialog @fullscreen={{true}} />
     `);
     assert.dom('md-dialog').hasClass('md-dialog-fullscreen');
   });
@@ -183,7 +183,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
     await render(hbs`
       {{#if this.showDialog}}
-        {{paper-dialog onClose=this.closeDialog}}
+        <PaperDialog @onClose={{this.closeDialog}} />
       {{/if}}
     `);
 
@@ -202,13 +202,13 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
     await render(hbs`
       {{#if this.showDialog}}
-        {{#paper-dialog onClose=this.closeDialog origin="#theorigin"}}
-          {{#paper-dialog-actions}}
-            <button id="thedialogbutton">çup?</button>
-          {{/paper-dialog-actions}}
-        {{/paper-dialog}}
+        <PaperDialog @onClose={{this.closeDialog}} @origin="#theorigin">
+          <PaperDialogActions>
+            <button type="button" id="thedialogbutton">çup?</button>
+          </PaperDialogActions>
+        </PaperDialog>
       {{/if}}
-      <button id="theorigin" onclick={{this.openDialog}}>
+      <button type="button" id="theorigin" onclick={{this.openDialog}}>
         The origin
       </button>
     `);
@@ -227,7 +227,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('can specify dialog container classes', async function(assert) {
     await render(hbs`
-      {{paper-dialog dialogContainerClass="flex-50 my-dialog-container"}}
+      <PaperDialog @dialogContainerClass="flex-50 my-dialog-container" />
     `);
 
     assert.dom('.md-dialog-container').hasClass('flex-50');
@@ -236,7 +236,7 @@ module('Integration | Component | paper-dialog', function(hooks) {
 
   test('can specify dialog css classes', async function(assert) {
     await render(hbs`
-      {{paper-dialog class="flex-50 my-dialog-inner"}}
+      <PaperDialog @class="flex-50 my-dialog-inner" />
     `);
 
     assert.dom('md-dialog').hasClass('flex-50');

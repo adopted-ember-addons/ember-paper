@@ -10,7 +10,7 @@ module('Integration | Component | paper speed dial', function(hooks) {
   ['fling', 'scale'].forEach((animation) => {
     test(`adds the correct class for ${animation} animation`, async function(assert) {
       this.animation = animation;
-      await render(hbs`{{paper-speed-dial animation=this.animation}}`);
+      await render(hbs`<PaperSpeedDial @animation={{this.animation}} />`);
 
       assert.dom('md-fab-speed-dial').hasClass(`md-${animation}`);
     });
@@ -19,23 +19,23 @@ module('Integration | Component | paper speed dial', function(hooks) {
   ['up', 'down', 'left', 'right'].forEach((direction) => {
     test(`adds the correct class for ${direction} direction`, async function(assert) {
       this.direction = direction;
-      await render(hbs`{{paper-speed-dial direction=this.direction}}`);
+      await render(hbs`<PaperSpeedDial @direction={{this.direction}} />`);
 
       assert.dom('md-fab-speed-dial').hasClass(`md-${direction}`);
     });
   });
 
   test('hoverFull=true adds the correct md-hover-full class', async function(assert) {
-    await render(hbs`{{paper-speed-dial hoverFull=true}}`);
+    await render(hbs`<PaperSpeedDial @hoverFull={{true}} />`);
 
     assert.dom('md-fab-speed-dial').hasClass('md-hover-full');
   });
 
   test('clicking the trigger opens the speed dial', async function(assert) {
     await render(hbs`
-      {{#paper-speed-dial as |dial|}}
+      <PaperSpeedDial as |dial|>
         {{dial.trigger}}
-      {{/paper-speed-dial}}
+      </PaperSpeedDial>
     `);
 
     assert.dom('md-fab-speed-dial').hasNoClass('md-is-open');
@@ -47,9 +47,9 @@ module('Integration | Component | paper speed dial', function(hooks) {
 
   test('focusing out the speed dial trigger closes it', async function(assert) {
     await render(hbs`
-      {{#paper-speed-dial open=true as |dial|}}
+      <PaperSpeedDial @open={{true}} as |dial|>
         {{dial.trigger}}
-      {{/paper-speed-dial}}
+      </PaperSpeedDial>
     `);
 
     assert.dom('md-fab-speed-dial').hasClass('md-is-open');
@@ -63,9 +63,9 @@ module('Integration | Component | paper speed dial', function(hooks) {
     this.open = false;
 
     await render(hbs`
-      {{#paper-speed-dial open=this.open as |dial|}}
+      <PaperSpeedDial @open={{this.open}} as |dial|>
         {{dial.trigger}}
-      {{/paper-speed-dial}}
+      </PaperSpeedDial>
     `);
 
     assert.dom('md-fab-speed-dial').hasNoClass('md-is-open');
@@ -87,9 +87,9 @@ module('Integration | Component | paper speed dial', function(hooks) {
     };
 
     await render(hbs`
-      {{#paper-speed-dial onToggle=this.onToggle as |dial|}}
+      <PaperSpeedDial @onToggle={{this.onToggle}} as |dial|>
         {{dial.trigger}}
-      {{/paper-speed-dial}}
+      </PaperSpeedDial>
     `);
 
     await click('md-fab-trigger');

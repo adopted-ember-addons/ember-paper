@@ -11,9 +11,9 @@ module('Integration | Component | paper-toast', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-toast}}
+      <PaperToast>
         Toast was shown successfully!
-      {{/paper-toast}}
+      </PaperToast>
     `);
 
     assert.dom('md-toast').hasText('Toast was shown successfully!');
@@ -29,9 +29,9 @@ module('Integration | Component | paper-toast', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-toast duration=100 onClose=this.closeAction}}
+      <PaperToast @duration={{100}} @onClose={{this.closeAction}}>
         Toast was shown successfully!
-      {{/paper-toast}}
+      </PaperToast>
     `);
   });
 
@@ -43,15 +43,15 @@ module('Integration | Component | paper-toast', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-toast duration=false onClose=this.closeAction}}
+      <PaperToast @duration={{false}} @onClose={{this.closeAction}}>
         Toast was shown successfully!
-      {{/paper-toast}}
+      </PaperToast>
     `);
   });
 
   test('should render in ember-testing if no parent is defined', async function(assert) {
     await render(hbs`
-      {{paper-toast}}
+      <PaperToast />
     `);
     assert.dom('#ember-testing md-toast').exists({ count: 1 }, 'rendered in default');
   });
@@ -59,9 +59,9 @@ module('Integration | Component | paper-toast', function(hooks) {
   test('should render in specific wormhole if parent is defined', async function(assert) {
     await render(hbs`
       <div id="sagittarius-a"></div>
-      {{#paper-toast parent="#sagittarius-a"}}
+      <PaperToast @parent="#sagittarius-a">
         So this is singularity, eh?
-      {{/paper-toast}}
+      </PaperToast>
     `);
     assert.dom('#ember-testing > md-toast').doesNotExist('did not render in default');
     assert.dom('#sagittarius-a md-toast').exists({ count: 1 }, 'rendered in parent');
@@ -70,7 +70,7 @@ module('Integration | Component | paper-toast', function(hooks) {
 
   test('capsule sets the correct class', async function(assert) {
     await render(hbs`
-      {{paper-toast capsule=true}}
+      <PaperToast @capsule={{true}} />
     `);
 
     assert.dom('md-toast').hasClass('md-capsule', 'rendered in default');
@@ -84,7 +84,7 @@ module('Integration | Component | paper-toast', function(hooks) {
 
       await render(hbs`
         <div id="sagittarius-a"></div>
-        {{paper-toast position=this.position parent="#sagittarius-a"}}
+        <PaperToast @position={{this.position}} @parent="#sagittarius-a" />
       `);
 
       assert.dom('#sagittarius-a > md-toast').hasClass(`md-${x}`);

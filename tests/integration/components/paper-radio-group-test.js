@@ -13,17 +13,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
 
     this.set('groupValue', '1');
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     assert.dom('md-radio-button').hasClass('md-checked');
@@ -41,17 +41,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=this.handleChange as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @onChange={{this.handleChange}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await click('md-radio-button:first-child');
@@ -66,17 +66,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue toggle=true onChange=this.handleChange as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @toggle={{true}} @onChange={{this.handleChange}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await click('md-radio-button:first-child');
@@ -90,17 +90,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue disabled=true onChange=(fn (mut this.groupValue)) as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @disabled={{true}} @onChange={{fn (mut this.groupValue)}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await click('md-radio-button');
@@ -111,17 +111,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await triggerKeyEvent('md-radio-group', 'keydown', 40);
@@ -137,17 +137,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
-        {{#group.radio value="1"}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}} as |group|>
+        <group.radio @value="1">
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await triggerKeyEvent('md-radio-group', 'keydown', 38);
@@ -163,17 +163,17 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#paper-radio-group groupValue=this.groupValue onChange=(fn (mut this.groupValue)) as |group|}}
-        {{#group.radio value=0}}
+      <PaperRadioGroup @groupValue={{this.groupValue}} @onChange={{fn (mut this.groupValue)}} as |group|>
+        <group.radio @value={{0}}>
           Radio button 1
-        {{/group.radio}}
-        {{#group.radio value="2"}}
+        </group.radio>
+        <group.radio @value="2">
           Radio button 2
-        {{/group.radio}}
-        {{#group.radio value="3"}}
+        </group.radio>
+        <group.radio @value="3">
           Radio button 3
-        {{/group.radio}}
-      {{/paper-radio-group}}
+        </group.radio>
+      </PaperRadioGroup>
     `);
 
     await triggerKeyEvent('md-radio-group', 'keydown', 40);
@@ -190,11 +190,11 @@ module('Integration | Component | paper-radio-group', function(hooks) {
 
     assert.throws(() => {
       this.render(hbs`
-        {{#paper-radio-group groupValue=groupValue as |group|}}
-          {{#group.radio value="1"}}
+        <PaperRadioGroup @groupValue={{groupValue}} as |group|>
+          <group.radio @value="1">
             Radio button 1
-          {{/group.radio}}
-        {{/paper-radio-group}}
+          </group.radio>
+        </PaperRadioGroup>
       `);
     }, /requires an `onChange` action/);
   });*/
@@ -207,9 +207,9 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     }));
 
     await render(hbs`
-      {{#paper-radio-group radioComponent="custom-radio" groupValue=this.groupValue onChange=null as |group|}}
+      <PaperRadioGroup @radioComponent="custom-radio" @groupValue={{this.groupValue}} @onChange={{null}} as |group|>
         {{group.radio}}
-      {{/paper-radio-group}}
+      </PaperRadioGroup>
     `);
 
     assert.dom('.custom-radio').exists({ count: 1 }, 'custom radio component is displayed');
@@ -219,11 +219,11 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio-group onChange=null as |group|}}
-        {{#group.label}}
+      <PaperRadioGroup @onChange={{null}} as |group|>
+        <group.label>
           group label
-        {{/group.label}}
-      {{/paper-radio-group}}
+        </group.label>
+      </PaperRadioGroup>
     `);
 
     assert.dom('md-label').exists();
@@ -233,11 +233,11 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio-group onChange=null as |group|}}
-        {{#group.label}}
+      <PaperRadioGroup @onChange={{null}} as |group|>
+        <group.label>
           group label
-        {{/group.label}}
-      {{/paper-radio-group}}
+        </group.label>
+      </PaperRadioGroup>
     `);
     let labelId = find('md-radio-group').getAttribute('aria-labelledby');
     assert.dom(`#${labelId}`).hasText('group label');
@@ -247,9 +247,9 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio-group onChange=null as |group|}}
+      <PaperRadioGroup @onChange={{null}} as |group|>
         {{group.radio}}
-      {{/paper-radio-group}}
+      </PaperRadioGroup>
     `);
 
     assert.dom('md-radio-group').doesNotHaveAttribute('aria-labelledby');
@@ -259,9 +259,9 @@ module('Integration | Component | paper-radio-group', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-radio-group onChange=null as |group|}}
+      <PaperRadioGroup @onChange={{null}} as |group|>
         {{group.radio}}
-      {{/paper-radio-group}}
+      </PaperRadioGroup>
     `);
 
     assert.dom('md-radio-group').hasAttribute('role');

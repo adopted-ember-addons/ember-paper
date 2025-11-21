@@ -9,20 +9,20 @@ module('Integration | Component | paper progress circular', function(hooks) {
 
   test('should auto-set the md-mode to "indeterminate" if not specified', async function(assert) {
     assert.expect(1);
-    await render(hbs`{{paper-progress-circular}}`);
+    await render(hbs`<PaperProgressCircular />`);
     assert.dom('md-progress-circular').hasAttribute('md-mode', 'indeterminate');
   });
 
   test('should auto-set the md-mode to "determinate" if a value is specified', async function(assert) {
     assert.expect(1);
-    await render(hbs`{{paper-progress-circular value=12}}`);
+    await render(hbs`<PaperProgressCircular @value={{12}} />`);
 
     assert.dom('md-progress-circular').hasAttribute('md-mode', 'determinate');
   });
 
   test('should set correct size based on diameter', async function(assert) {
     assert.expect(2);
-    await render(hbs`{{paper-progress-circular diameter=25}}`);
+    await render(hbs`<PaperProgressCircular @diameter={{25}} />`);
 
     assert.dom('md-progress-circular').hasAttribute('style', /height:.*25px/);
     assert.dom('md-progress-circular').hasAttribute('style', /width:.*25px/);
@@ -32,7 +32,7 @@ module('Integration | Component | paper progress circular', function(hooks) {
   test('renders correctly with explicit value and diameter', async function(assert) {
     assert.expect(5);
 
-    await render(hbs`{{paper-progress-circular value=50 diameter=25}}`);
+    await render(hbs`<PaperProgressCircular @value={{50}} @diameter={{25}} />`);
 
     await settled();
 

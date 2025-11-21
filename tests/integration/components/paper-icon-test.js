@@ -10,7 +10,7 @@ module('Integration | Component | paper-icon', function(hooks) {
   test('it renders with tag name', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-icon icon="check"}}`);
+    await render(hbs`<PaperIcon @icon="check" />`);
 
     assert.dom('md-icon').exists({ count: 1 });
   });

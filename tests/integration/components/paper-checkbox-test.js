@@ -11,7 +11,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
     assert.expect(2);
 
     this.set('value', true);
-    await render(hbs`{{paper-checkbox value=this.value label="Blue" onChange=(fn (mut this.value))}}`);
+    await render(hbs`<PaperCheckbox @value={{this.value}} @label="Blue" @onChange={{fn (mut this.value)}} />`);
 
     assert.dom('md-checkbox').hasClass('md-checked');
 
@@ -28,7 +28,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.equal(value, false);
     });
 
-    await render(hbs`{{paper-checkbox value=this.value onChange=this.handleChange}}`);
+    await render(hbs`<PaperCheckbox @value={{this.value}} @onChange={{this.handleChange}} />`);
 
     await click('md-checkbox');
   });
@@ -41,7 +41,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.equal(value, true);
     });
 
-    await render(hbs`{{paper-checkbox value=this.value onChange=this.handleChange}}`);
+    await render(hbs`<PaperCheckbox @value={{this.value}} @onChange={{this.handleChange}} />`);
 
     await click('md-checkbox');
 
@@ -55,7 +55,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.equal(value, true);
     });
 
-    await render(hbs`{{paper-checkbox disabled=true value=this.value onChange=this.handleChange}}`);
+    await render(hbs`<PaperCheckbox @disabled={{true}} @value={{this.value}} @onChange={{this.handleChange}} />`);
 
     await click('md-checkbox');
   });
@@ -66,7 +66,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.expect(2);
 
       this.set('value', false);
-      await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value))}}`);
+      await render(hbs`<PaperCheckbox @value={{this.value}} @onChange={{fn (mut this.value)}} />`);
       assert.equal(this.value, false);
 
       await triggerKeyEvent('md-checkbox', 'keypress', keyCode);
@@ -78,7 +78,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
       assert.expect(2);
 
       this.set('value', true);
-      await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value))}}`);
+      await render(hbs`<PaperCheckbox @value={{this.value}} @onChange={{fn (mut this.value)}} />`);
       assert.equal(this.value, true);
 
       await triggerKeyEvent('md-checkbox', 'keypress', keyCode);
@@ -90,7 +90,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
   test('blockless version should set label inside', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{paper-checkbox value=this.value onChange=(fn (mut this.value)) label="çup?"}}`);
+    await render(hbs`<PaperCheckbox @value={{this.value}} @onChange={{fn (mut this.value)}} @label="çup?" />`);
 
     assert.dom('.md-label > span').hasText('çup?');
   });
@@ -99,9 +99,9 @@ module('Integration | Component | paper checkbox', function(hooks) {
     assert.expect(1);
 
     await render(hbs`
-      {{#paper-checkbox value=this.value onChange=(fn (mut this.value))}}
+      <PaperCheckbox @value={{this.value}} @onChange={{fn (mut this.value)}}>
         çup?
-      {{/paper-checkbox}}
+      </PaperCheckbox>
     `);
 
     assert.dom('.md-label > span').hasText('çup?');
@@ -111,7 +111,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
     assert.expect(1);
 
     assert.throws(() => {
-      this.render(hbs`{{paper-checkbox value=true}}`);
+      this.render(hbs`<PaperCheckbox @value={{true}} />`);
     }, /requires an `onChange` action/);
   });*/
 
@@ -120,7 +120,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
 
     this.set('value', true);
     await render(hbs`
-      {{paper-checkbox value=this.value indeterminate=this.indeterminate label="Blue" onChange=(fn (mut this.value))}}
+      <PaperCheckbox @value={{this.value}} @indeterminate={{this.indeterminate}} @label="Blue" @onChange={{fn (mut this.value)}} />
     `);
 
     assert.dom('md-checkbox').hasClass('md-checked');
@@ -136,7 +136,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
     this.set('value', false);
     this.set('indeterminate', false);
 
-    await render(hbs`{{paper-checkbox onChange=null value=this.value indeterminate=this.indeterminate}}`);
+    await render(hbs`<PaperCheckbox @onChange={{null}} @value={{this.value}} @indeterminate={{this.indeterminate}} />`);
     assert.dom('md-checkbox').hasAttribute('aria-checked', 'false');
 
     this.set('value', true);
@@ -147,7 +147,7 @@ module('Integration | Component | paper checkbox', function(hooks) {
   });
 
   test('it sets correct aria-labelledby for label passed as property', async function(assert) {
-    await render(hbs`{{paper-checkbox onChange=null value=true label="important label"}}`);
+    await render(hbs`<PaperCheckbox @onChange={{null}} @value={{true}} @label="important label" />`);
 
     let labelId = find('md-checkbox').getAttribute('aria-labelledby');
 
@@ -156,9 +156,9 @@ module('Integration | Component | paper checkbox', function(hooks) {
 
   test('it sets correct aria-labelledby for yielded label', async function(assert) {
     await render(hbs`
-      {{#paper-checkbox onChange=null value=true}}
+      <PaperCheckbox @onChange={{null}} @value={{true}}>
         yielded label
-      {{/paper-checkbox}}
+      </PaperCheckbox>
     `);
 
     let labelId = find('md-checkbox').getAttribute('aria-labelledby');
@@ -167,13 +167,13 @@ module('Integration | Component | paper checkbox', function(hooks) {
   });
 
   test('it has correct role', async function(assert) {
-    await render(hbs`{{paper-checkbox onChange=null value=true}}`);
+    await render(hbs`<PaperCheckbox @onChange={{null}} @value={{true}} />`);
 
     assert.dom('md-checkbox').hasAttribute('role');
   });
 
   test('it sets aria-label when ariaLabel is passed', async function(assert) {
-    await render(hbs`{{paper-checkbox onChange=null value=true ariaLabel='checkbox aria label'}}`);
+    await render(hbs`<PaperCheckbox @onChange={{null}} @value={{true}} @ariaLabel="checkbox aria label" />`);
 
     assert.dom('md-checkbox').hasAttribute('aria-label', 'checkbox aria label');
   });

@@ -7,49 +7,39 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | paper-autocomplete', function(hooks) {
   setupRenderingTest(hooks);
 
+  // TODO uncomment out this test when paper-autocomplete is a glimmer component
   /* test('either `onSearchTextChange` or `onSelectionChange` functions are provided provided', function(assert) {
     assert.expect(4);
 
     assert.throws(() => {
       this.render(hbs`
-        {{#paper-autocomplete options=countries selected=selected as |opt|}}
+        <PaperAutocomplete @options={{countries}} @selected={{selected}} as |opt|>
           {{opt}}
-        {{/paper-autocomplete}}
+        </PaperAutocomplete>
         `);
     }, 'requires at least one of the `onSelectionChange` or `onSearchTextChange` functions to be provided.');
 
     assert.ok(() => {
       this.render(hbs`
-        {{#paper-autocomplete
-            options=countries
-            selected=selected
-            onSelectionChange=(fn (mut selected)) as |opt|}}
+        <PaperAutocomplete @options={{countries}} @selected={{selected}} @onSelectionChange={{fn (mut selected)}} as |opt|>
           {{opt}}
-        {{/paper-autocomplete}}
+        </PaperAutocomplete>
         `);
     }, 'does not throw when on `onSelectionChange` is provided');
 
     assert.ok(() => {
       this.render(hbs`
-        {{#paper-autocomplete
-            options=countries
-            searchText=searchText
-            onSearchTextChange=(fn (mut searchText)) as |opt|}}
+        <PaperAutocomplete @options={{countries}} @searchText={{searchText}} @onSearchTextChange={{fn (mut searchText)}} as |opt|>
           {{opt}}
-        {{/paper-autocomplete}}
+        </PaperAutocomplete>
         `);
     }, 'does not throw when on `onSearchTextChange` is provided');
 
     assert.ok(() => {
       this.render(hbs`
-        {{#paper-autocomplete
-            options=countries
-            searchText=searchText
-            onSearchTextChange=(fn (mut searchText))
-            selected=selected
-            onSelectionChange=(fn (mut selected)) as |opt|}}
+        <PaperAutocomplete @options={{countries}} @searchText={{searchText}} @onSearchTextChange={{fn (mut searchText)}} @selected={{selected}} @onSelectionChange={{fn (mut selected)}} as |opt|>
           {{opt}}
-        {{/paper-autocomplete}}
+        </PaperAutocomplete>
         `);
     }, 'does not throw when both `onSearchTextChange` and `onSelectionChange` are provided');
   });*/
@@ -58,17 +48,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     assert.expect(1);
     this.set('items', ['Ember', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']);
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -83,17 +65,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     this.set('items', ['Ember', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']);
     await render(hbs`
       <div id="other-div"></div>
-      {{#paper-autocomplete
-      placeholder="Item"
-      options=this.items
-      searchText=this.searchText
-      onSearchTextChange=(fn (mut this.searchText))
-      selected=this.selectedItem
-      onSelectionChange=(fn (mut this.selectedItem))
-      as |item|
-    }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
       {{item}}
-    {{/paper-autocomplete}}`);
+    </PaperAutocomplete>`);
 
     await settled();
 
@@ -110,17 +84,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     assert.expect(2);
     this.set('items', ['Ember', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']);
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -140,17 +106,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     assert.expect(3);
     this.set('items', ['Ember', 'Paper', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']);
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -180,17 +138,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     this.set('items', ['Ember', 'Paper', 'One', 'Two']);
     this.set('selectedItem', 'Paper');
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -206,17 +156,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     this.set('items', ['Ember', 'Paper', 'One', 'Two']);
     this.set('selectedItem', 'Paper');
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -238,20 +180,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     this.items = ['1', '2', '3', '4'];
     this.selectedItem = 1;
     await render(hbs`
-      {{#paper-autocomplete
-        placeholder="Item"
-        options=this.items
-        searchText=this.searchText
-        onSearchTextChange=(fn (mut this.searchText))
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item autocomplete|
-      }}
-        {{paper-autocomplete-highlight
-            label=item
-            searchText=autocomplete.searchText
-            flags="i"}}
-      {{/paper-autocomplete}}
+      <PaperAutocomplete @placeholder="Item" @options={{this.items}} @searchText={{this.searchText}} @onSearchTextChange={{fn (mut this.searchText)}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item autocomplete|>
+        <PaperAutocompleteHighlight @label={{item}} @searchText={{autocomplete.searchText}} @flags="i" />
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -269,16 +200,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     assert.expect(1);
     this.items = ['1', '2', '3'];
     await render(hbs`
-      {{#paper-autocomplete
-        dropdownClass="custom-dropdown-class"
-        placeholder="Item"
-        options=this.items
-        selected=this.selectedItem
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|
-      }}
+      <PaperAutocomplete @dropdownClass="custom-dropdown-class" @placeholder="Item" @options={{this.items}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -299,15 +223,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     }
     this.v = new DummyValidation();
     await render(hbs`
-      {{#paper-autocomplete
-        label="Fooo"
-        options=this.items
-        selected=this.selectedItem
-        errors=this.v.errors
-        onSelectionChange=(fn (mut this.selectedItem))
-        as |item|}}
+      <PaperAutocomplete @label="Fooo" @options={{this.items}} @selected={{this.selectedItem}} @errors={{this.v.errors}} @onSelectionChange={{fn (mut this.selectedItem)}} as |item|>
         {{item}}
-      {{/paper-autocomplete}}
+      </PaperAutocomplete>
     `);
 
     await settled();
@@ -331,14 +249,9 @@ module('Integration | Component | paper-autocomplete', function(hooks) {
     });
 
     await render(hbs`
-      {{#paper-form onSubmit=this.submitForm as |form|}}
-        {{form.autocomplete
-          allowClear=true
-          options=this.items
-          selected=this.selectedItem
-          onSelectionChange=(fn (mut this.selectedItem))
-        }}
-      {{/paper-form}}
+      <PaperForm @onSubmit={{this.submitForm}} as |form|>
+        <form.autocomplete @allowClear={{true}} @options={{this.items}} @selected={{this.selectedItem}} @onSelectionChange={{fn (mut this.selectedItem)}} />
+      </PaperForm>
     `);
 
     assert.dom('form md-autocomplete button').hasAttribute('type', 'button', 'Clear has type="button"');
